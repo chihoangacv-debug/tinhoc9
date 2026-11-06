@@ -82,6 +82,43 @@
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
 
+        /* Khung hiển thị phân hóa 4 mức độ đẹp mắt */
+        .differentiation-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .diff-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #475569;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .diff-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+        }
+
+        .diff-badge {
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .badge-1 { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+        .badge-2 { background: #fef9c3; color: #854d0e; border-color: #fef08a; }
+        .badge-3 { background: #e0e7ff; color: #3730a3; border-color: #c7d2fe; }
+        .badge-4 { background: #ffe4e6; color: #9f1239; border-color: #fecdd3; }
+
         .topic-title {
             font-size: 1.1rem;
             font-weight: bold;
@@ -234,6 +271,17 @@
                 <input type="text" id="student-class" placeholder="Lớp (Ví dụ: 9A1)">
             </div>
 
+            <!-- KHUNG THÔNG TIN PHÂN HÓA 20 CÂU HỎI -->
+            <div class="differentiation-box">
+                <div class="diff-title">🎯 BẢNG THỬ THÁCH 20 CÂU HỎI TRẮC NGHIỆM:</div>
+                <div class="diff-badges">
+                    <div class="diff-badge badge-1">🌱 Tân binh (5c)</div>
+                    <div class="diff-badge badge-2">⭐ Thành thạo (5c)</div>
+                    <div class="diff-badge badge-3">🔥 Cao thủ (5c)</div>
+                    <div class="diff-badge badge-4">👑 Huyền thoại (5c)</div>
+                </div>
+            </div>
+
             <!-- CHỦ ĐỀ 1 -->
             <div class="topic-title">CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</div>
             <div class="lesson-grid">
@@ -295,38 +343,39 @@
             "bai1": {
                 title: "Bài 1: Thế giới kĩ thuật số",
                 questions: [
-                    // VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ (Nhận biết - 7 câu)
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông", "C. Camera an ninh", "D. Biển báo giao thông"], answer: 1, explanation: "Đèn giao thông thông minh được gắn bộ xử lý để tự động điều chỉnh thời gian tín hiệu." },
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "2. Loại đồng hồ nào sau đây được gắn bộ xử lý thông tin?", options: ["A. Đồng hồ quả lắc chạy dây cót", "B. Đồng hồ đeo tay không dùng pin", "C. Đồng hồ thông minh", "D. Đồng hồ quartz thạch anh"], answer: 2, explanation: "Đồng hồ thông minh tích hợp chip xử lý, hệ điều hành và kết nối không dây." },
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "3. Thiết bị gia dụng nào sau đây KHÔNG được gắn bộ xử lý thông tin?", options: ["A. Máy giặt tự động", "B. Lò vi sóng điện tử", "C. Máy khoan cầm tay cơ học", "D. Robot hút bụi"], answer: 2, explanation: "Máy khoan cầm tay cơ học hoạt động thuần túy bằng cơ khí." },
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "4. Thiết bị số thông minh thường có đặc điểm nào dưới đây?", options: ["A. Chỉ có thể thực hiện một chức năng duy nhất", "B. Có khả năng tự động hóa và tương tác với người dùng", "C. Không cần nguồn điện khi hoạt động", "D. Chỉ hoạt động độc lập, không thể kết nối mạng"], answer: 1, explanation: "Thiết bị thông minh nổi bật với khả năng xử lý dữ liệu và tương tác tự động." },
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "5. Đâu là thành phần cốt lõi giúp một thiết bị thông thường trở thành thiết bị số thông minh?", options: ["A. Vỏ bọc bằng nhựa cao cấp", "B. Bộ vi xử lý (chip, vi điều khiển)", "C. Màn hình kích thước lớn", "D. Đèn LED hiển thị màu sắc"], answer: 1, explanation: "Bộ vi xử lý chính là 'bộ não' giúp thiết bị thực hiện các tính toán và quyết định thông minh." },
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "6. Hệ thống nào dưới đây ứng dụng công nghệ số để quản lý năng lượng điện tiêu thụ trong hộ gia đình?", options: ["A. Công tơ điện thông minh", "B. Bóng đèn sợi đốt truyền thống", "C. Cầu chì tự ngắt bằng cơ nhiệt", "D. Bếp củi truyền thống"], answer: 0, explanation: "Công tơ điện thông minh đo đạc và truyền dữ liệu tiêu thụ điện thời gian thực." },
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "7. Thiết bị nào sau đây sử dụng công nghệ nhận diện khuôn mặt?", options: ["A. Khóa cửa thông minh", "B. Ổ khóa cơ truyền thống", "C. Chốt cửa bằng gỗ", "D. Móc khóa đồng"], answer: 0, explanation: "Khóa cửa thông minh tích hợp camera và AI để nhận diện khuôn mặt chủ nhà." },
+                    // Cấp độ 1: TÂN BINH (Nhận biết - 5 câu)
+                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông", "C. Camera an ninh", "D. Biển báo giao thông"], answer: 1, explanation: "Đèn giao thông thông minh được gắn bộ xử lý để tự động điều chỉnh thời gian tín hiệu." },
+                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "2. Loại đồng hồ nào sau đây được gắn bộ xử lý thông tin?", options: ["A. Đồng hồ quả lắc chạy dây cót", "B. Đồng hồ đeo tay không dùng pin", "C. Đồng hồ thông minh", "D. Đồng hồ quartz thạch anh"], answer: 2, explanation: "Đồng hồ thông minh tích hợp chip xử lý, hệ điều hành và kết nối không dây." },
+                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thiết bị gia dụng nào sau đây KHÔNG được gắn bộ xử lý thông tin?", options: ["A. Máy giặt tự động", "B. Lò vi sóng điện tử", "C. Máy khoan cầm tay cơ học", "D. Robot hút bụi"], answer: 2, explanation: "Máy khoan cầm tay cơ học hoạt động thuần túy bằng cơ khí." },
+                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "4. Thiết bị số thông minh thường có đặc điểm nào dưới đây?", options: ["A. Chỉ có thể thực hiện một chức năng duy nhất", "B. Có khả năng tự động hóa và tương tác với người dùng", "C. Không cần nguồn điện khi hoạt động", "D. Chỉ hoạt động độc lập, không thể kết nối mạng"], answer: 1, explanation: "Thiết bị thông minh nổi bật với khả năng xử lý dữ liệu và tương tác tự động." },
+                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "5. Đâu là thành phần cốt lõi giúp một thiết bị thông thường trở thành thiết bị số thông minh?", options: ["A. Vỏ bọc bằng nhựa cao cấp", "B. Bộ vi xử lý (chip, vi điều khiển)", "C. Màn hình kích thước lớn", "D. Đèn LED hiển thị màu sắc"], answer: 1, explanation: "Bộ vi xử lý chính là 'bộ não' giúp thiết bị thực hiện các tính toán và quyết định thông minh." },
 
-                    // VÒNG 2: TƯ DUY THÔNG MINH (Thông hiểu - 7 câu)
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "8. Dữ liệu đầu ra của điều khiển từ xa ti vi truyền đến ti vi dưới dạng gì?", options: ["A. Chùm sáng hẹp song song", "B. Dãy bit dưới dạng tín hiệu hồng ngoại", "C. Dãy bit dưới dạng tín hiệu sóng âm", "D. Chùm sáng laser tử ngoại"], answer: 1, explanation: "Điều khiển từ xa mã hóa thông tin thành dãy bit truyền qua tia hồng ngoại." },
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "9. Nhóm đặc điểm nào thể hiện chính xác các ưu điểm vượt trội của máy tính?", options: ["A. Tính toán nhanh, lưu trữ lâu dài, kết nối an toàn", "B. Tính toán nhanh, lưu trữ lớn, kết nối toàn cầu", "C. Tưởng tượng phong phú, lưu trữ lớn, kết nối toàn cầu", "D. Tưởng tượng phong phú, lưu trữ lâu dài, an toàn"], answer: 1, explanation: "Máy tính nổi bật với tốc độ tính toán siêu nhanh, dung lượng lưu trữ khổng lồ và kết nối toàn cầu." },
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "10. Phát biểu nào sau đây đúng khi nói về tác động của công nghệ số đến đời sống xã hội?", options: ["A. Làm con người lười suy nghĩ và mất hoàn toàn khả năng giao tiếp trực tiếp", "B. Giúp tối ưu hóa quy trình làm việc, nâng cao chất lượng cuộc sống nhưng cũng đặt ra thách thức về bảo mật", "C. Chỉ phục vụ cho mục đích giải trí cá nhân mà không có giá trị kinh tế", "D. Thay thế hoàn toàn vai trò quyết định của con người trong mọi lĩnh vực"], answer: 1, explanation: "Công nghệ số mang lại nhiều tiện ích to lớn song hành cùng các vấn đề về an ninh mạng." },
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "11. Tại sao các thiết bị di động thông minh (Smartphone) lại được coi là trung tâm điều khiển hệ thống nhà thông minh (Smart Home)?", options: ["A. Vì smartphone có màn hình rất lớn", "B. Vì smartphone có khả năng kết nối mạng linh hoạt và cài đặt ứng dụng điều khiển trung gian", "C. Vì smartphone có trọng lượng rất nhẹ", "D. Vì smartphone không tiêu thụ pin khi kết nối thiết bị ngoại vi"], answer: 1, explanation: "Smartphone kết nối Internet và Bluetooth giúp điều khiển mọi thiết bị gia dụng từ xa." },
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "12. Việc số hóa tài liệu lưu trữ trong các cơ quan nhà nước mang lại lợi ích chủ yếu nào?", options: ["A. Tốn kém nhiều không gian vật lý hơn", "B. Dễ dàng tìm kiếm, chia sẻ nhanh chóng và tiết kiệm không gian", "C. Làm giảm độ chính xác của thông tin lưu trữ", "D. Hạn chế quyền tiếp cận thông tin của người dân"], answer: 1, explanation: "Số hóa giúp tối ưu hóa việc lưu trữ, tìm kiếm và luân chuyển văn bản hành chính." },
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "13. Thiết bị nào sau đây đóng vai trò là 'cổng kết nối' chính đưa Internet đến các thiết bị trong gia đình?", options: ["A. Bộ định tuyến Wi-Fi (Router)", "B. Ổ cắm điện đa năng", "C. Cáp dẫn điện cao thế", "D. Công tắc điện cơ học"], answer: 0, explanation: "Router Wi-Fi làm nhiệm vụ phân phối tín hiệu Internet đến các thiết bị trong nhà." },
-                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "14. Dữ liệu lớn (Big Data) trong xã hội số được hình thành từ nguồn nào?", options: ["A. Chỉ từ các văn bản do cơ quan nhà nước phát hành", "B. Từ mọi hoạt động trực tuyến của con người: mạng xã hội, giao dịch thương mại, cảm biến IoT...", "C. Chỉ từ sách giáo khoa điện tử", "D. Chỉ từ các chương trình phát thanh truyền hình"], answer: 1, explanation: "Big Data thu thập từ vô số nguồn tương tác số hàng ngày của nhân loại." },
+                    // Cấp độ 2: THÀNH THẠO (Thông hiểu - 5 câu)
+                    { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "6. Dữ liệu đầu ra của điều khiển từ xa ti vi truyền đến ti vi dưới dạng gì?", options: ["A. Chùm sáng hẹp song song", "B. Dãy bit dưới dạng tín hiệu hồng ngoại", "C. Dãy bit dưới dạng tín hiệu sóng âm", "D. Chùm sáng laser tử ngoại"], answer: 1, explanation: "Điều khiển từ xa mã hóa thông tin thành dãy bit truyền qua tia hồng ngoại." },
+                    { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "7. Nhóm đặc điểm nào thể hiện chính xác các ưu điểm vượt trội của máy tính?", options: ["A. Tính toán nhanh, lưu trữ lâu dài, kết nối an toàn", "B. Tính toán nhanh, lưu trữ lớn, kết nối toàn cầu", "C. Tưởng tượng phong phú, lưu trữ lớn, kết nối toàn cầu", "D. Tưởng tượng phong phú, lưu trữ lâu dài, an toàn"], answer: 1, explanation: "Máy tính nổi bật với tốc độ tính toán siêu nhanh, dung lượng lưu trữ khổng lồ và kết nối toàn cầu." },
+                    { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "8. Phát biểu nào sau đây đúng khi nói về tác động của công nghệ số đến đời sống xã hội?", options: ["A. Làm con người lười suy nghĩ và mất hoàn toàn khả năng giao tiếp trực tiếp", "B. Giúp tối ưu hóa quy trình làm việc, nâng cao chất lượng cuộc sống nhưng cũng đặt ra thách thức về bảo mật", "C. Chỉ phục vụ cho mục đích giải trí cá nhân mà không có giá trị kinh tế", "D. Thay thế hoàn toàn vai trò quyết định của con người trong mọi lĩnh vực"], answer: 1, explanation: "Công nghệ số mang lại nhiều tiện ích to lớn song hành cùng các vấn đề về an ninh mạng." },
+                    { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "9. Tại sao các thiết bị di động thông minh (Smartphone) lại được coi là trung tâm điều khiển hệ thống nhà thông minh (Smart Home)?", options: ["A. Vì smartphone có màn hình rất lớn", "B. Vì smartphone có khả năng kết nối mạng linh hoạt và cài đặt ứng dụng điều khiển trung gian", "C. Vì smartphone có trọng lượng rất nhẹ", "D. Vì smartphone không tiêu thụ pin khi kết nối thiết bị ngoại vi"], answer: 1, explanation: "Smartphone kết nối Internet và Bluetooth giúp điều khiển mọi thiết bị gia dụng từ xa." },
+                    { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "10. Việc số hóa tài liệu lưu trữ trong các cơ quan nhà nước mang lại lợi ích chủ yếu nào?", options: ["A. Tốn kém nhiều không gian vật lý hơn", "B. Dễ dàng tìm kiếm, chia sẻ nhanh chóng và tiết kiệm không gian", "C. Làm giảm độ chính xác của thông tin lưu trữ", "D. Hạn chế quyền tiếp cận thông tin của người dân"], answer: 1, explanation: "Số hóa giúp tối ưu hóa việc lưu trữ, tìm kiếm và luân chuyển văn bản hành chính." },
 
-                    // VÒNG 3: CHINH PHỤC THỬ THÁCH (Vận dụng & Nâng cao - 6 câu)
-                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "15. Tại sao các thiết bị như ti vi thông minh, tủ lạnh thông minh lại được gọi là thiết bị 'thông minh'?", options: ["A. Vì chúng tự nhận thức và có cảm xúc như con người", "B. Vì chúng được gắn bộ xử lý thông tin và chạy chương trình điều khiển", "C. Vì chúng chạy hoàn toàn bằng năng lượng tự nhiên", "D. Vì giá thành của chúng rất cao"], answer: 1, explanation: "Thiết bị thông minh là thiết bị được trang bị bộ xử lý thông tin để tự động hóa tác vụ." },
-                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "16. Trong kịch bản xây dựng lớp học thông minh, giải pháp nào thể hiện rõ nhất sự tương tác số hai chiều giữa giáo viên và học sinh?", options: ["A. Sử dụng bảng phấn và giẻ lau truyền thống", "B. Sử dụng màn hình tương tác thông minh kết hợp phần mềm kiểm tra trực tuyến", "C. Sách giáo khoa bằng giấy in khổ lớn", "D. Quạt trần điều khiển bằng công tắc tường"], answer: 1, explanation: "Màn hình tương tác và phần mềm e-learning cho phép phản hồi tức thì giữa thầy và trò." },
-                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "17. Một hệ thống nông nghiệp thông minh tự động tưới nước dựa vào độ ẩm đất thu thập từ cảm biến ứng dụng nguyên lý nào của thiết bị số?", options: ["A. Thu nhận dữ liệu - Xử lý thông tin - Ra quyết định hành động điều khiển", "B. Chỉ lưu trữ dữ liệu tĩnh không cần xử lý", "C. Thực hiện thủ công hoàn toàn bằng sức người", "D. Phân tích cảm xúc của cây trồng"], answer: 0, explanation: "Hệ thống tự động hóa khép kín: Cảm biến đo -> Vi xử lý so sánh -> Kích hoạt máy bơm." },
-                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "18. Khi thiết kế một hệ thống cảnh báo đột nhập gia đình qua điện thoại, thành phần nào đóng vai trò nhận tín hiệu cảnh báo từ cảm biến hồng ngoại?", options: ["A. Đèn báo hiệu giao thông", "B. Bộ điều khiển trung tâm kết nối Internet", "C. Khóa cửa cơ học", "D. Dây dẫn điện"], answer: 1, explanation: "Bộ điều khiển trung tâm nhận tín hiệu từ cảm biến và đẩy thông báo đẩy (push notification) lên điện thoại." },
-                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "19. Giải pháp nào sau đây giúp giảm thiểu rủi ro bị đánh cắp dữ liệu cá nhân khi sử dụng các dịch vụ số trên Internet?", options: ["A. Sử dụng chung một mật khẩu đơn giản cho mọi tài khoản", "B. Kích hoạt xác thực hai yếu tố (2FA) và cẩn trọng khi chia sẻ thông tin", "C. Không bao giờ kết nối Wi-Fi công cộng nhưng dùng chung mật khẩu", "D. Tắt hoàn toàn tính năng cập nhật bảo mật của thiết bị"], answer: 1, explanation: "2FA và ý thức bảo mật là lá chắn quan trọng nhất trên không gian mạng." },
-                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "20. Xu thế chuyển đổi số trong giáo dục tại các trường THCS hiện nay mang lại tác động chiến lược nào?", options: ["A. Thay thế hoàn toàn giáo viên bằng robot thông minh", "B. Tạo môi trường học tập linh hoạt, cá nhân hóa lộ trình và tiếp cận nguồn học liệu toàn cầu", "C. Bắt buộc học sinh không cần đến trường trực tiếp nữa", "D. Loại bỏ hoàn toàn sách vở truyền thống trong mọi môn học"], answer: 1, explanation: "Chuyển đổi số hỗ trợ giáo viên cá nhân hóa học tập và mở rộng không gian lớp học." }
+                    // Cấp độ 3: CAO THỦ (Vận dụng - 5 câu)
+                    { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "11. Tại sao các thiết bị như ti vi thông minh, tủ lạnh thông minh lại được gọi là thiết bị 'thông minh'?", options: ["A. Vì chúng tự nhận thức và có cảm xúc như con người", "B. Vì chúng được gắn bộ xử lý thông tin và chạy chương trình điều khiển", "C. Vì chúng chạy hoàn toàn bằng năng lượng tự nhiên", "D. Vì giá thành của chúng rất cao"], answer: 1, explanation: "Thiết bị thông minh là thiết bị được trang bị bộ xử lý thông tin để tự động hóa tác vụ." },
+                    { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "12. Trong kịch bản xây dựng lớp học thông minh, giải pháp nào thể hiện rõ nhất sự tương tác số hai chiều giữa giáo viên và học sinh?", options: ["A. Sử dụng bảng phấn và giẻ lau truyền thống", "B. Sử dụng màn hình tương tác thông minh kết hợp phần mềm kiểm tra trực tuyến", "C. Sách giáo khoa bằng giấy in khổ lớn", "D. Quạt trần điều khiển bằng công tắc tường"], answer: 1, explanation: "Màn hình tương tác và phần mềm e-learning cho phép phản hồi tức thì giữa thầy và trò." },
+                    { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "13. Một hệ thống nông nghiệp thông minh tự động tưới nước dựa vào độ ẩm đất thu thập từ cảm biến ứng dụng nguyên lý nào của thiết bị số?", options: ["A. Thu nhận dữ liệu - Xử lý thông tin - Ra quyết định hành động điều khiển", "B. Chỉ lưu trữ dữ liệu tĩnh không cần xử lý", "C. Thực hiện thủ công hoàn toàn bằng sức người", "D. Phân tích cảm xúc của cây trồng"], answer: 0, explanation: "Hệ thống tự động hóa khép kín: Cảm biến đo -> Vi xử lý so sánh -> Kích hoạt máy bơm." },
+                    { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "14. Khi thiết kế một hệ thống cảnh báo đột nhập gia đình qua điện thoại, thành phần nào đóng vai trò nhận tín hiệu cảnh báo từ cảm biến hồng ngoại?", options: ["A. Đèn báo hiệu giao thông", "B. Bộ điều khiển trung tâm kết nối Internet", "C. Khóa cửa cơ học", "D. Dây dẫn điện"], answer: 1, explanation: "Bộ điều khiển trung tâm nhận tín hiệu từ cảm biến và đẩy thông báo đẩy (push notification) lên điện thoại." },
+                    { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "15. Giải pháp nào sau đây giúp giảm thiểu rủi ro bị đánh cắp dữ liệu cá nhân khi sử dụng các dịch vụ số trên Internet?", options: ["A. Sử dụng chung một mật khẩu đơn giản cho mọi tài khoản", "B. Kích hoạt xác thực hai yếu tố (2FA) và cẩn trọng khi chia sẻ thông tin", "C. Không bao giờ kết nối Wi-Fi công cộng nhưng dùng chung mật khẩu", "D. Tắt hoàn toàn tính năng cập nhật bảo mật của thiết bị"], answer: 1, explanation: "2FA và ý thức bảo mật là lá chắn quan trọng nhất trên không gian mạng." },
+
+                    // Cấp độ 4: HUYỀN THOẠI (Vận dụng cao - 5 câu)
+                    { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "16. Xu thế chuyển đổi số trong giáo dục tại các trường THCS hiện nay mang lại tác động chiến lược nào?", options: ["A. Thay thế hoàn toàn giáo viên bằng robot thông minh", "B. Tạo môi trường học tập linh hoạt, cá nhân hóa lộ trình và tiếp cận nguồn học liệu toàn cầu", "C. Bắt buộc học sinh không cần đến trường trực tiếp nữa", "D. Loại bỏ hoàn toàn sách vở truyền thống trong mọi môn học"], answer: 1, explanation: "Chuyển đổi số hỗ trợ giáo viên cá nhân hóa học tập và mở rộng không gian lớp học." },
+                    { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "17. Nếu một hệ thống nhà thông minh mất kết nối Internet, tính năng điều khiển nào sau đây vẫn có thể hoạt động bình thường nếu thiết kế đúng kỹ thuật?", options: ["A. Điều khiển từ xa qua ứng dụng điện thoại ngoài Internet", "B. Điều khiển cục bộ bằng công tắc thông minh qua mạng LAN/Bluetooth nội bộ", "C. Nhận bản tin thời tiết cập nhật từ mạng toàn cầu", "D. Tự động đồng bộ dữ liệu lên đám mây Cloud"], answer: 1, explanation: "Hệ thống nội bộ (LAN/Bluetooth) giúp thiết bị vẫn giao tiếp được với nhau khi đứt cáp quang Internet." },
+                    { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "18. Yếu tố nào là quan trọng nhất để đảm bảo an toàn thông tin cá nhân khi học sinh tham gia môi trường học tập trực tuyến?", options: ["A. Chia sẻ mật khẩu cho nhiều bạn bè cùng học", "B. Ý thức bảo mật tài khoản, không click vào link lạ và tuân thủ quy tắc ứng dụng", "C. Chỉ dùng chung một tài khoản của lớp", "D. Tắt tất cả các thông báo bảo mật"], answer: 1, explanation: "Ý thức người dùng là yếu tố then chốt quyết định an toàn thông tin." },
+                    { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "19. Khi xây dựng một mô hình thành phố thông minh thu nhỏ bằng vi điều khiển, việc kết hợp nhiều loại cảm biến (nhiệt độ, ánh sáng, khói) đòi hỏi hệ thống phải thực hiện thao tác gì đối với dữ liệu đầu vào?", options: ["A. Xóa bỏ ngay lập tức để tiết kiệm bộ nhớ", "B. Thu thập, đồng bộ và xử lý đa luồng dữ liệu để ra quyết định chính xác", "C. Chỉ giữ lại dữ liệu của một cảm biến duy nhất", "D. Biến đổi dữ liệu thành tín hiệu cơ học thủ công"], answer: 1, explanation: "Xử lý đa luồng dữ liệu từ nhiều cảm biến giúp hệ thống phản ứng thông minh trước các tình huống phức tạp." },
+                    { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "20. Thách thức lớn nhất về mặt đạo đức và xã hội khi các hệ thống trí tuệ nhân tạo (AI) ngày càng tham gia sâu vào đời sống con người là gì?", options: ["A. Máy tính tiêu thụ quá nhiều điện năng", "B. Vấn đề sở hữu trí tuệ, quyền riêng tư dữ liệu và nguy cơ lạm dụng thông tin sai lệch", "C. Máy tính sẽ làm thay đổi khí hậu Trái Đất", "D. Làm giảm kích thước của các thiết bị phần cứng"], answer: 1, explanation: "Đạo đức công nghệ và quyền riêng tư là những thách thức nhức nhối nhất trong kỷ nguyên số." }
                 ]
             },
             "bai2": {
                 title: "Bài 2: Thông tin trong giải quyết vấn đề",
                 questions: [
-                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "1. Thông tin đáng tin cậy giúp ích gì cho con người trong đời sống?", options: ["A. Đưa ra quyết định chính xác và hiệu quả", "B. Làm chậm quá trình xử lí công việc", "C. Gây ra sự nhầm lẫn không đáng có", "D. Tăng chi phí tìm kiếm dữ liệu"], answer: 0, explanation: "Thông tin chính xác là nền tảng của mọi quyết định đúng đắn." },
-                    // Có thể tiếp tục bổ sung đầy đủ 20 câu tương tự cho các bài khác
+                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Thông tin đáng tin cậy giúp ích gì cho con người trong đời sống?", options: ["A. Đưa ra quyết định chính xác và hiệu quả", "B. Làm chậm quá trình xử lí công việc", "C. Gây ra sự nhầm lẫn không đáng có", "D. Tăng chi phí tìm kiếm dữ liệu"], answer: 0, explanation: "Thông tin chính xác là nền tảng của mọi quyết định đúng đắn." }
                 ]
             }
         };
