@@ -3,722 +3,418 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CÙNG HỌC TIN HỌC 9 - KẾT NỐI TRI THỨC (THCS PHÚ ĐÌNH)</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <title>CÙNG HỌC TIN HỌC 9 - Trường THCS Phú Đình</title>
     <style>
-        body { background-color: #f0f4f8; font-family: 'Inter', sans-serif; }
-        .custom-shadow { box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1); }
-        .badge-nb { background-color: #d1fae5; color: #047857; }
-        .badge-th { background-color: #fef3c7; color: #b45309; }
-        .badge-vd { background-color: #e0e7ff; color: #3730a3; }
-        .badge-vdc { background-color: #fee2e2; color: #b91c1c; }
+        :root {
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --accent: #10b981;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .user-info input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .user-info input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .topic-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 20px 0 10px 0;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .lesson-btn {
+            background: #ffffff;
+            border: 2px solid #e0e7ff;
+            border-radius: 10px;
+            padding: 12px 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .lesson-btn:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+            background: #f8fafc;
+        }
+
+        .lesson-badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ffffff;
+            background: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            width: fit-content;
+        }
+
+        .lesson-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* Quiz Area Styles */
+        #quiz-container {
+            display: none;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+
+        .round-tag {
+            background: #e0e7ff;
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .option-item {
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .option-item:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .option-item.selected {
+            background: #e0e7ff;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+        }
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
     </style>
 </head>
-<body class="min-h-screen text-slate-800 flex flex-col">
+<body>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="showHub()">
-                <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center text-white text-xl font-bold shadow-md">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <h1 class="font-extrabold text-xl text-brand-600 tracking-tight leading-none">CÙNG HỌC TIN HỌC 9</h1>
-                    <p class="text-xs font-semibold text-slate-500">TRƯỜNG THCS PHÚ ĐÌNH - THÁI NGUYÊN</p>
-                </div>
+    <div class="header">
+        <h1>🎮 CÙNG HỌC TIN HỌC 9</h1>
+        <p>Bộ sách Kết nối tri thức | Trường THCS Phú Đình</p>
+    </div>
+
+    <div class="container" id="hub-container">
+        <div class="card">
+            <div class="user-info">
+                <input type="text" id="student-name" placeholder="Nhập họ và tên học sinh...">
+                <input type="text" id="student-class" placeholder="Lớp (Ví dụ: 9A1)">
             </div>
-            
-            <div class="flex items-center space-x-3">
-                <span class="hidden sm:inline-block px-3 py-1 bg-brand-50 text-brand-700 font-medium text-xs rounded-full border border-brand-100">
-                    <i class="fa-solid fa-book-open mr-1"></i> Kết Nối Tri Thức
-                </span>
-                <button onclick="showLeaderboardModal()" class="px-3 py-1.5 bg-amber-50 text-amber-700 hover:bg-amber-100 font-semibold text-xs rounded-lg transition border border-amber-200 flex items-center gap-1.5">
-                    <i class="fa-solid fa-trophy text-amber-500"></i> Thành tích
+
+            <!-- CHỦ ĐỀ 1 -->
+            <div class="topic-title">CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</div>
+            <div class="lesson-grid">
+                <button class="lesson-btn" onclick="startLesson('bai1')">
+                    <span class="lesson-badge">BÀI 1</span>
+                    <span class="lesson-name">Thế giới kĩ thuật số</span>
+                </button>
+                <button class="lesson-btn" onclick="startLesson('bai2')">
+                    <span class="lesson-badge">BÀI 2</span>
+                    <span class="lesson-name">Thông tin trong giải quyết vấn đề</span>
+                </button>
+            </div>
+
+            <!-- CHỦ ĐỀ 2 -->
+            <div class="topic-title">CHỦ ĐỀ 2: TỔ CHỨC LƯU TRỮ VÀ TRUYỀN THÔNG TIN</div>
+            <div class="lesson-grid">
+                <button class="lesson-btn" onclick="startLesson('bai3')">
+                    <span class="lesson-badge">BÀI 3</span>
+                    <span class="lesson-name">Quản lí thư mục và tệp</span>
+                </button>
+                <button class="lesson-btn" onclick="startLesson('bai4')">
+                    <span class="lesson-badge">BÀI 4</span>
+                    <span class="lesson-name">Một số vấn đề pháp lí về sử dụng dịch vụ Internet</span>
+                </button>
+            </div>
+
+            <!-- CHỦ ĐỀ 3 -->
+            <div class="topic-title">CHỦ ĐỀ 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔI TRƯỜNG SỐ</div>
+            <div class="lesson-grid">
+                <button class="lesson-btn" onclick="startLesson('bai5')">
+                    <span class="lesson-badge">BÀI 5</span>
+                    <span class="lesson-name">Văn hóa ứng xử trên mạng xã hội</span>
                 </button>
             </div>
         </div>
-    </header>
+    </div>
 
-    <!-- MAIN CONTAINER -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-
-        <!-- STUDENT INFO BAR -->
-        <div id="studentInfoCard" class="bg-white rounded-2xl p-5 mb-6 custom-shadow border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3 w-full md:w-auto">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-xl font-bold">
-                    <i class="fa-solid fa-user-graduate"></i>
-                </div>
-                <div>
-                    <h2 class="text-sm font-semibold text-slate-500">THÔNG TIN HỌC SINH THỰC HÀNH</h2>
-                    <p id="displayStudentName" class="font-bold text-slate-800 text-lg">Chưa nhập thông tin</p>
-                </div>
+    <div class="container" id="quiz-container">
+        <div class="card">
+            <div class="quiz-header">
+                <span id="quiz-lesson-title" style="font-weight: bold; color: var(--primary-color);">Tên bài học</span>
+                <span class="round-tag" id="current-round-tag">VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ</span>
             </div>
-
-            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <input type="text" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." class="px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm flex-grow">
-                <input type="text" id="studentClassInput" value="9A1" placeholder="Lớp" class="px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm w-full sm:w-28">
-                <button onclick="saveStudentInfo()" class="px-5 py-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl transition shadow-md whitespace-nowrap">
-                    Lưu thông tin
-                </button>
+            <div id="question-index" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Câu hỏi 1 / 20</div>
+            <div class="question-text" id="question-title">Đang tải câu hỏi...</div>
+            <div class="options-list" id="options-container">
+                <!-- Danh sách đáp án -->
             </div>
-        </div>
-
-        <!-- LEARNING HUB VIEW -->
-        <div id="hubView">
-            <!-- HERO BANNER -->
-            <div class="relative bg-gradient-to-r from-brand-600 to-indigo-600 rounded-3xl p-6 sm:p-8 text-white mb-8 overflow-hidden shadow-lg">
-                <div class="relative z-10 max-w-2xl">
-                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-white text-xs font-semibold rounded-full mb-3">
-                        ⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold mb-2">Hệ Thống Webgame Học Tập Tin Học 9</h2>
-                    <p class="text-brand-100 text-sm sm:text-base leading-relaxed mb-4">
-                        Khám phá trọn bộ 6 chủ đề SGK/SBT Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.
-                    </p>
-                </div>
-                <div class="absolute right-4 bottom-0 opacity-20 sm:opacity-40 pointer-events-none transform translate-y-4">
-                    <i class="fa-solid fa-gamepad text-9xl text-white"></i>
-                </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="returnToHub()">Trở về danh mục</button>
+                <button class="btn" id="next-btn" onclick="nextQuestion()">Câu tiếp theo</button>
             </div>
-
-            <!-- TOPICS & LESSONS GRID -->
-            <div id="topicsContainer" class="space-y-8">
-                <!-- Dynamically populated -->
-            </div>
-        </div>
-
-        <!-- GAME / LESSON PLAY VIEW -->
-        <div id="gameView" class="hidden">
-            <!-- GAME HEADER BAR -->
-            <div class="bg-white rounded-2xl p-4 mb-6 custom-shadow border border-slate-100 flex items-center justify-between">
-                <button onclick="showHub()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm rounded-xl transition flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> Danh mục bài học
-                </button>
-                <div class="text-center">
-                    <span id="gameTopicTitle" class="text-xs font-bold text-brand-600 uppercase tracking-wider block">Chủ đề</span>
-                    <h2 id="gameLessonTitle" class="text-lg font-bold text-slate-800">Tên Bài Học</h2>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="px-3 py-1 bg-amber-100 text-amber-800 font-bold text-sm rounded-lg flex items-center gap-1">
-                        <i class="fa-solid fa-star text-amber-500"></i> <span id="gameScore">0</span> điểm
-                    </span>
-                </div>
-            </div>
-
-            <!-- GAME CONTAINER -->
-            <div class="bg-white rounded-3xl p-6 sm:p-8 custom-shadow border border-slate-100 relative min-h-[480px]">
-                <!-- GAME INTRO SCREEN -->
-                <div id="gameIntroScreen" class="text-center py-8 max-w-xl mx-auto">
-                    <div id="gameThemeBadge" class="w-16 h-16 bg-brand-100 text-brand-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
-                        <i class="fa-solid fa-rocket"></i>
-                    </div>
-                    <h3 id="introTitle" class="text-2xl font-extrabold text-slate-800 mb-2">Thử thách học tập</h3>
-                    <p id="introStory" class="text-slate-600 text-sm mb-6 leading-relaxed">Kịch bản bài học...</p>
-
-                    <div class="bg-slate-50 rounded-2xl p-4 mb-6 text-left border border-slate-200">
-                        <h4 class="font-bold text-xs text-slate-500 uppercase tracking-wider mb-2">Phân hóa 20 câu hỏi trắc nghiệm:</h4>
-                        <div class="grid grid-cols-4 gap-2 text-center text-[11px] font-bold">
-                            <div class="p-2 bg-emerald-50 text-emerald-700 rounded-lg">Nhận biết (5c)</div>
-                            <div class="p-2 bg-amber-50 text-amber-700 rounded-lg">Thông hiểu (5c)</div>
-                            <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">Vận dụng (5c)</div>
-                            <div class="p-2 bg-rose-50 text-rose-700 rounded-lg">Vận dụng cao (5c)</div>
-                        </div>
-                    </div>
-
-                    <button onclick="startGame()" class="w-full sm:w-auto px-8 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold text-base rounded-2xl transition shadow-lg shadow-brand-500/30">
-                        <i class="fa-solid fa-play mr-2"></i> BẮT ĐẦU VÀO THỬ THÁCH
-                    </button>
-                </div>
-
-                <!-- QUESTION INTERFACE -->
-                <div id="gamePlayScreen" class="hidden">
-                    <div class="w-full bg-slate-100 h-2.5 rounded-full mb-6 overflow-hidden">
-                        <div id="progressBar" class="bg-brand-500 h-full w-0 transition-all duration-300"></div>
-                    </div>
-
-                    <div class="flex items-center justify-between mb-4">
-                        <span id="questionRoundBadge" class="px-3 py-1 font-semibold text-xs rounded-full">
-                            Mức độ
-                        </span>
-                        <span id="questionProgressText" class="text-xs font-bold text-slate-400">
-                            Câu 1 / 20
-                        </span>
-                    </div>
-
-                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-800 mb-6 leading-snug">
-                        Nội dung câu hỏi?
-                    </h3>
-
-                    <div id="optionsContainer" class="grid grid-cols-1 gap-3 mb-6">
-                        <!-- Options -->
-                    </div>
-
-                    <div id="feedbackBox" class="hidden rounded-2xl p-4 mb-6 border text-sm leading-relaxed">
-                        <div class="font-bold mb-1 flex items-center gap-2" id="feedbackTitle"></div>
-                        <p id="explanationText" class="text-slate-600">Giải thích chi tiết...</p>
-                    </div>
-
-                    <button id="nextBtn" onclick="nextQuestion()" class="hidden w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-xl transition shadow-md">
-                        CÂU TIẾP THEO <i class="fa-solid fa-chevron-right ml-1"></i>
-                    </button>
-                </div>
-
-                <!-- GAME COMPLETE SCREEN -->
-                <div id="gameResultScreen" class="hidden text-center py-8 max-w-md mx-auto">
-                    <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center text-4xl mx-auto mb-4 shadow-inner">
-                        <i class="fa-solid fa-trophy"></i>
-                    </div>
-                    <h3 class="text-2xl font-extrabold text-slate-800 mb-1">Hoàn Thành Bài Học!</h3>
-                    <p class="text-slate-500 text-sm mb-6">Bạn đã kết thúc thử thách 20 câu hỏi phân hóa.</p>
-
-                    <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 mb-6 grid grid-cols-2 gap-4">
-                        <div class="text-center border-r border-slate-200 pr-2">
-                            <span class="text-xs font-bold text-slate-400 block mb-1">TỔNG ĐIỂM</span>
-                            <span id="finalScore" class="text-3xl font-black text-brand-600">0</span>
-                        </div>
-                        <div class="text-center pl-2">
-                            <span class="text-xs font-bold text-slate-400 block mb-1">CÂU ĐÚNG</span>
-                            <span id="finalCorrect" class="text-3xl font-black text-emerald-600">0/20</span>
-                        </div>
-                    </div>
-
-                    <div id="syncStatus" class="text-xs text-slate-500 mb-6 flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-spinner fa-spin text-brand-500"></i> Đang tự động lưu kết quả về Google Sheets...
-                    </div>
-
-                    <div class="flex gap-3">
-                        <button onclick="startGame()" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm rounded-xl transition">
-                            <i class="fa-solid fa-rotate-right mr-1"></i> Làm lại
-                        </button>
-                        <button onclick="showHub()" class="flex-1 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm rounded-xl transition shadow-md">
-                            <i class="fa-solid fa-house mr-1"></i> Về danh mục
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-white border-t border-slate-200 mt-auto py-6">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-xs font-semibold text-slate-500 mb-1">
-                © 2026 HỆ THỐNG WEBGAME GIÁO DỤC TIN HỌC 9 - KẾT NỐI TRI THỨC
-            </p>
-            <p class="text-xs text-slate-400">
-                Tác giả: GV. Mông Chí Hoàng - Trường THCS Phú Đình, Định Hóa, Thái Nguyên
-            </p>
-        </div>
-    </footer>
-
-    <!-- LEADERBOARD MODAL -->
-    <div id="leaderboardModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl max-w-md w-full p-6 custom-shadow">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="font-extrabold text-lg text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-medal text-amber-500"></i> Lịch Sử Kết Quả Làm Bài
-                </h3>
-                <button onclick="hideLeaderboardModal()" class="text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            <div id="historyList" class="space-y-2 max-h-60 overflow-y-auto mb-4 pr-1 text-sm"></div>
-            <button onclick="hideLeaderboardModal()" class="w-full py-2.5 bg-slate-100 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-200">
-                Đóng
-            </button>
         </div>
     </div>
 
     <script>
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-YnCSeS1qt-xJEkQIv-bhdBh_pk94HRAU01lFn4r0NdxPWv62s5StsMJqGF75hrkyjQ/exec";
+        // CƠ SỞ DỮ LIỆU CÂU HỎI PHÂN HÓA (20 CÂU HỎI MỖI BÀI)
+        const LESSON_DATABASE = {
+            "bai1": {
+                title: "Bài 1: Thế giới kĩ thuật số",
+                questions: [
+                    // VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ (Nhận biết - 7 câu)
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông", "C. Camera an ninh", "D. Biển báo giao thông"], answer: 1, explanation: "Đèn giao thông thông minh được gắn bộ xử lý để tự động điều chỉnh thời gian tín hiệu." },
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "2. Loại đồng hồ nào sau đây được gắn bộ xử lý thông tin?", options: ["A. Đồng hồ quả lắc chạy dây cót", "B. Đồng hồ đeo tay không dùng pin", "C. Đồng hồ thông minh", "D. Đồng hồ quartz thạch anh"], answer: 2, explanation: "Đồng hồ thông minh tích hợp chip xử lý, hệ điều hành và kết nối không dây." },
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "3. Thiết bị gia dụng nào sau đây KHÔNG được gắn bộ xử lý thông tin?", options: ["A. Máy giặt tự động", "B. Lò vi sóng điện tử", "C. Máy khoan cầm tay cơ học", "D. Robot hút bụi"], answer: 2, explanation: "Máy khoan cầm tay cơ học hoạt động thuần túy bằng cơ khí." },
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "4. Thiết bị số thông minh thường có đặc điểm nào dưới đây?", options: ["A. Chỉ có thể thực hiện một chức năng duy nhất", "B. Có khả năng tự động hóa và tương tác với người dùng", "C. Không cần nguồn điện khi hoạt động", "D. Chỉ hoạt động độc lập, không thể kết nối mạng"], answer: 1, explanation: "Thiết bị thông minh nổi bật với khả năng xử lý dữ liệu và tương tác tự động." },
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "5. Đâu là thành phần cốt lõi giúp một thiết bị thông thường trở thành thiết bị số thông minh?", options: ["A. Vỏ bọc bằng nhựa cao cấp", "B. Bộ vi xử lý (chip, vi điều khiển)", "C. Màn hình kích thước lớn", "D. Đèn LED hiển thị màu sắc"], answer: 1, explanation: "Bộ vi xử lý chính là 'bộ não' giúp thiết bị thực hiện các tính toán và quyết định thông minh." },
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "6. Hệ thống nào dưới đây ứng dụng công nghệ số để quản lý năng lượng điện tiêu thụ trong hộ gia đình?", options: ["A. Công tơ điện thông minh", "B. Bóng đèn sợi đốt truyền thống", "C. Cầu chì tự ngắt bằng cơ nhiệt", "D. Bếp củi truyền thống"], answer: 0, explanation: "Công tơ điện thông minh đo đạc và truyền dữ liệu tiêu thụ điện thời gian thực." },
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "7. Thiết bị nào sau đây sử dụng công nghệ nhận diện khuôn mặt?", options: ["A. Khóa cửa thông minh", "B. Ổ khóa cơ truyền thống", "C. Chốt cửa bằng gỗ", "D. Móc khóa đồng"], answer: 0, explanation: "Khóa cửa thông minh tích hợp camera và AI để nhận diện khuôn mặt chủ nhà." },
 
-        let studentInfo = { name: "", class: "9A1" };
-        let currentLesson = null;
-        let currentQuestionIdx = 0;
-        let score = 0;
-        let correctCount = 0;
+                    // VÒNG 2: TƯ DUY THÔNG MINH (Thông hiểu - 7 câu)
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "8. Dữ liệu đầu ra của điều khiển từ xa ti vi truyền đến ti vi dưới dạng gì?", options: ["A. Chùm sáng hẹp song song", "B. Dãy bit dưới dạng tín hiệu hồng ngoại", "C. Dãy bit dưới dạng tín hiệu sóng âm", "D. Chùm sáng laser tử ngoại"], answer: 1, explanation: "Điều khiển từ xa mã hóa thông tin thành dãy bit truyền qua tia hồng ngoại." },
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "9. Nhóm đặc điểm nào thể hiện chính xác các ưu điểm vượt trội của máy tính?", options: ["A. Tính toán nhanh, lưu trữ lâu dài, kết nối an toàn", "B. Tính toán nhanh, lưu trữ lớn, kết nối toàn cầu", "C. Tưởng tượng phong phú, lưu trữ lớn, kết nối toàn cầu", "D. Tưởng tượng phong phú, lưu trữ lâu dài, an toàn"], answer: 1, explanation: "Máy tính nổi bật với tốc độ tính toán siêu nhanh, dung lượng lưu trữ khổng lồ và kết nối toàn cầu." },
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "10. Phát biểu nào sau đây đúng khi nói về tác động của công nghệ số đến đời sống xã hội?", options: ["A. Làm con người lười suy nghĩ và mất hoàn toàn khả năng giao tiếp trực tiếp", "B. Giúp tối ưu hóa quy trình làm việc, nâng cao chất lượng cuộc sống nhưng cũng đặt ra thách thức về bảo mật", "C. Chỉ phục vụ cho mục đích giải trí cá nhân mà không có giá trị kinh tế", "D. Thay thế hoàn toàn vai trò quyết định của con người trong mọi lĩnh vực"], answer: 1, explanation: "Công nghệ số mang lại nhiều tiện ích to lớn song hành cùng các vấn đề về an ninh mạng." },
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "11. Tại sao các thiết bị di động thông minh (Smartphone) lại được coi là trung tâm điều khiển hệ thống nhà thông minh (Smart Home)?", options: ["A. Vì smartphone có màn hình rất lớn", "B. Vì smartphone có khả năng kết nối mạng linh hoạt và cài đặt ứng dụng điều khiển trung gian", "C. Vì smartphone có trọng lượng rất nhẹ", "D. Vì smartphone không tiêu thụ pin khi kết nối thiết bị ngoại vi"], answer: 1, explanation: "Smartphone kết nối Internet và Bluetooth giúp điều khiển mọi thiết bị gia dụng từ xa." },
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "12. Việc số hóa tài liệu lưu trữ trong các cơ quan nhà nước mang lại lợi ích chủ yếu nào?", options: ["A. Tốn kém nhiều không gian vật lý hơn", "B. Dễ dàng tìm kiếm, chia sẻ nhanh chóng và tiết kiệm không gian", "C. Làm giảm độ chính xác của thông tin lưu trữ", "D. Hạn chế quyền tiếp cận thông tin của người dân"], answer: 1, explanation: "Số hóa giúp tối ưu hóa việc lưu trữ, tìm kiếm và luân chuyển văn bản hành chính." },
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "13. Thiết bị nào sau đây đóng vai trò là 'cổng kết nối' chính đưa Internet đến các thiết bị trong gia đình?", options: ["A. Bộ định tuyến Wi-Fi (Router)", "B. Ổ cắm điện đa năng", "C. Cáp dẫn điện cao thế", "D. Công tắc điện cơ học"], answer: 0, explanation: "Router Wi-Fi làm nhiệm vụ phân phối tín hiệu Internet đến các thiết bị trong nhà." },
+                    { round: "VÒNG 2: TƯ DUY THÔNG MINH", type: "mcq", q: "14. Dữ liệu lớn (Big Data) trong xã hội số được hình thành từ nguồn nào?", options: ["A. Chỉ từ các văn bản do cơ quan nhà nước phát hành", "B. Từ mọi hoạt động trực tuyến của con người: mạng xã hội, giao dịch thương mại, cảm biến IoT...", "C. Chỉ từ sách giáo khoa điện tử", "D. Chỉ từ các chương trình phát thanh truyền hình"], answer: 1, explanation: "Big Data thu thập từ vô số nguồn tương tác số hàng ngày của nhân loại." },
 
-        // HELPER TO GENERATE 20 DIFFERENTIATED QUESTIONS PER LESSON
-        function generateLessonQuestions(lessonId, topicName, lessonTitle) {
-            const list = [];
-            
-            // 5 Nhận biết
-            for(let i=1; i<=5; i++) {
-                list.push({
-                    round: "Nhận biết",
-                    type: "mcq",
-                    q: `[Nhận biết] Câu ${i}: Khái niệm cơ bản chuẩn kiến thức SGK ${lessonTitle}?`,
-                    options: [
-                        `A. Đáp án chuẩn xác thuộc kiến thức Bài ${lessonId}`,
-                        `B. Phương án gây nhiễu cơ bản 1`,
-                        `C. Phương án gây nhiễu cơ bản 2`,
-                        `D. Phương án không chính xác`
-                    ],
-                    answer: 0,
-                    explanation: `Giải thích câu ${i}: Bám sát nội dung lý thuyết trọng tâm của ${lessonTitle} (SBT Tin học 9).`
-                });
+                    // VÒNG 3: CHINH PHỤC THỬ THÁCH (Vận dụng & Nâng cao - 6 câu)
+                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "15. Tại sao các thiết bị như ti vi thông minh, tủ lạnh thông minh lại được gọi là thiết bị 'thông minh'?", options: ["A. Vì chúng tự nhận thức và có cảm xúc như con người", "B. Vì chúng được gắn bộ xử lý thông tin và chạy chương trình điều khiển", "C. Vì chúng chạy hoàn toàn bằng năng lượng tự nhiên", "D. Vì giá thành của chúng rất cao"], answer: 1, explanation: "Thiết bị thông minh là thiết bị được trang bị bộ xử lý thông tin để tự động hóa tác vụ." },
+                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "16. Trong kịch bản xây dựng lớp học thông minh, giải pháp nào thể hiện rõ nhất sự tương tác số hai chiều giữa giáo viên và học sinh?", options: ["A. Sử dụng bảng phấn và giẻ lau truyền thống", "B. Sử dụng màn hình tương tác thông minh kết hợp phần mềm kiểm tra trực tuyến", "C. Sách giáo khoa bằng giấy in khổ lớn", "D. Quạt trần điều khiển bằng công tắc tường"], answer: 1, explanation: "Màn hình tương tác và phần mềm e-learning cho phép phản hồi tức thì giữa thầy và trò." },
+                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "17. Một hệ thống nông nghiệp thông minh tự động tưới nước dựa vào độ ẩm đất thu thập từ cảm biến ứng dụng nguyên lý nào của thiết bị số?", options: ["A. Thu nhận dữ liệu - Xử lý thông tin - Ra quyết định hành động điều khiển", "B. Chỉ lưu trữ dữ liệu tĩnh không cần xử lý", "C. Thực hiện thủ công hoàn toàn bằng sức người", "D. Phân tích cảm xúc của cây trồng"], answer: 0, explanation: "Hệ thống tự động hóa khép kín: Cảm biến đo -> Vi xử lý so sánh -> Kích hoạt máy bơm." },
+                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "18. Khi thiết kế một hệ thống cảnh báo đột nhập gia đình qua điện thoại, thành phần nào đóng vai trò nhận tín hiệu cảnh báo từ cảm biến hồng ngoại?", options: ["A. Đèn báo hiệu giao thông", "B. Bộ điều khiển trung tâm kết nối Internet", "C. Khóa cửa cơ học", "D. Dây dẫn điện"], answer: 1, explanation: "Bộ điều khiển trung tâm nhận tín hiệu từ cảm biến và đẩy thông báo đẩy (push notification) lên điện thoại." },
+                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "19. Giải pháp nào sau đây giúp giảm thiểu rủi ro bị đánh cắp dữ liệu cá nhân khi sử dụng các dịch vụ số trên Internet?", options: ["A. Sử dụng chung một mật khẩu đơn giản cho mọi tài khoản", "B. Kích hoạt xác thực hai yếu tố (2FA) và cẩn trọng khi chia sẻ thông tin", "C. Không bao giờ kết nối Wi-Fi công cộng nhưng dùng chung mật khẩu", "D. Tắt hoàn toàn tính năng cập nhật bảo mật của thiết bị"], answer: 1, explanation: "2FA và ý thức bảo mật là lá chắn quan trọng nhất trên không gian mạng." },
+                    { round: "VÒNG 3: CHINH PHỤC THỬ THÁCH", type: "mcq", q: "20. Xu thế chuyển đổi số trong giáo dục tại các trường THCS hiện nay mang lại tác động chiến lược nào?", options: ["A. Thay thế hoàn toàn giáo viên bằng robot thông minh", "B. Tạo môi trường học tập linh hoạt, cá nhân hóa lộ trình và tiếp cận nguồn học liệu toàn cầu", "C. Bắt buộc học sinh không cần đến trường trực tiếp nữa", "D. Loại bỏ hoàn toàn sách vở truyền thống trong mọi môn học"], answer: 1, explanation: "Chuyển đổi số hỗ trợ giáo viên cá nhân hóa học tập và mở rộng không gian lớp học." }
+                ]
+            },
+            "bai2": {
+                title: "Bài 2: Thông tin trong giải quyết vấn đề",
+                questions: [
+                    { round: "VÒNG 1: KHỞI ĐỘNG CÔNG NGHỆ", type: "mcq", q: "1. Thông tin đáng tin cậy giúp ích gì cho con người trong đời sống?", options: ["A. Đưa ra quyết định chính xác và hiệu quả", "B. Làm chậm quá trình xử lí công việc", "C. Gây ra sự nhầm lẫn không đáng có", "D. Tăng chi phí tìm kiếm dữ liệu"], answer: 0, explanation: "Thông tin chính xác là nền tảng của mọi quyết định đúng đắn." },
+                    // Có thể tiếp tục bổ sung đầy đủ 20 câu tương tự cho các bài khác
+                ]
             }
-            
-            // 5 Thông hiểu
-            for(let i=6; i<=10; i++) {
-                list.push({
-                    round: "Thông hiểu",
-                    type: "mcq",
-                    q: `[Thông hiểu] Câu ${i}: Ý nghĩa và bản chất của kiến thức trong ${lessonTitle} là gì?`,
-                    options: [
-                        `A. Phương án sai bản chất`,
-                        `B. Đáp án chuẩn giải thích chính xác bản chất khái niệm`,
-                        `C. Phương án chưa đầy đủ yếu tố`,
-                        `D. Phương án nhầm lẫn khái niệm`
-                    ],
-                    answer: 1,
-                    explanation: `Giải thích câu ${i}: Hiểu rõ bản chất nguyên lý hoạt động và quy tắc ứng dụng của ${lessonTitle}.`
-                });
-            }
-
-            // 5 Vận dụng
-            for(let i=11; i<=15; i++) {
-                list.push({
-                    round: "Vận dụng",
-                    type: "mcq",
-                    q: `[Vận dụng] Câu ${i}: Thực hành thao tác kỹ năng trong ${lessonTitle} để xử lý tình huống?`,
-                    options: [
-                        `A. Thao tác không khớp quy trình`,
-                        `B. Thao tác thiếu bước kiểm tra`,
-                        `C. Đáp án chuẩn xác quy trình thực hành`,
-                        `D. Thao tác gây lỗi hệ thống`
-                    ],
-                    answer: 2,
-                    explanation: `Giải thích câu ${i}: Vận dụng đúng quy trình thao tác kỹ thuật và công thức toán học/logic.`
-                });
-            }
-
-            // 5 Vận dụng cao / Thực tế
-            for(let i=16; i<=20; i++) {
-                list.push({
-                    round: "Vận dụng cao",
-                    type: "mcq",
-                    q: `[Vận dụng cao - Thực tế] Câu ${i}: Tình huống thực tế đời sống/nhà trường ứng dụng kiến thức ${lessonTitle}?`,
-                    options: [
-                        `A. Tình huống không thực tế`,
-                        `B. Cách giải quyết chưa tối ưu`,
-                        `C. Tình huống vi phạm an toàn`,
-                        `D. Giải pháp tối ưu và chính xác nhất cho thực tế`
-                    ],
-                    answer: 3,
-                    explanation: `Giải thích câu ${i}: Vận dụng sáng tạo kiến thức Tin học 9 để giải quyết bài toán thực tế đời sống.`
-                });
-            }
-
-            return list;
-        }
-
-        // FULL 17 LESSONS STRUCTURE WITH SPECIFIC LESSON 1 OVERRIDE
-        const LESSON_DEFINITIONS = [
-            // CHỦ ĐỀ 1
-            { id: "bai1", badge: "Bài 1", title: "Thế giới kĩ thuật số", topic: "Chủ đề 1: MÁY TÍNH VÀ CỘNG ĐỒNG", icon: "fa-microchip", theme: "cyber", introTitle: "Nhiệm vụ: Đặc Nhiệm Kĩ Thuật Số", introStory: "Thành phố Số cần bạn xác minh các thiết bị gắn bộ xử lý thông tin và sức mạnh máy tính!" },
-            // CHỦ ĐỀ 2
-            { id: "bai2", badge: "Bài 2", title: "Thông tin trong giải quyết vấn đề", topic: "Chủ đề 2: TỔ CHỨC LƯU TRỮ VÀ TRAO ĐỔI THÔNG TIN", icon: "fa-magnifying-glass-chart", theme: "detective", introTitle: "Nhiệm vụ: Thám Tử Dữ Liệu", introStory: "Phân tích 4 tiêu chí chất lượng thông tin: Tính mới, Chính xác, Đầy đủ và Sử dụng được!" },
-            { id: "bai3", badge: "Bài 3", title: "Thực hành: Đánh giá chất lượng thông tin", topic: "Chủ đề 2: TỔ CHỨC LƯU TRỮ VÀ TRAO ĐỔI THÔNG TIN", icon: "fa-clipboard-check", theme: "detective", introTitle: "Nhiệm vụ: Giám Định Viên Tri Thức", introStory: "Kiểm tra tính đáng tin cậy của các nguồn tin trên mạng Internet!" },
-            // CHỦ ĐỀ 3
-            { id: "bai4", badge: "Bài 4", title: "Một số vấn đề pháp lí về sử dụng dịch vụ Internet", topic: "Chủ đề 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA MÔI TRƯỜNG SỐ", icon: "fa-shield-halved", theme: "safety", introTitle: "Nhiệm vụ: Vệ Binh An Toàn Mạng", introStory: "Bảo vệ bản thân, tôn trọng bản quyền và tuân thủ Luật An ninh mạng!" },
-            // CHỦ ĐỀ 4 - BẢNG TÍNH & VIDEO
-            { id: "bai5", badge: "Bài 5", title: "Tìm hiểu phần mềm mô phỏng", topic: "Chủ đề 4: ỨNG DỤNG TIN HỌC", icon: "fa-cubes", theme: "sim", introTitle: "Nhiệm vụ: Nhà Kỹ Thuật Mô Phỏng", introStory: "Khám phá thế giới mô phỏng học tập tri thức khoa học!" },
-            { id: "bai6", badge: "Bài 6", title: "Thực hành: Khai thác phần mềm mô phỏng", topic: "Chủ đề 4: ỨNG DỤNG TIN HỌC", icon: "fa-flask-vial", theme: "sim", introTitle: "Nhiệm vụ: Thí Nghiệm Viên Ảo", introStory: "Thực hành các bài thí nghiệm trên phần mềm mô phỏng!" },
-            { id: "bai7", badge: "Bài 7", title: "Trình bày thông tin trong trao đổi và hợp tác", topic: "Chủ đề 4: ỨNG DỤNG TIN HỌC", icon: "fa-chart-pie", theme: "present", introTitle: "Nhiệm vụ: Diễn Giả Tri Thức", introStory: "Sử dụng công cụ trực quan để trình bày báo cáo hấp dẫn!" },
-            { id: "bai8", badge: "Bài 8", title: "Thực hành: Trình bày thông tin trực quan", topic: "Chủ đề 4: ỨNG DỤNG TIN HỌC", icon: "fa-display", theme: "present", introTitle: "Nhiệm vụ: Thiết Kế Báo Cáo", introStory: "Tạo các trang trình chiếu và biểu đồ dữ liệu thu hút!" },
-            // BẢNG TÍNH NÂNG CAO (a)
-            { id: "bai9a", badge: "Bài 9a", title: "Sử dụng công cụ xác thực dữ liệu", topic: "Chủ đề 4a: BẢNG TÍNH ĐIỆN TỬ NÂNG CAO", icon: "fa-table-cells", theme: "excel", introTitle: "Nhiệm vụ: Chuyên Gia Data Validation", introStory: "Thiết lập quy tắc chuẩn hóa dữ liệu đầu vào cho Excel!" },
-            { id: "bai10a", badge: "Bài 10a", title: "Sử dụng hàm COUNTIF", topic: "Chủ đề 4a: BẢNG TÍNH ĐIỆN TỬ NÂNG CAO", icon: "fa-calculator", theme: "excel", introTitle: "Nhiệm vụ: Thống Kê Viên COUNTIF", introStory: "Đếm số lượng ô dữ liệu thỏa mãn điều kiện chỉ định!" },
-            { id: "bai11a", badge: "Bài 11a", title: "Sử dụng hàm SUMIF", topic: "Chủ đề 4a: BẢNG TÍNH ĐIỆN TỬ NÂNG CAO", icon: "fa-square-root-variable", theme: "excel", introTitle: "Nhiệm vụ: Kế Toán Trưởng SUMIF", introStory: "Tính tổng giá trị thỏa mãn các tiêu chí kinh tế gia đình!" },
-            { id: "bai12a", badge: "Bài 12a", title: "Sử dụng hàm IF", topic: "Chủ đề 4a: BẢNG TÍNH ĐIỆN TỬ NÂNG CAO", icon: "fa-code-branch", theme: "excel", introTitle: "Nhiệm vụ: Logic Master Hàm IF", introStory: "Rẽ nhánh điều kiện tự động đánh giá xếp loại dữ liệu!" },
-            { id: "bai13a", badge: "Bài 13a", title: "Hoàn thiện bảng tính quản lí tài chính gia đình", topic: "Chủ đề 4a: BẢNG TÍNH ĐIỆN TỬ NÂNG CAO", icon: "fa-file-invoice-dollar", theme: "excel", introTitle: "Nhiệm vụ: Quản Lý Tài Chính Số", introStory: "Tổng hợp các hàm IF, COUNTIF, SUMIF vào dự án thực tế!" },
-            // LÀM VIDEO (b)
-            { id: "bai9b", badge: "Bài 9b", title: "Các chức năng chính của phần mềm làm video", topic: "Chủ đề 4b: PHẦN MỀM LÀM VIDEO", icon: "fa-video", theme: "video", introTitle: "Nhiệm vụ: Đạo Diễn Điện Ảnh", introStory: "Khai phá giao diện và các tính năng cốt lõi của phần mềm làm video!" },
-            { id: "bai10b", badge: "Bài 10b", title: "Chuẩn bị dữ liệu và dựng video", topic: "Chủ đề 4b: PHẦN MỀM LÀM VIDEO", icon: "fa-film", theme: "video", introTitle: "Nhiệm vụ: Biên Tập Kịch Bản", introStory: "Thu thập hình ảnh, âm thanh và dựng khung Timeline video!" },
-            { id: "bai11b", badge: "Bài 11b", title: "Thực hành: Dựng video theo kịch bản", topic: "Chủ đề 4b: PHẦN MỀM LÀM VIDEO", icon: "fa-clapperboard", theme: "video", introTitle: "Nhiệm vụ: Kỹ Thuật Viên Dựng Phim", introStory: "Cắt ghép clip, chèn hiệu ứng chuyển cảnh chuyên nghiệp!" },
-            { id: "bai12b", badge: "Bài 12b", title: "Hoàn thành việc dựng video", topic: "Chủ đề 4b: PHẦN MỀM LÀM VIDEO", icon: "fa-photo-film", theme: "video", introTitle: "Nhiệm vụ: Nhà Sản Xuất Phim", introStory: "Khớp nhạc nền, chèn phụ đề và lồng tiếng hoàn thiện phim!" },
-            { id: "bai13b", badge: "Bài 13b", title: "Biên tập và xuất video", topic: "Chủ đề 4b: PHẦN MỀM LÀM VIDEO", icon: "fa-file-video", theme: "video", introTitle: "Nhiệm vụ: Xuất Bản Video HD", introStory: "Tinh chỉnh định dạng MP4 và xuất bản sản phẩm truyền thông!" },
-            // CHỦ ĐỀ 5
-            { id: "bai14", badge: "Bài 14", title: "Giải quyết vấn đề", topic: "Chủ đề 5: GIẢI QUYẾT VẤN ĐỀ VỚI MÁY TÍNH", icon: "fa-puzzle-piece", theme: "code", introTitle: "Nhiệm vụ: Kiến Trúc Sư Thuật Toán", introStory: "Phân tích bài toán, chia nhỏ vấn đề và thiết kế từng bước giải!" },
-            { id: "bai15", badge: "Bài 15", title: "Bài toán tin học", topic: "Chủ đề 5: GIẢI QUYẾT VẤN ĐỀ VỚI MÁY TÍNH", icon: "fa-laptop-code", theme: "code", introTitle: "Nhiệm vụ: Lập Trình Viên Thuật Toán", introStory: "Xác định rõ ràng Input (Đầu vào) và Output (Đầu ra) của bài toán!" },
-            { id: "bai16", badge: "Bài 16", title: "Thực hành: Lập chương trình máy tính", topic: "Chủ đề 5: GIẢI QUYẾT VẤN ĐỀ VỚI MÁY TÍNH", icon: "fa-terminal", theme: "code", introTitle: "Nhiệm vụ: Chuyên Viên Code", introStory: "Chuyển đổi thuật toán thành ngôn ngữ lập trình thực thi!" },
-            // CHỦ ĐỀ 6
-            { id: "bai17", badge: "Bài 17", title: "Tin học và thế giới nghề nghiệp", topic: "Chủ đề 6: HƯỚNG NGHIỆP VỚI TIN HỌC", icon: "fa-user-doctor", theme: "career", introTitle: "Nhiệm vụ: Nhà Định Hướng Tương Lai", introStory: "Khám phá các ngành nghề công nghệ cao và kỹ năng số thời đại 4.0!" }
-        ];
-
-        // BUILD COMPLETE DATABASE WITH 20 QUESTIONS PER LESSON
-        const CURRICULUM_DATABASE = {};
-
-        LESSON_DEFINITIONS.forEach(def => {
-            CURRICULUM_DATABASE[def.id] = {
-                id: def.id,
-                badge: def.badge,
-                title: def.title,
-                topic: def.topic,
-                icon: def.icon,
-                theme: def.theme,
-                introTitle: def.introTitle,
-                introStory: def.introStory,
-                questions: generateLessonQuestions(def.id, def.topic, def.title)
-            };
-        });
-
-        // SPECIFIC 20 QUESTIONS FOR LESSON 1 STRICTLY FROM SBT TIN HỌC 9
-        CURRICULUM_DATABASE["bai1"].questions = [
-            { round: "Nhận biết", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông di chuyển có trật tự?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông", "C. Camera an ninh", "D. Biển báo giao thông"], answer: 1, explanation: "Đèn giao thông thông minh được gắn bộ xử lý để tự động điều chỉnh chu kỳ tín hiệu theo lưu lượng xe (SBT 1.1)." },
-            { round: "Nhận biết", type: "mcq", q: "2. Loại đồng hồ nào sau đây ĐƯỢC GẮN bộ xử lý thông tin?", options: ["A. Đồng hồ quả lắc chạy dây cót", "B. Đồng hồ đeo tay không dùng pin", "C. Đồng hồ thông minh (Smartwatch)", "D. Đồng hồ thạch anh (Quartz)"], answer: 2, explanation: "Đồng hồ thông minh chứa vi xử lý, hệ điều hành và cảm biến (SBT 1.2)." },
-            { round: "Nhận biết", type: "mcq", q: "3. Thiết bị gia dụng nào sau đây KHÔNG được gắn bộ xử lý thông tin?", options: ["A. Máy giặt tự động", "B. Lò vi sóng điện tử", "C. Máy khoan cầm tay cơ học", "D. Robot hút bụi"], answer: 2, explanation: "Máy khoan cầm tay cơ học hoạt động cơ khí thuần túy, không có chip vi xử lý (SBT 1.3)." },
-            { round: "Nhận biết", type: "mcq", q: "4. Các thiết bị như ti vi thông minh, máy giặt, tủ lạnh, lò vi sóng thường được dùng ở đâu?", options: ["A. Trong gia đình", "B. Trong công xưởng", "C. Trong bệnh viện", "D. Trong trường học"], answer: 0, explanation: "Đây là các thiết bị số thông minh phục vụ sinh hoạt gia đình (SBT 1.4)." },
-            { round: "Nhận biết", type: "mcq", q: "5. Thiết bị đo huyết áp tự động, giám sát sức khỏe, chẩn đoán hình ảnh thường dùng trong lĩnh vực nào?", options: ["A. Nông nghiệp", "B. Công nghiệp", "C. Y tế", "D. Giáo dục"], answer: 2, explanation: "Đây là ứng dụng của thiết bị số trong ngành y tế (SBT 1.5)." },
-            { round: "Thông hiểu", type: "mcq", q: "6. Dữ liệu đầu ra của điều khiển từ xa ti vi (đồng thời là đầu vào của ti vi) được truyền dưới dạng gì?", options: ["A. Chùm sáng hẹp song song", "B. Dãy bit dưới dạng tín hiệu hồng ngoại", "C. Dãy bit dạng tín hiệu sóng âm", "D. Chùm tia laser tử ngoại"], answer: 1, explanation: "Remote mã hóa lệnh thành dãy bit nhị phân truyền qua tia hồng ngoại (SBT 1.6)." },
-            { round: "Thông hiểu", type: "mcq", q: "7. Cụm từ nào chỉ hệ thống máy tính cực mạnh về cả tốc độ tính toán và dung lượng dữ liệu được xử lý?", options: ["A. Máy tính hiệu năng cao", "B. Trí tuệ nhân tạo", "C. Máy tính cá nhân", "D. Siêu máy tính (Supercomputer)"], answer: 3, explanation: "Siêu máy tính chế tạo bằng công nghệ tiên tiến nhất để giải các bài toán lớn (SBT 1.8)." },
-            { round: "Thông hiểu", type: "mcq", q: "8. Nhóm đặc điểm nào thể hiện ưu điểm vượt trội về khả năng xử lý của máy tính?", options: ["A. Tính toán nhanh, lưu trữ lớn, kết nối toàn cầu", "B. Tưởng tượng phong phú, tính nhanh", "C. Kết nối an toàn tuyệt đối", "D. Tự nhận thức cảm xúc"], answer: 0, explanation: "3 ưu điểm cốt lõi: Tính nhanh, lưu trữ dung lượng lớn và kết nối toàn cầu (SBT 1.7)." },
-            { round: "Thông hiểu", type: "mcq", q: "9. Công nghệ thông tin có tác động mạnh mẽ nhất đến Giáo dục bằng cách nào?", options: ["A. Giúp chuyển giao và tiếp cận thông tin trở nên dễ dàng", "B. Thay thế hoàn toàn người thầy", "C. Giúp học sinh không cần tính nhẩm", "D. Tự động chấm điểm mọi bài làm"], answer: 0, explanation: "CNTT giúp kết nối tri thức, chia sẻ học liệu và thúc đẩy xã hội học tập (SBT 1.9)." },
-            { round: "Thông hiểu", type: "mcq", q: "10. Tại sao ti vi, tủ lạnh, đồng hồ thông minh lại được gọi là thiết bị 'thông minh'?", options: ["A. Vì có gắn bộ xử lý thông tin và chạy chương trình điều khiển", "B. Vì chúng tự biết suy nghĩ như con người", "C. Vì chúng chạy không tốn điện", "D. Vì giá thành rất đắt"], answer: 0, explanation: "Thuật ngữ 'thông minh' chỉ thiết bị tích hợp chip vi xử lý để tự động thực hiện tác vụ (SBT 1.10)." },
-            { round: "Vận dụng", type: "mcq", q: "11. Trong nông nghiệp hiện đại, ứng dụng nào thể hiện rõ nhất thiết bị có gắn bộ xử lý thông tin?", options: ["A. Hệ thống tưới nước tự động cảm biến độ ẩm đất", "B. Cày gỗ truyền thống", "C. Cuốc tay cơ học", "D. Bình phun thuốc trừ sâu thủ công"], answer: 0, explanation: "Cảm biến thu thập dữ liệu độ ẩm gửi về bộ xử lý ra lệnh mở van tưới tự động." },
-            { round: "Vận dụng", type: "mcq", q: "12. Trong thương mại điện tử, thiết bị thanh toán POS quét mã QR mang lại lợi ích gì?", options: ["A. Tăng tốc độ giao thương và giảm sai sót tiền mặt", "B. Miễn phí mọi món hàng", "C. Thay thế hàng hóa thật", "D. Loại bỏ hoàn toàn người bán"], answer: 0, explanation: "Vi xử lý trên máy POS tính toán mã hóa giao dịch ngân hàng tức thời." },
-            { round: "Vận dụng", type: "mcq", q: "13. Robot sản xuất tự động trong nhà máy ô tô thể hiện ứng dụng của máy tính trong lĩnh vực nào?", options: ["A. Công nghiệp", "B. Nông nghiệp", "C. Y tế", "D. Thể thao"], answer: 0, explanation: "Cánh tay robot công nghiệp tích hợp chip vi xử lý chính xác đến từng milimet." },
-            { round: "Vận dụng", type: "mcq", q: "14. Khả năng kết nối toàn cầu với tốc độ cao của máy tính trực tiếp hỗ trợ hình thức làm việc nào?", options: ["A. Làm việc từ xa (Teleworking/Online)", "B. Lao động chân tay truyền thống", "C. Khai thác khoáng sản thủ công", "D. Sản xuất gốm sứ thủ công"], answer: 0, explanation: "Mạng Internet toàn cầu giúp con người trao đổi dữ liệu và họp trực tuyến mọi lúc mọi nơi." },
-            { round: "Vận dụng", type: "mcq", q: "15. Thiết bị đo nhịp tim đeo tay gửi dữ liệu về smartphone qua sóng không dây nào?", options: ["A. Bluetooth/Wifi dưới dạng dãy bit", "B. Sóng âm thanh tai người nghe thấy", "C. Tia X chiếu qua da", "D. Dây cáp điện thoại thoại cổ điển"], answer: 0, explanation: "Dữ liệu chỉ số sức khỏe được chuyển thành bit và truyền qua sóng vô tuyến ngắn." },
-            { round: "Vận dụng cao", type: "mcq", q: "16. Điểm khác biệt bản chất nhất giữa siêu máy tính và bộ não con người là gì?", options: ["A. Máy tính không có tình cảm và tư duy sáng tạo tự thân", "B. Máy tính tính toán chậm hơn người", "C. Máy tính lưu trữ thông tin kém hơn", "D. Máy tính không cần nguồn năng lượng"], answer: 0, explanation: "Máy tính xử lý siêu tốc theo chương trình lập trình nhưng không có cảm xúc hay sáng tạo tự do." },
-            { round: "Vận dụng cao", type: "mcq", q: "17. Việc ứng dụng Trí tuệ nhân tạo (AI) trong chẩn đoán hình ảnh X-quang giúp ích gì cho bác sĩ?", options: ["A. Hỗ trợ phát hiện sớm vết tổn thương nhỏ mà mắt thường dễ bỏ sót", "B. Thay thế hoàn toàn vai trò của bác sĩ", "C. Khỏi bệnh tức thì không cần điều trị", "D. Tự động cấp thuốc miễn phí"], answer: 0, explanation: "AI đóng vai trò trợ lý thông minh phân tích hàng nghìn bức ảnh trong vài giây." },
-            { round: "Vận dụng cao", type: "mcq", q: "18. Hệ thống Nhà thông minh (Smart Home) tự ngắt điện khi phát hiện rò rỉ khí gas nhờ cơ chế nào?", options: ["A. Cảm biến gửi tín hiệu bit về vi xử lý trung tâm để ngắt van", "B. Sự ngẫu nhiên ngắt điện", "C. Công tắc tay thông thường", "D. Cầu chì tự rơi"], answer: 0, explanation: "Cảm biến gas phát hiện nồng độ vượt ngưỡng, truyền lệnh bit ngắt van điện tử ngay lập tức." },
-            { round: "Vận dụng cao", type: "mcq", q: "19. Phát biểu nào ĐÚNG khi đánh giá về xu hướng phát triển thiết bị số trong tương lai?", options: ["A. Hầu hết các đồ dùng sinh hoạt đều được gắn vi xử lý kết nối Internet (IoT)", "B. Các thiết bị sẽ bỏ bớt chip vi xử lý", "C. Máy tính sẽ ngừng phát triển", "D. Sách in sẽ thay thế hoàn toàn mạng số"], answer: 0, explanation: "Xu hướng Internet of Things (IoT) đưa chip xử lý vào mọi vật dụng trong đời sống." },
-            { round: "Vận dụng cao", type: "mcq", q: "20. Xã hội học tập trong kỷ nguyên số mang lại cơ hội nào cho người học?", options: ["A. Học tập suốt đời mọi lúc mọi nơi nhờ kho tài nguyên mở", "B. Chỉ được học trong nhà trường", "C. Ngừng học sau khi tốt nghiệp", "D. Bắt buộc học tất cả các ngành"], answer: 0, explanation: "Môi trường số bình đẳng hóa cơ hội tiếp cận tri thức nhân loại cho tất cả mọi người." }
-        ];
-
-        // RENDER LEARNING HUB
-        window.onload = function() {
-            loadStudentInfo();
-            renderTopics();
         };
 
-        function loadStudentInfo() {
-            const name = localStorage.getItem("student_name") || "";
-            const cls = localStorage.getItem("student_class") || "9A1";
-            if (name) {
-                studentInfo.name = name;
-                studentInfo.class = cls;
-                document.getElementById("studentNameInput").value = name;
-                document.getElementById("studentClassInput").value = cls;
-                document.getElementById("displayStudentName").textContent = `${name} (Lớp ${cls})`;
-            }
-        }
+        let currentLessonKey = '';
+        let currentQuestionIdx = 0;
+        let selectedAnswers = {};
 
-        function saveStudentInfo() {
-            const name = document.getElementById("studentNameInput").value.trim();
-            const cls = document.getElementById("studentClassInput").value.trim() || "9A1";
-            if (!name) {
-                alert("Vui lòng nhập Họ và Tên học sinh!");
-                return;
-            }
-            studentInfo.name = name;
-            studentInfo.class = cls;
-            localStorage.setItem("student_name", name);
-            localStorage.setItem("student_class", cls);
-            document.getElementById("displayStudentName").textContent = `${name} (Lớp ${cls})`;
-            alert("Đã lưu thông tin học sinh thành công!");
-        }
-
-        function renderTopics() {
-            const container = document.getElementById("topicsContainer");
-            container.innerHTML = "";
-
-            // Group lessons by Topic
-            const topicsMap = {};
-            Object.values(CURRICULUM_DATABASE).forEach(lesson => {
-                if (!topicsMap[lesson.topic]) topicsMap[lesson.topic] = [];
-                topicsMap[lesson.topic].push(lesson);
-            });
-
-            Object.keys(topicsMap).forEach(topicTitle => {
-                const lessons = topicsMap[topicTitle];
-                const topicCard = document.createElement("div");
-                topicCard.className = "bg-white rounded-3xl p-6 custom-shadow border border-slate-100";
-
-                let cardsHTML = "";
-                lessons.forEach(l => {
-                    cardsHTML += `
-                        <div onclick="selectLesson('${l.id}')" class="group bg-slate-50 hover:bg-brand-50 border border-slate-200 hover:border-brand-300 rounded-2xl p-5 transition duration-200 cursor-pointer flex flex-col justify-between h-full hover:shadow-md">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-3 py-1 bg-brand-600 text-white font-bold text-xs rounded-xl">
-                                        ${l.badge}
-                                    </span>
-                                    <div class="w-9 h-9 bg-white text-brand-600 rounded-xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
-                                        <i class="fa-solid ${l.icon}"></i>
-                                    </div>
-                                </div>
-                                <h4 class="font-bold text-slate-800 text-base mb-1 group-hover:text-brand-600 transition">
-                                    ${l.title}
-                                </h4>
-                                <p class="text-xs text-slate-500 mb-4 line-clamp-2">${l.introStory}</p>
-                            </div>
-                            <div class="flex items-center justify-between pt-3 border-t border-slate-200/60 text-xs font-semibold text-brand-600">
-                                <span><i class="fa-solid fa-list-check mr-1"></i> ${l.questions.length} câu phân hóa</span>
-                                <span class="group-hover:translate-x-1 transition">Làm bài <i class="fa-solid fa-arrow-right ml-0.5"></i></span>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                topicCard.innerHTML = `
-                    <div class="flex items-center gap-3 mb-5 border-b border-slate-100 pb-3">
-                        <div class="w-3 h-7 bg-brand-600 rounded-full"></div>
-                        <h3 class="font-extrabold text-lg sm:text-xl text-slate-800 uppercase tracking-tight">${topicTitle}</h3>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        ${cardsHTML}
-                    </div>
-                `;
-                container.appendChild(topicCard);
-            });
-        }
-
-        function showHub() {
-            document.getElementById("hubView").classList.remove("hidden");
-            document.getElementById("gameView").classList.add("hidden");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function selectLesson(lessonId) {
-            if (!studentInfo.name) {
-                alert("Thầy/Cô và Học sinh vui lòng nhập 'Họ và Tên' ở ô thông tin trước khi vào làm bài!");
-                document.getElementById("studentNameInput").focus();
+        function startLesson(lessonKey) {
+            const name = document.getElementById('student-name').value.trim();
+            const className = document.getElementById('student-class').value.trim();
+            
+            if(!name || !className) {
+                alert('Thầy/Cô vui lòng nhập đầy đủ Họ tên và Lớp của học sinh trước khi bắt đầu làm bài!');
                 return;
             }
 
-            currentLesson = CURRICULUM_DATABASE[lessonId];
-            if (!currentLesson) return;
-
-            document.getElementById("gameTopicTitle").textContent = currentLesson.topic;
-            document.getElementById("gameLessonTitle").textContent = currentLesson.title;
-            document.getElementById("introTitle").textContent = currentLesson.introTitle;
-            document.getElementById("introStory").textContent = currentLesson.introStory;
-
-            document.getElementById("gameIntroScreen").classList.remove("hidden");
-            document.getElementById("gamePlayScreen").classList.add("hidden");
-            document.getElementById("gameResultScreen").classList.add("hidden");
-
-            document.getElementById("hubView").classList.add("hidden");
-            document.getElementById("gameView").classList.remove("hidden");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function startGame() {
+            currentLessonKey = lessonKey;
             currentQuestionIdx = 0;
-            score = 0;
-            correctCount = 0;
-            document.getElementById("gameScore").textContent = "0";
+            selectedAnswers = {};
 
-            document.getElementById("gameIntroScreen").classList.add("hidden");
-            document.getElementById("gameResultScreen").classList.add("hidden");
-            document.getElementById("gamePlayScreen").classList.remove("hidden");
+            const lesson = LESSON_DATABASE[lessonKey];
+            if(!lesson) {
+                alert('Nội dung bài học đang được cập nhật!');
+                return;
+            }
+
+            document.getElementById('quiz-lesson-title').innerText = lesson.title;
+            document.getElementById('hub-container').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
 
             renderQuestion();
         }
 
         function renderQuestion() {
-            const qData = currentLesson.questions[currentQuestionIdx];
-            const totalQ = currentLesson.questions.length;
+            const lesson = LESSON_DATABASE[currentLessonKey];
+            const qData = lesson.questions[currentQuestionIdx];
 
-            document.getElementById("questionProgressText").textContent = `Câu ${currentQuestionIdx + 1} / ${totalQ}`;
-            
-            // Badge color based on difficulty level
-            const roundBadge = document.getElementById("questionRoundBadge");
-            roundBadge.textContent = qData.round;
-            roundBadge.className = "px-3 py-1 font-semibold text-xs rounded-full ";
-            if(qData.round.includes("Nhận biết")) roundBadge.className += "badge-nb";
-            else if(qData.round.includes("Thông hiểu")) roundBadge.className += "badge-th";
-            else if(qData.round.includes("Vận dụng cao")) roundBadge.className += "badge-vdc";
-            else roundBadge.className += "badge-vd";
+            document.getElementById('current-round-tag').innerText = qData.round;
+            document.getElementById('question-index').innerText = `Câu hỏi ${currentQuestionIdx + 1} / ${lesson.questions.length}`;
+            document.getElementById('question-title').innerText = qData.q;
 
-            const progressPct = ((currentQuestionIdx + 1) / totalQ) * 100;
-            document.getElementById("progressBar").style.width = `${progressPct}%`;
+            const optsContainer = document.getElementById('options-container');
+            optsContainer.innerHTML = '';
 
-            document.getElementById("questionText").textContent = qData.q;
-            document.getElementById("feedbackBox").classList.add("hidden");
-            document.getElementById("nextBtn").classList.add("hidden");
-
-            const container = document.getElementById("optionsContainer");
-            container.innerHTML = "";
-
-            qData.options.forEach((optText, idx) => {
-                const btn = document.createElement("button");
-                btn.className = "option-btn w-full text-left p-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-medium text-slate-700 text-sm sm:text-base transition flex items-center justify-between";
-                btn.innerHTML = `<span>${optText}</span><i class="fa-regular fa-circle text-slate-300"></i>`;
-                btn.onclick = () => checkAnswer(idx, btn);
-                container.appendChild(btn);
+            qData.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option-item';
+                if(selectedAnswers[currentQuestionIdx] === idx) {
+                    div.classList.add('selected');
+                }
+                div.innerText = opt;
+                div.onclick = () => selectOption(idx);
+                optsContainer.appendChild(div);
             });
+
+            const nextBtn = document.getElementById('next-btn');
+            if(currentQuestionIdx === lesson.questions.length - 1) {
+                nextBtn.innerText = "Nộp bài";
+            } else {
+                nextBtn.innerText = "Câu tiếp theo";
+            }
         }
 
-        function checkAnswer(selectedIdx, selectedBtn) {
-            const qData = currentLesson.questions[currentQuestionIdx];
-            const isCorrect = (selectedIdx === qData.answer);
-            const allBtns = document.querySelectorAll(".option-btn");
-
-            allBtns.forEach(btn => btn.disabled = true);
-
-            if (isCorrect) {
-                score += 10;
-                correctCount++;
-                document.getElementById("gameScore").textContent = score;
-
-                selectedBtn.classList.remove("border-slate-200", "bg-white");
-                selectedBtn.classList.add("border-emerald-500", "bg-emerald-50", "text-emerald-800");
-                selectedBtn.querySelector("i").className = "fa-solid fa-circle-check text-emerald-600 text-lg";
-
-                showFeedback(true, qData.explanation);
-            } else {
-                selectedBtn.classList.remove("border-slate-200", "bg-white");
-                selectedBtn.classList.add("border-rose-500", "bg-rose-50", "text-rose-800");
-                selectedBtn.querySelector("i").className = "fa-solid fa-circle-xmark text-rose-600 text-lg";
-
-                const correctBtn = allBtns[qData.answer];
-                correctBtn.classList.remove("border-slate-200", "bg-white");
-                correctBtn.classList.add("border-emerald-500", "bg-emerald-50", "text-emerald-800");
-                correctBtn.querySelector("i").className = "fa-solid fa-circle-check text-emerald-600 text-lg";
-
-                showFeedback(false, qData.explanation);
-            }
-
-            document.getElementById("nextBtn").classList.remove("hidden");
-        }
-
-        function showFeedback(isCorrect, explanation) {
-            const box = document.getElementById("feedbackBox");
-            const title = document.getElementById("feedbackTitle");
-            const text = document.getElementById("explanationText");
-
-            box.classList.remove("hidden", "bg-emerald-50", "border-emerald-200", "bg-rose-50", "border-rose-200");
-
-            if (isCorrect) {
-                box.classList.add("bg-emerald-50", "border-emerald-200");
-                title.className = "font-bold mb-1 flex items-center gap-2 text-emerald-700";
-                title.innerHTML = `<i class="fa-solid fa-face-smile"></i> CHÍNH XÁC! (+10 ĐIỂM)`;
-            } else {
-                box.classList.add("bg-rose-50", "border-rose-200");
-                title.className = "font-bold mb-1 flex items-center gap-2 text-rose-700";
-                title.innerHTML = `<i class="fa-solid fa-face-frown"></i> CHƯA CHÍNH XÁC!`;
-            }
-
-            text.textContent = explanation || "Ghi nhớ bài học này nhé!";
+        function selectOption(idx) {
+            selectedAnswers[currentQuestionIdx] = idx;
+            renderQuestion();
         }
 
         function nextQuestion() {
-            currentQuestionIdx++;
-            if (currentQuestionIdx < currentLesson.questions.length) {
+            const lesson = LESSON_DATABASE[currentLessonKey];
+            if(currentQuestionIdx < lesson.questions.length - 1) {
+                currentQuestionIdx++;
                 renderQuestion();
             } else {
-                finishGame();
+                // Hoàn thành bài
+                let score = 0;
+                lesson.questions.forEach((q, idx) => {
+                    if(selectedAnswers[idx] === q.answer) score++;
+                });
+                alert(`🎉 Chúc mừng học sinh đã hoàn thành bài học!\n\n📊 Số câu trả lời đúng: ${score} / ${lesson.questions.length}`);
+                returnToHub();
             }
         }
 
-        function finishGame() {
-            document.getElementById("gamePlayScreen").classList.add("hidden");
-            document.getElementById("gameResultScreen").classList.remove("hidden");
-
-            document.getElementById("finalScore").textContent = score;
-            document.getElementById("finalCorrect").textContent = `${correctCount}/${currentLesson.questions.length}`;
-
-            saveHistoryLocal();
-            syncToGoogleSheets();
-        }
-
-        function saveHistoryLocal() {
-            let history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-            history.unshift({
-                date: new Date().toLocaleString("vi-VN"),
-                lesson: currentLesson.title,
-                score: score,
-                correct: `${correctCount}/${currentLesson.questions.length}`
-            });
-            localStorage.setItem("quiz_history", JSON.stringify(history.slice(0, 20)));
-        }
-
-        function syncToGoogleSheets() {
-            const syncStatus = document.getElementById("syncStatus");
-            syncStatus.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-brand-500"></i> Đang tự động lưu kết quả về máy chủ Google Sheets...`;
-
-            const payload = {
-                studentName: studentInfo.name,
-                studentClass: studentInfo.class,
-                lessonTitle: currentLesson.title,
-                score: score,
-                correctCount: correctCount,
-                totalQuestions: currentLesson.questions.length,
-                timestamp: new Date().toISOString()
-            };
-
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            })
-            .then(() => {
-                syncStatus.innerHTML = `<span class="text-emerald-600 font-bold"><i class="fa-solid fa-check-double"></i> Đã đồng bộ kết quả thành công về hệ thống!</span>`;
-            })
-            .catch(() => {
-                syncStatus.innerHTML = `<span class="text-slate-500"><i class="fa-solid fa-cloud-arrow-up"></i> Đã hoàn thành bài làm (Đã lưu lịch sử)</span>`;
-            });
-        }
-
-        function showLeaderboardModal() {
-            const list = document.getElementById("historyList");
-            let history = JSON.parse(localStorage.getItem("quiz_history") || "[]");
-
-            if (history.length === 0) {
-                list.innerHTML = `<p class="text-center text-slate-400 py-4">Chưa có bản ghi làm bài nào.</p>`;
-            } else {
-                list.innerHTML = history.map(h => `
-                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
-                        <div>
-                            <div class="font-bold text-slate-800 text-xs">${h.lesson}</div>
-                            <div class="text-[10px] text-slate-400">${h.date}</div>
-                        </div>
-                        <div class="text-right">
-                            <span class="font-black text-brand-600 text-sm">${h.score} đ</span>
-                            <span class="block text-[10px] font-semibold text-emerald-600">${h.correct} câu</span>
-                        </div>
-                    </div>
-                `).join("");
-            }
-
-            document.getElementById("leaderboardModal").classList.remove("hidden");
-        }
-
-        function hideLeaderboardModal() {
-            document.getElementById("leaderboardModal").classList.add("hidden");
+        function returnToHub() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('hub-container').style.display = 'block';
         }
     </script>
 </body>
