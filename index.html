@@ -169,7 +169,6 @@
             color: var(--text-main);
         }
 
-        /* Bảng thành tích */
         .results-section {
             margin-top: 30px;
         }
@@ -197,21 +196,6 @@
             background: #f8fafc;
         }
 
-        .btn-clear {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-clear:hover {
-            background: #dc2626;
-        }
-
-        /* Quiz Area Styles */
         #quiz-container {
             display: none;
         }
@@ -322,7 +306,6 @@
                 </div>
             </div>
 
-            <!-- CHỦ ĐỀ 1 -->
             <div class="topic-title">CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</div>
             <div class="lesson-grid">
                 <button class="lesson-btn" onclick="startLesson('bai1')">
@@ -335,7 +318,6 @@
                 </button>
             </div>
 
-            <!-- CHỦ ĐỀ 2 -->
             <div class="topic-title">CHỦ ĐỀ 2: TỔ CHỨC LƯU TRỮ VÀ TRUYỀN THÔNG TIN</div>
             <div class="lesson-grid">
                 <button class="lesson-btn" onclick="startLesson('bai3')">
@@ -348,7 +330,6 @@
                 </button>
             </div>
 
-            <!-- CHỦ ĐỀ 3 -->
             <div class="topic-title">CHỦ ĐỀ 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔI TRƯỜNG SỐ</div>
             <div class="lesson-grid">
                 <button class="lesson-btn" onclick="startLesson('bai5')">
@@ -357,13 +338,13 @@
                 </button>
             </div>
 
-            <!-- BẢNG TỔNG HỢP KẾT QUẢ -->
             <div class="results-section">
-                <div class="topic-title" style="margin-top: 0;">📊 BẢNG TỔNG HỢP KẾT QUẢ HỌC TẬP</div>
+                <div class="topic-title" style="margin-top: 0;">🏆 BẢNG XẾP HẠNG THÀNH TÍCH (TOÀN LỚP)</div>
                 <div style="overflow-x: auto;">
                     <table class="results-table">
                         <thead>
                             <tr>
+                                <th>Thứ tự</th>
                                 <th>Họ và tên</th>
                                 <th>Lớp</th>
                                 <th>Bài học</th>
@@ -372,11 +353,10 @@
                             </tr>
                         </thead>
                         <tbody id="results-body">
-                            <!-- Dữ liệu sẽ được nạp tự động vào đây -->
+                            <tr><td colspan="6" style="text-align: center;">Đang tải bảng xếp hạng...</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <button class="btn-clear" onclick="clearResults()">Xóa lịch sử kết quả</button>
             </div>
         </div>
     </div>
@@ -389,9 +369,7 @@
             </div>
             <div id="question-index" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Câu hỏi 1 / 20</div>
             <div class="question-text" id="question-title">Đang tải câu hỏi...</div>
-            <div class="options-list" id="options-container">
-                <!-- Danh sách đáp án -->
-            </div>
+            <div class="options-list" id="options-container"></div>
             <div class="nav-buttons">
                 <button class="btn btn-secondary" onclick="returnToHub()">Trở về danh mục</button>
                 <button class="btn" id="next-btn" onclick="nextQuestion()">Câu tiếp theo</button>
@@ -400,6 +378,9 @@
     </div>
 
     <script>
+        // Đã tích hợp sẵn link Google Script của thầy vào đây
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNruDPbDhaWiq1fRx9Cg-Jzku0OKL2DhZGWMNdOi2-5Fpj-Cvjgsn3l3JEFEqUrOVIeQ/exec";
+
         const LESSON_DATABASE = {
             "bai1": {
                 title: "Bài 1: Thế giới kĩ thuật số",
@@ -428,12 +409,6 @@
                     { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "19. Khi xây dựng một mô hình thành phố thông minh thu nhỏ bằng vi điều khiển, việc kết hợp nhiều loại cảm biến (nhiệt độ, ánh sáng, khói) đòi hỏi hệ thống phải thực hiện thao tác gì đối với dữ liệu đầu vào?", options: ["A. Xóa bỏ ngay lập tức để tiết kiệm bộ nhớ", "B. Thu thập, đồng bộ và xử lý đa luồng dữ liệu để ra quyết định chính xác", "C. Chỉ giữ lại dữ liệu của một cảm biến duy nhất", "D. Biến đổi dữ liệu thành tín hiệu cơ học thủ công"], answer: 1, explanation: "Xử lý đa luồng dữ liệu từ nhiều cảm biến giúp hệ thống phản ứng thông minh trước các tình huống phức tạp." },
                     { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "20. Thách thức lớn nhất về mặt đạo đức và xã hội khi các hệ thống trí tuệ nhân tạo (AI) ngày càng tham gia sâu vào đời sống con người là gì?", options: ["A. Máy tính tiêu thụ quá nhiều điện năng", "B. Vấn đề sở hữu trí tuệ, quyền riêng tư dữ liệu và nguy cơ lạm dụng thông tin sai lệch", "C. Máy tính sẽ làm thay đổi khí hậu Trái Đất", "D. Làm giảm kích thước của các thiết bị phần cứng"], answer: 1, explanation: "Đạo đức công nghệ và quyền riêng tư là những thách thức nhức nhối nhất trong kỷ nguyên số." }
                 ]
-            },
-            "bai2": {
-                title: "Bài 2: Thông tin trong giải quyết vấn đề",
-                questions: [
-                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Thông tin đáng tin cậy giúp ích gì cho con người trong đời sống?", options: ["A. Đưa ra quyết định chính xác và hiệu quả", "B. Làm chậm quá trình xử lí công việc", "C. Gây ra sự nhầm lẫn không đáng có", "D. Tăng chi phí tìm kiếm dữ liệu"], answer: 0, explanation: "Thông tin chính xác là nền tảng của mọi quyết định đúng đắn." }
-                ]
             }
         };
 
@@ -441,9 +416,8 @@
         let currentQuestionIdx = 0;
         let selectedAnswers = {};
 
-        // Khởi động bảng kết quả khi tải trang
         window.onload = function() {
-            renderResultsTable();
+            fetchResultsFromCloud();
         };
 
         function startLesson(lessonKey) {
@@ -523,8 +497,7 @@
                 const now = new Date();
                 const timeString = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN');
 
-                // Lưu kết quả vào LocalStorage
-                saveResult({
+                sendResultToCloud({
                     name: name,
                     className: className,
                     lesson: lesson.title,
@@ -537,16 +510,49 @@
             }
         }
 
-        function saveResult(resultData) {
-            let results = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
-            results.unshift(resultData); // Đưa kết quả mới nhất lên đầu
-            localStorage.setItem('tinhoc9_results', JSON.stringify(results));
-            renderResultsTable();
+        function sendResultToCloud(data) {
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(() => {
+                setTimeout(fetchResultsFromCloud, 1000);
+            });
         }
 
-        function renderResultsTable() {
+        function fetchResultsFromCloud() {
             const tbody = document.getElementById('results-body');
-            if(!tbody) return;
-            
-            let results = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
-            tbody.
+            fetch(SCRIPT_URL)
+                .then(res => res.json())
+                .then(data => {
+                    tbody.innerHTML = '';
+                    if(!data || data.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #6b7280;">Chưa có dữ liệu học sinh nào.</td></tr>`;
+                        return;
+                    }
+                    data.forEach((item, index) => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td><strong>#${index + 1}</strong></td>
+                            <td><strong>${item.name}</strong></td>
+                            <td>${item.className}</td>
+                            <td>${item.lesson}</td>
+                            <td><span style="color: var(--primary-color); font-weight: bold;">${item.score}</span></td>
+                            <td>${item.time}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(err => {
+                    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #ef4444;">Không thể kết nối máy chủ bảng xếp hạng.</td></tr>`;
+                });
+        }
+
+        function returnToHub() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('hub-container').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
