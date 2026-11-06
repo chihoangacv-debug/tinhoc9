@@ -196,6 +196,7 @@
             background: #f8fafc;
         }
 
+        /* Quiz & Navigation Styles */
         #quiz-container {
             display: none;
         }
@@ -204,7 +205,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-bottom: 1px solid #e5e7eb;
             padding-bottom: 10px;
         }
@@ -216,6 +217,52 @@
             border-radius: 6px;
             font-size: 0.85rem;
             font-weight: bold;
+        }
+
+        /* Danh mục quản lý câu hỏi (Đã làm / Chưa làm) */
+        .question-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .q-item {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #64748b;
+            font-weight: bold;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .q-item:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Trạng thái câu đang làm */
+        .q-item.active {
+            border: 2px solid var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        /* Trạng thái đã làm (KHÔNG hiện đúng/sai) */
+        .q-item.answered {
+            background: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
         }
 
         .question-text {
@@ -367,6 +414,10 @@
                 <span id="quiz-lesson-title" style="font-weight: bold; color: var(--primary-color);">Tên bài học</span>
                 <span class="round-tag" id="current-round-tag">🌱 CẤP ĐỘ 1: TÂN BINH</span>
             </div>
+
+            <!-- DANH MỤC CÂU HỎI (ĐÃ LÀM / CHƯA LÀM) -->
+            <div class="question-palette" id="question-palette"></div>
+
             <div id="question-index" style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">Câu hỏi 1 / 20</div>
             <div class="question-text" id="question-title">Đang tải câu hỏi...</div>
             <div class="options-list" id="options-container"></div>
@@ -378,7 +429,6 @@
     </div>
 
     <script>
-        // Đã tích hợp sẵn link Google Script của thầy vào đây
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNruDPbDhaWiq1fRx9Cg-Jzku0OKL2DhZGWMNdOi2-5Fpj-Cvjgsn3l3JEFEqUrOVIeQ/exec";
 
         const LESSON_DATABASE = {
@@ -446,9 +496,38 @@
             renderQuestion();
         }
 
+        function renderPalette() {
+            const lesson = LESSON_DATABASE[currentLessonKey];
+            const paletteDiv = document.getElementById('question-palette');
+            paletteDiv.innerHTML = '';
+
+            lesson.questions.forEach((_, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'q-item';
+                btn.innerText = idx + 1;
+
+                if (idx === currentQuestionIdx) {
+                    btn.classList.add('active');
+                }
+                
+                // Báo câu đã trả lời (xanh tím), KHÔNG báo đúng/sai
+                if (selectedAnswers[idx] !== undefined) {
+                    btn.classList.add('answered');
+                }
+
+                btn.onclick = () => {
+                    currentQuestionIdx = idx;
+                    renderQuestion();
+                };
+                paletteDiv.appendChild(btn);
+            });
+        }
+
         function renderQuestion() {
             const lesson = LESSON_DATABASE[currentLessonKey];
             const qData = lesson.questions[currentQuestionIdx];
+
+            renderPalette();
 
             document.getElementById('current-round-tag').innerText = qData.round;
             document.getElementById('question-index').innerText = `Câu hỏi ${currentQuestionIdx + 1} / ${lesson.questions.length}`;
@@ -497,13 +576,21 @@
                 const now = new Date();
                 const timeString = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN');
 
-                sendResultToCloud({
+                const newRecord = {
                     name: name,
                     className: className,
                     lesson: lesson.title,
                     score: `${score} / ${lesson.questions.length}`,
                     time: timeString
-                });
+                };
+
+                // 1. Lưu dự phòng tại chỗ (LocalStorage)
+                let localRecords = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
+                localRecords.unshift(newRecord);
+                localStorage.setItem('tinhoc9_results', JSON.stringify(localRecords));
+
+                // 2. Gửi về Google Sheet
+                sendResultToCloud(newRecord);
 
                 alert(`🎉 Chúc mừng ${name} (${className}) đã hoàn thành!\n📊 Kết quả: ${score} / ${lesson.questions.length} câu đúng.`);
                 returnToHub();
@@ -518,6 +605,8 @@
                 body: JSON.stringify(data)
             }).then(() => {
                 setTimeout(fetchResultsFromCloud, 1000);
+            }).catch(() => {
+                renderLocalResults();
             });
         }
 
@@ -526,32 +615,47 @@
             fetch(SCRIPT_URL)
                 .then(res => res.json())
                 .then(data => {
-                    tbody.innerHTML = '';
                     if(!data || data.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #6b7280;">Chưa có dữ liệu học sinh nào.</td></tr>`;
+                        renderLocalResults();
                         return;
                     }
-                    data.forEach((item, index) => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td><strong>#${index + 1}</strong></td>
-                            <td><strong>${item.name}</strong></td>
-                            <td>${item.className}</td>
-                            <td>${item.lesson}</td>
-                            <td><span style="color: var(--primary-color); font-weight: bold;">${item.score}</span></td>
-                            <td>${item.time}</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
+                    displayResultsTable(data);
                 })
-                .catch(err => {
-                    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #ef4444;">Không thể kết nối máy chủ bảng xếp hạng.</td></tr>`;
+                .catch(() => {
+                    renderLocalResults();
                 });
+        }
+
+        function renderLocalResults() {
+            let localRecords = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
+            displayResultsTable(localRecords);
+        }
+
+        function displayResultsTable(records) {
+            const tbody = document.getElementById('results-body');
+            tbody.innerHTML = '';
+            if(!records || records.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #6b7280;">Chưa có dữ liệu học sinh nào.</td></tr>`;
+                return;
+            }
+            records.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>#${index + 1}</strong></td>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.className}</td>
+                    <td>${item.lesson}</td>
+                    <td><span style="color: var(--primary-color); font-weight: bold;">${item.score}</span></td>
+                    <td>${item.time}</td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
         function returnToHub() {
             document.getElementById('quiz-container').style.display = 'none';
             document.getElementById('hub-container').style.display = 'block';
+            fetchResultsFromCloud();
         }
     </script>
 </body>
