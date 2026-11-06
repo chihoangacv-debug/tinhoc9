@@ -207,6 +207,17 @@
             margin-bottom: 15px;
             border-bottom: 1px solid #e5e7eb;
             padding-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .student-greeting {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            background: #e0e7ff;
+            padding: 5px 12px;
+            border-radius: 6px;
         }
 
         .round-tag {
@@ -324,7 +335,6 @@
             background: #4b5563;
         }
 
-        /* MODAL THÔNG BÁO HOÀNH TRÁNG KHI NỘP BÀI */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -392,99 +402,48 @@
             <!-- CHỦ ĐỀ 1 -->
             <div class="topic-title">CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</div>
             <div class="lesson-grid">
-                <button class="lesson-btn" onclick="startLesson('bai1')">
-                    <span class="lesson-badge">BÀI 1</span>
-                    <span class="lesson-name">Thế giới kĩ thuật số</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai2')">
-                    <span class="lesson-badge">BÀI 2</span>
-                    <span class="lesson-name">Thông tin trong giải quyết vấn đề</span>
-                </button>
+                <button class="lesson-btn" onclick="startLesson('bai1')"><span class="lesson-badge">BÀI 1</span><span class="lesson-name">Thế giới kĩ thuật số</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai2')"><span class="lesson-badge">BÀI 2</span><span class="lesson-name">Thông tin trong giải quyết vấn đề</span></button>
             </div>
 
             <!-- CHỦ ĐỀ 2 -->
             <div class="topic-title">CHỦ ĐỀ 2: TỔ CHỨC LƯU TRỮ VÀ TRUYỀN THÔNG TIN</div>
             <div class="lesson-grid">
-                <button class="lesson-btn" onclick="startLesson('bai3')">
-                    <span class="lesson-badge">BÀI 3</span>
-                    <span class="lesson-name">Quản lí thư mục và tệp</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai4')">
-                    <span class="lesson-badge">BÀI 4</span>
-                    <span class="lesson-name">Một số vấn đề pháp lí về sử dụng dịch vụ Internet</span>
-                </button>
+                <button class="lesson-btn" onclick="startLesson('bai3')"><span class="lesson-badge">BÀI 3</span><span class="lesson-name">Quản lí thư mục và tệp</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai4')"><span class="lesson-badge">BÀI 4</span><span class="lesson-name">Một số vấn đề pháp lí về sử dụng dịch vụ Internet</span></button>
             </div>
 
             <!-- CHỦ ĐỀ 3 -->
             <div class="topic-title">CHỦ ĐỀ 3: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔI TRƯỜNG SỐ</div>
             <div class="lesson-grid">
-                <button class="lesson-btn" onclick="startLesson('bai5')">
-                    <span class="lesson-badge">BÀI 5</span>
-                    <span class="lesson-name">Văn hóa ứng xử trên mạng xã hội</span>
-                </button>
+                <button class="lesson-btn" onclick="startLesson('bai5')"><span class="lesson-badge">BÀI 5</span><span class="lesson-name">Văn hóa ứng xử trên mạng xã hội</span></button>
             </div>
 
             <!-- CHỦ ĐỀ 4 -->
             <div class="topic-title">CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC</div>
             <div class="lesson-grid">
-                <button class="lesson-btn" onclick="startLesson('bai6')">
-                    <span class="lesson-badge">BÀI 6</span>
-                    <span class="lesson-name">Phần mềm bảng tính chi tiết</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai7')">
-                    <span class="lesson-badge">BÀI 7</span>
-                    <span class="lesson-name">Trình bày thông tin trực quan</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai8')">
-                    <span class="lesson-badge">BÀI 8</span>
-                    <span class="lesson-name">Công cụ biên tập trang web</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai9')">
-                    <span class="lesson-badge">BÀI 9</span>
-                    <span class="lesson-name">Tạo đoạn văn bản trên trang web</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai10')">
-                    <span class="lesson-badge">BÀI 10</span>
-                    <span class="lesson-name">Tạo liên kết và chèn ảnh vào trang web</span>
-                </button>
+                <button class="lesson-btn" onclick="startLesson('bai6')"><span class="lesson-badge">BÀI 6</span><span class="lesson-name">Phần mềm bảng tính chi tiết</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai7')"><span class="lesson-badge">BÀI 7</span><span class="lesson-name">Trình bày thông tin trực quan</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai8')"><span class="lesson-badge">BÀI 8</span><span class="lesson-name">Công cụ biên tập trang web</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai9')"><span class="lesson-badge">BÀI 9</span><span class="lesson-name">Tạo đoạn văn bản trên trang web</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai10')"><span class="lesson-badge">BÀI 10</span><span class="lesson-name">Tạo liên kết và chèn ảnh vào trang web</span></button>
             </div>
 
             <!-- CHỦ ĐỀ 5 -->
             <div class="topic-title">CHỦ ĐỀ 5: GIẢI QUYẾT VẤN ĐỀ VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH</div>
             <div class="lesson-grid">
-                <button class="lesson-btn" onclick="startLesson('bai11')">
-                    <span class="lesson-badge">BÀI 11</span>
-                    <span class="lesson-name">Dự án: Xây dựng trang web cá nhân</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai12')">
-                    <span class="lesson-badge">BÀI 12</span>
-                    <span class="lesson-name">Thuật toán tìm kiếm</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai13')">
-                    <span class="lesson-badge">BÀI 13</span>
-                    <span class="lesson-name">Thuật toán sắp xếp</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai14')">
-                    <span class="lesson-badge">BÀI 14</span>
-                    <span class="lesson-name">Thực hành mô phỏng thuật toán</span>
-                </button>
+                <button class="lesson-btn" onclick="startLesson('bai11')"><span class="lesson-badge">BÀI 11</span><span class="lesson-name">Dự án: Xây dựng trang web cá nhân</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai12')"><span class="lesson-badge">BÀI 12</span><span class="lesson-name">Thuật toán tìm kiếm</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai13')"><span class="lesson-badge">BÀI 13</span><span class="lesson-name">Thuật toán sắp xếp</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai14')"><span class="lesson-badge">BÀI 14</span><span class="lesson-name">Thực hành mô phỏng thuật toán</span></button>
             </div>
 
             <!-- CHỦ ĐỀ 6 -->
             <div class="topic-title">CHỦ ĐỀ 6: HƯỚNG NGHỆP VỚI TIN HỌC</div>
             <div class="lesson-grid">
-                <button class="lesson-btn" onclick="startLesson('bai15')">
-                    <span class="lesson-badge">BÀI 15</span>
-                    <span class="lesson-name">Các nhóm nghề trong lĩnh vực Tin học</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai16')">
-                    <span class="lesson-badge">BÀI 16</span>
-                    <span class="lesson-name">Tác động của Tin học đối với nghề nghiệp</span>
-                </button>
-                <button class="lesson-btn" onclick="startLesson('bai17')">
-                    <span class="lesson-badge">BÀI 17</span>
-                    <span class="lesson-name">Dự án: Tìm hiểu nghề nghiệp Tin học</span>
-                </button>
+                <button class="lesson-btn" onclick="startLesson('bai15')"><span class="lesson-badge">BÀI 15</span><span class="lesson-name">Các nhóm nghề trong lĩnh vực Tin học</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai16')"><span class="lesson-badge">BÀI 16</span><span class="lesson-name">Tác động của Tin học đối với nghề nghiệp</span></button>
+                <button class="lesson-btn" onclick="startLesson('bai17')"><span class="lesson-badge">BÀI 17</span><span class="lesson-name">Dự án: Tìm hiểu nghề nghiệp Tin học</span></button>
             </div>
 
             <div class="results-section">
@@ -513,8 +472,12 @@
     <div class="container" id="quiz-container">
         <div class="card">
             <div class="quiz-header">
-                <span id="quiz-lesson-title" style="font-weight: bold; color: var(--primary-color);">Tên bài học</span>
-                <span class="round-tag" id="current-round-tag">🌱 CẤP ĐỘ 1: TÂN BINH</span>
+                <!-- HIỂN THỊ TÊN VÀ LỚP Ở GÓC TRÁI -->
+                <div class="student-greeting" id="display-student-info">👤 Học sinh: -</div>
+                <div>
+                    <span id="quiz-lesson-title" style="font-weight: bold; color: var(--primary-color);">Tên bài học</span>
+                    <span class="round-tag" id="current-round-tag" style="margin-left: 10px;">🌱 CẤP ĐỘ 1: TÂN BINH</span>
+                </div>
             </div>
 
             <div class="question-palette" id="question-palette"></div>
@@ -546,14 +509,217 @@
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNruDPbDhaWiq1fRx9Cg-Jzku0OKL2DhZGWMNdOi2-5Fpj-Cvjgsn3l3JEFEqUrOVIeQ/exec";
 
-        const LESSON_DATABASE = {
-            "bai1": {
-                title: "Bài 1: Thế giới kĩ thuật số",
-                questions: [
-                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông", "C. Camera an ninh", "D. Biển báo giao thông"], answer: 1, explanation: "Đèn giao thông thông minh được gắn bộ xử lý để tự động điều chỉnh thời gian tín hiệu." },
-                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "2. Loại đồng hồ nào sau đây được gắn bộ xử lý thông tin?", options: ["A. Đồng hồ quả lắc chạy dây cót", "B. Đồng hồ đeo tay không dùng pin", "C. Đồng hồ thông minh", "D. Đồng hồ quartz thạch anh"], answer: 2, explanation: "Đồng hồ thông minh tích hợp chip xử lý, hệ điều hành và kết nối không dây." },
-                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thiết bị gia dụng nào sau đây KHÔNG được gắn bộ xử lý thông tin?", options: ["A. Máy giặt tự động", "B. Lò vi sóng điện tử", "C. Máy khoan cầm tay cơ học", "D. Robot hút bụi"], answer: 2, explanation: "Máy khoan cầm tay cơ học hoạt động thuần túy bằng cơ khí." },
-                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "4. Thiết bị số thông minh thường có đặc điểm nào dưới đây?", options: ["A. Chỉ có thể thực hiện một chức năng duy nhất", "B. Có khả năng tự động hóa và tương tác với người dùng", "C. Không cần nguồn điện khi hoạt động", "D. Chỉ hoạt động độc lập, không thể kết nối mạng"], answer: 1, explanation: "Thiết bị thông minh nổi bật với khả năng xử lý dữ liệu và tương tác tự động." },
-                    { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "5. Đâu là thành phần cốt lõi giúp một thiết bị thông thường trở thành thiết bị số thông minh?", options: ["A. Vỏ bọc bằng nhựa cao cấp", "B. Bộ vi xử lý (chip, vi điều khiển)", "C. Màn hình kích thước lớn", "D. Đèn LED hiển thị màu sắc"], answer: 1, explanation: "Bộ vi xử lý chính là 'bộ não' giúp thiết bị thực hiện các tính toán và quyết định thông minh." },
+        // Ngân hàng câu hỏi mẫu chuẩn cho các bài
+        const BASE_QUESTIONS = [
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Thiết bị nào sau đây được gắn bộ xử lý thông tin thông minh?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông thông minh", "C. Camera an ninh", "D. Tất cả các phương án trên"], answer: 3, explanation: "Các thiết bị số đều được tích hợp vi xử lý." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "2. Loại thiết bị nào sau đây KHÔNG có bộ xử lý thông tin?", options: ["A. Đồng hồ thông minh", "B. Đồng hồ cơ dây cót truyền thống", "C. Máy giặt tự động", "D. Robot hút bụi"], answer: 1, explanation: "Đồng hồ cơ dùng dây cót hoạt động hoàn toàn bằng cơ khí." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thành phần cốt lõi giúp thiết bị thông thường trở thành thiết bị số thông minh là gì?", options: ["A. Vỏ nhựa cao cấp", "B. Bộ vi xử lý (chip)", "C. Màn hình lớn", "D. Đèn LED"], answer: 1, explanation: "Vi xử lý là bộ não của thiết bị." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "4. Thiết bị số thông minh có đặc điểm nào dưới đây?", options: ["A. Tự động hóa và tương tác người dùng", "B. Chỉ thực hiện 1 chức năng duy nhất", "C. Không cần điện", "D. Không kết nối mạng"], answer: 0, explanation: "Đặc trưng là tính tương tác và tự động hóa." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "5. Đâu là ví dụ về ứng dụng công nghệ số trong đời sống?", options: ["A. Thanh toán qua mã QR", "B. Đọc sách giấy truyền thống", "C. Viết thư tay", "D. Đèn dầu"], answer: 0, explanation: "Thanh toán QR là ứng dụng số phổ biến." },
 
-                    { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "6. Dữ liệu đầu ra của điều khiển từ xa ti vi truyền đến ti vi dưới dạng gì?", options: ["A. Chùm sáng hẹp song song", "B. Dãy bit dưới dạng tín hiệu hồng
+            { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "6. Dữ liệu điều khiển từ xa truyền đến thiết bị dưới dạng gì?", options: ["A. Sóng ánh sáng hẹp", "B. Tín hiệu số / dãy bit", "C. Sóng siêu âm", "D. Chùm tia laser"], answer: 1, explanation: "Dữ liệu được mã hóa thành dãy bit." },
+            { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "7. Ưu điểm vượt trội của máy tính là gì?", options: ["A. Tính toán nhanh, lưu trữ lớn, kết nối toàn cầu", "B. Tưởng tượng phong phú", "C. Cảm xúc như con người", "D. Tự sinh học hỏi không cần điện"], answer: 0, explanation: "Tốc độ, dung lượng và kết nối." },
+            { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "8. Công nghệ số mang lại tác động nào sau đây?", options: ["A. Tối ưu hóa quy trình làm việc", "B. Làm con người mất hoàn toàn giao tiếp", "C. Không có giá trị kinh tế", "D. Thay thế hoàn toàn con người"], answer: 0, explanation: "Giúp tối ưu hóa công việc." },
+            { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "9. Tại sao Smartphone được coi là trung tâm nhà thông minh?", options: ["A. Có kết nối mạng và cài ứng dụng điều khiển", "B. Vì màn hình rất lớn", "C. Vì trọng lượng rất nhẹ", "D. Không tiêu thụ pin"], answer: 0, explanation: "Smartphone kết nối internet quản lý các thiết bị gia dụng." },
+            { round: "⭐ CẤP ĐỘ 2: THÀNH THẠO", type: "mcq", q: "10. Lợi ích của việc số hóa tài liệu hành chính là gì?", options: ["A. Dễ tìm kiếm, chia sẻ nhanh và tiết kiệm không gian", "B. Tốn nhiều diện tích giấy hơn", "C. Giảm độ chính xác", "D. Hạn chế tiếp cận"], answer: 0, explanation: "Số hóa giúp tối ưu lưu trữ." },
+
+            { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "11. Thiết bị thông minh được gọi như vậy vì lý do gì?", options: ["A. Được gắn vi xử lý chạy chương trình điều khiển", "B. Có cảm xúc", "C. Chạy năng lượng tự nhiên", "D. Giá rất cao"], answer: 0, explanation: "Trang bị chip xử lý tự động." },
+            { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "12. Giải pháp nào thể hiện lớp học thông minh tương tác hai chiều?", options: ["A. Màn hình tương tác kết hợp phần mềm trực tuyến", "B. Bảng phấn truyền thống", "C. Sách giấy khổ lớn", "D. Quạt trần cơ học"], answer: 0, explanation: "Màn hình tương tác và e-learning." },
+            { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "13. Hệ thống nông nghiệp tự động tưới nước ứng dụng nguyên lý nào?", options: ["A. Thu nhận dữ liệu - Xử lý - Ra quyết định điều khiển", "B. Lưu trữ tĩnh", "C. Làm thủ công", "D. Phân tích cảm xúc"], answer: 0, explanation: "Cảm biến đo -> Vi xử lý -> Bơm nước." },
+            { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "14. Thành phần nhận tín hiệu cảnh báo đột nhập gia đình là gì?", options: ["A. Bộ điều khiển trung tâm kết nối internet", "B. Đèn giao thông", "C. Khóa cơ", "D. Dây điện"], answer: 0, explanation: "Trung tâm nhận tín hiệu đẩy thông báo." },
+            { round: "🔥 CẤP ĐỘ 3: CAO THỦ", type: "mcq", q: "15. Giải pháp giảm rủi ro mất cắp dữ liệu cá nhân là gì?", options: ["A. Bật xác thực hai yếu tố (2FA) và cẩn trọng khi chia sẻ", "B. Dùng chung một mật khẩu", "C. Click vào link lạ", "D. Tắt bảo mật"], answer: 0, explanation: "2FA và ý thức bảo mật." },
+
+            { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "16. Xu thế chuyển đổi số trong giáo dục mang lại điều gì?", options: ["A. Môi trường học tập linh hoạt, cá nhân hóa lộ trình", "B. Thay thế giáo viên bằng robot", "C. Bắt buộc bỏ học trực tiếp", "D. Bỏ toàn bộ sách vở"], answer: 0, explanation: "Cá nhân hóa và linh hoạt." },
+            { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "17. Khi mất internet, thiết bị nhà thông minh điều khiển qua đâu?", options: ["A. Mạng LAN / Bluetooth nội bộ", "B. Vệ tinh ngoài vũ trụ", "C. Không thể điều khiển", "D. Tổng đài quốc tế"], answer: 0, explanation: "Mạng nội bộ vẫn hoạt động." },
+            { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "18. Yếu tố quan trọng nhất để bảo mật an toàn thông tin là gì?", options: ["A. Ý thức bảo mật của người dùng", "B. Chia sẻ mật khẩu cho bạn bè", "C. Dùng chung tài khoản", "D. Tắt thông báo"], answer: 0, explanation: "Ý thức con người là quyết định." },
+            { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "19. Mô hình thành phố thông minh cần xử lý dữ liệu như thế nào?", options: ["A. Thu thập, đồng bộ và xử lý đa luồng dữ liệu", "B. Xóa ngay lập tức", "C. Dùng một cảm biến", "D. Biến đổi thủ công"], answer: 0, explanation: "Xử lý đa luồng từ nhiều cảm biến." },
+            { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "20. Thách thức lớn nhất về đạo đức khi AI phát triển là gì?", options: ["A. Sở hữu trí tuệ, quyền riêng tư và thông tin sai lệch", "B. Máy tiêu thụ điện", "C. Kích thước phần cứng", "D. Thay đổi khí hậu"], answer: 0, explanation: "Đạo đức và quyền riêng tư dữ liệu." }
+        ];
+
+        const LESSON_DATABASE = {};
+        for (let i = 1; i <= 17; i++) {
+            LESSON_DATABASE[`bai${i}`] = {
+                title: `Bài ${i}: Nội dung ôn tập chương trình Tin học 9`,
+                questions: JSON.parse(JSON.stringify(BASE_QUESTIONS))
+            };
+        }
+
+        let currentLessonKey = '';
+        let currentQuestionIdx = 0;
+        let selectedAnswers = {};
+
+        window.onload = function() {
+            fetchResultsFromCloud();
+        };
+
+        function startLesson(lessonKey) {
+            const name = document.getElementById('student-name').value.trim();
+            const className = document.getElementById('student-class').value.trim();
+            
+            if(!name || !className) {
+                alert('Thầy/Cô vui lòng nhập đầy đủ Họ tên và Lớp của học sinh trước khi bắt đầu làm bài!');
+                return;
+            }
+
+            // Hiển thị tên ở góc trái giao diện làm bài
+            document.getElementById('display-student-info').innerText = `👤 ${name} - Lớp ${className}`;
+
+            currentLessonKey = lessonKey;
+            currentQuestionIdx = 0;
+            selectedAnswers = {};
+
+            const lesson = LESSON_DATABASE[lessonKey];
+            if(!lesson) {
+                alert('Nội dung bài học đang được cập nhật!');
+                return;
+            }
+
+            document.getElementById('quiz-lesson-title').innerText = lesson.title;
+            document.getElementById('hub-container').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+
+            renderQuestion();
+        }
+
+        function renderPalette() {
+            const lesson = LESSON_DATABASE[currentLessonKey];
+            const paletteDiv = document.getElementById('question-palette');
+            paletteDiv.innerHTML = '';
+
+            lesson.questions.forEach((_, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'q-item';
+                btn.innerText = idx + 1;
+
+                if (idx === currentQuestionIdx) {
+                    btn.classList.add('active');
+                }
+                
+                if (selectedAnswers[idx] !== undefined) {
+                    btn.classList.add('answered');
+                }
+
+                btn.onclick = () => {
+                    currentQuestionIdx = idx;
+                    renderQuestion();
+                };
+                paletteDiv.appendChild(btn);
+            });
+        }
+
+        function renderQuestion() {
+            const lesson = LESSON_DATABASE[currentLessonKey];
+            const qData = lesson.questions[currentQuestionIdx];
+
+            renderPalette();
+
+            document.getElementById('current-round-tag').innerText = qData.round;
+            document.getElementById('question-index').innerText = `Câu hỏi ${currentQuestionIdx + 1} / ${lesson.questions.length}`;
+            document.getElementById('question-title').innerText = qData.q;
+
+            const optsContainer = document.getElementById('options-container');
+            optsContainer.innerHTML = '';
+
+            qData.options.forEach((opt, idx) => {
+                const div = document.createElement('div');
+                div.className = 'option-item';
+                if(selectedAnswers[currentQuestionIdx] === idx) {
+                    div.classList.add('selected');
+                }
+                div.innerText = opt;
+                div.onclick = () => selectOption(idx);
+                optsContainer.appendChild(div);
+            });
+
+            const nextBtn = document.getElementById('next-btn');
+            if(currentQuestionIdx === lesson.questions.length - 1) {
+                nextBtn.innerText = "Nộp bài";
+            } else {
+                nextBtn.innerText = "Câu tiếp theo";
+            }
+        }
+
+        function selectOption(idx) {
+            selectedAnswers[currentQuestionIdx] = idx;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            const lesson = LESSON_DATABASE[currentLessonKey];
+            if(currentQuestionIdx < lesson.questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                let score = 0;
+                lesson.questions.forEach((q, idx) => {
+                    if(selectedAnswers[idx] === q.answer) score++;
+                });
+
+                const name = document.getElementById('student-name').value.trim();
+                const className = document.getElementById('student-class').value.trim();
+                const now = new Date();
+                const timeString = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN');
+
+                const newRecord = {
+                    name: name,
+                    className: className,
+                    lesson: lesson.title,
+                    score: `${score} / ${lesson.questions.length}`,
+                    time: timeString
+                };
+
+                let localRecords = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
+                localRecords.unshift(newRecord);
+                localStorage.setItem('tinhoc9_results', JSON.stringify(localRecords));
+                sendResultToCloud(newRecord);
+
+                showResultModal(name, className, score, lesson.questions.length);
+            }
+        }
+
+        function showResultModal(name, className, score, total) {
+            document.getElementById('modal-student-info').innerText = `${name} - Lớp ${className}`;
+            document.getElementById('modal-score-text').innerText = `Đã xuất sắc đạt: ${score}/${total} câu đúng`;
+            
+            let badgeTitle = "";
+            let icon = "";
+
+            if (score >= 18) {
+                badgeTitle = "👑 HUYỀN THOẠI TIN HỌC";
+                icon = "🏆";
+            } else if (score >= 14) {
+                badgeTitle = "🔥 CAO THỦ CÔNG NGHỆ";
+                icon = "🎖️";
+            } else if (score >= 10) {
+                badgeTitle = "⭐ THÀNH THẠO KỸ NĂNG";
+                icon = "🌟";
+            } else {
+                badgeTitle = "🌱 TÂN BINH CỐ GẮNG";
+                icon = "🚀";
+            }
+
+            document.getElementById('modal-badge-title').innerText = badgeTitle;
+            document.getElementById('modal-icon').innerText = icon;
+            document.getElementById('result-modal').style.display = 'flex';
+        }
+
+        function closeModalAndReturn() {
+            document.getElementById('result-modal').style.display = 'none';
+            returnToHub();
+        }
+
+        function sendResultToCloud(data) {
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(() => {
+                setTimeout(fetchResultsFromCloud, 1000);
+            }).catch(() => {
+                renderLocalResults();
+            });
+        }
+
+        function fetchResultsFromCloud() {
+            const tbody = document.getElementById('results-body');
