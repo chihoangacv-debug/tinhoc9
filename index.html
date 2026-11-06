@@ -510,7 +510,7 @@
         const BASE_QUESTIONS = [
             { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông thông minh", "C. Camera an ninh", "D. Tất cả các phương án trên"], answer: 3, explanation: "Các thiết bị số đều được tích hợp vi xử lý." },
             { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "2. Loại đồng hồ nào sau đây KHÔNG có bộ xử lý thông tin?", options: ["A. Đồng hồ thông minh", "B. Đồng hồ cơ dây cót truyền thống", "C. Máy giặt tự động", "D. Robot hút bụi"], answer: 1, explanation: "Đồng hồ cơ dùng dây cót hoạt động hoàn toàn bằng cơ khí." },
-            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thành phần cốt lõi giúp thiết bị thông thường trở thành thiết bị số thông minh là gì?", options: ["A. Vỏ nhựa cao cấp", "B. Bộ vi xử lý (chip)", "C. Màn hình lớn", "D. Đèn LED"], answer: 1, explanation: "Vi xử lý là bộ brain của thiết bị." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thành phần cốt lõi giúp thiết bị thông thường trở thành thiết bị số thông minh là gì?", options: ["A. Vỏ nhựa cao cấp", "B. Bộ vi xử lý (chip)", "C. Màn hình lớn", "D. Đèn LED"], answer: 1, explanation: "Vi xử lý là bộ não của thiết bị." },
             { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "4. Thiết bị số thông minh có đặc điểm nào dưới đây?", options: ["A. Tự động hóa và tương tác người dùng", "B. Chỉ thực hiện 1 chức năng duy nhất", "C. Không cần điện", "D. Không kết nối mạng"], answer: 0, explanation: "Đặc trưng là tính tương tác và tự động hóa." },
             { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "5. Đâu là ví dụ về ứng dụng công nghệ số trong đời sống?", options: ["A. Thanh toán qua mã QR", "B. Đọc sách giấy truyền thống", "C. Viết thư tay", "D. Đèn dầu"], answer: 0, explanation: "Thanh toán QR là ứng dụng số phổ biến." },
 
@@ -545,13 +545,12 @@
         function startLesson(lessonKey) {
             const nameInput = document.getElementById('student-name');
             const classInput = document.getElementById('student-class');
-            const name = nameInput ? nameInput.value.trim() : '';
-            const className = classInput ? classInput.value.trim() : '';
+            let name = nameInput ? nameInput.value.trim() : '';
+            let className = classInput ? classInput.value.trim() : '';
             
-            if(!name || !className) {
-                alert('Thầy/Cô vui lòng nhập đầy đủ Họ tên và Lớp của học sinh trước khi bắt đầu làm bài!');
-                return;
-            }
+            // Tự động gán mặc định nếu học sinh quên nhập để tránh bị kẹt không cho vào bài
+            if(!name) name = "Học sinh";
+            if(!className) className = "9A1";
 
             document.getElementById('display-student-info').innerText = `👤 ${name} - Lớp ${className}`;
 
@@ -569,6 +568,7 @@
 
         function renderPalette() {
             const paletteDiv = document.getElementById('question-palette');
+            if(!paletteDiv) return;
             paletteDiv.innerHTML = '';
 
             BASE_QUESTIONS.forEach((_, idx) => {
@@ -637,8 +637,11 @@
                     if(selectedAnswers[idx] === q.answer) score++;
                 });
 
-                const name = document.getElementById('student-name').value.trim();
-                const className = document.getElementById('student-class').value.trim();
+                const nameInput = document.getElementById('student-name');
+                const classInput = document.getElementById('student-class');
+                const name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "Học sinh";
+                const className = (classInput && classInput.value.trim()) ? classInput.value.trim() : "9A1";
+                
                 const now = new Date();
                 const timeString = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN');
 
