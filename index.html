@@ -216,7 +216,7 @@
             font-weight: bold;
             color: var(--primary-color);
             background: #e0e7ff;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 6px;
         }
 
@@ -461,7 +461,7 @@
                             </tr>
                         </thead>
                         <tbody id="results-body">
-                            <tr><td colspan="6" style="text-align: center;">Đang tải bảng xếp hạng...</td></tr>
+                            <tr><td colspan="6" style="text-align: center;">Đang hiển thị dữ liệu...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -472,7 +472,6 @@
     <div class="container" id="quiz-container">
         <div class="card">
             <div class="quiz-header">
-                <!-- HIỂN THỊ TÊN VÀ LỚP Ở GÓC TRÁI -->
                 <div class="student-greeting" id="display-student-info">👤 Học sinh: -</div>
                 <div>
                     <span id="quiz-lesson-title" style="font-weight: bold; color: var(--primary-color);">Tên bài học</span>
@@ -492,7 +491,6 @@
         </div>
     </div>
 
-    <!-- KHUNG THÔNG BÁO DANH HIỆU (MODAL) -->
     <div class="modal-overlay" id="result-modal">
         <div class="modal-card">
             <div class="badge-icon" id="modal-icon">👑</div>
@@ -509,11 +507,10 @@
     <script>
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNruDPbDhaWiq1fRx9Cg-Jzku0OKL2DhZGWMNdOi2-5Fpj-Cvjgsn3l3JEFEqUrOVIeQ/exec";
 
-        // Ngân hàng câu hỏi mẫu chuẩn cho các bài
         const BASE_QUESTIONS = [
-            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Thiết bị nào sau đây được gắn bộ xử lý thông tin thông minh?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông thông minh", "C. Camera an ninh", "D. Tất cả các phương án trên"], answer: 3, explanation: "Các thiết bị số đều được tích hợp vi xử lý." },
-            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "2. Loại thiết bị nào sau đây KHÔNG có bộ xử lý thông tin?", options: ["A. Đồng hồ thông minh", "B. Đồng hồ cơ dây cót truyền thống", "C. Máy giặt tự động", "D. Robot hút bụi"], answer: 1, explanation: "Đồng hồ cơ dùng dây cót hoạt động hoàn toàn bằng cơ khí." },
-            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thành phần cốt lõi giúp thiết bị thông thường trở thành thiết bị số thông minh là gì?", options: ["A. Vỏ nhựa cao cấp", "B. Bộ vi xử lý (chip)", "C. Màn hình lớn", "D. Đèn LED"], answer: 1, explanation: "Vi xử lý là bộ não của thiết bị." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "1. Trong đô thị thông minh, thiết bị nào sau đây được gắn bộ xử lý thông tin để điều khiển giao thông?", options: ["A. Xe ô tô tự lái", "B. Đèn giao thông thông minh", "C. Camera an ninh", "D. Tất cả các phương án trên"], answer: 3, explanation: "Các thiết bị số đều được tích hợp vi xử lý." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "2. Loại đồng hồ nào sau đây KHÔNG có bộ xử lý thông tin?", options: ["A. Đồng hồ thông minh", "B. Đồng hồ cơ dây cót truyền thống", "C. Máy giặt tự động", "D. Robot hút bụi"], answer: 1, explanation: "Đồng hồ cơ dùng dây cót hoạt động hoàn toàn bằng cơ khí." },
+            { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "3. Thành phần cốt lõi giúp thiết bị thông thường trở thành thiết bị số thông minh là gì?", options: ["A. Vỏ nhựa cao cấp", "B. Bộ vi xử lý (chip)", "C. Màn hình lớn", "D. Đèn LED"], answer: 1, explanation: "Vi xử lý là bộ brain của thiết bị." },
             { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "4. Thiết bị số thông minh có đặc điểm nào dưới đây?", options: ["A. Tự động hóa và tương tác người dùng", "B. Chỉ thực hiện 1 chức năng duy nhất", "C. Không cần điện", "D. Không kết nối mạng"], answer: 0, explanation: "Đặc trưng là tính tương tác và tự động hóa." },
             { round: "🌱 CẤP ĐỘ 1: TÂN BINH", type: "mcq", q: "5. Đâu là ví dụ về ứng dụng công nghệ số trong đời sống?", options: ["A. Thanh toán qua mã QR", "B. Đọc sách giấy truyền thống", "C. Viết thư tay", "D. Đèn dầu"], answer: 0, explanation: "Thanh toán QR là ứng dụng số phổ biến." },
 
@@ -536,45 +533,34 @@
             { round: "👑 CẤP ĐỘ 4: HUYỀN THOẠI", type: "mcq", q: "20. Thách thức lớn nhất về đạo đức khi AI phát triển là gì?", options: ["A. Sở hữu trí tuệ, quyền riêng tư và thông tin sai lệch", "B. Máy tiêu thụ điện", "C. Kích thước phần cứng", "D. Thay đổi khí hậu"], answer: 0, explanation: "Đạo đức và quyền riêng tư dữ liệu." }
         ];
 
-        const LESSON_DATABASE = {};
-        for (let i = 1; i <= 17; i++) {
-            LESSON_DATABASE[`bai${i}`] = {
-                title: `Bài ${i}: Nội dung ôn tập chương trình Tin học 9`,
-                questions: JSON.parse(JSON.stringify(BASE_QUESTIONS))
-            };
-        }
-
         let currentLessonKey = '';
         let currentQuestionIdx = 0;
         let selectedAnswers = {};
 
         window.onload = function() {
+            renderLocalResults();
             fetchResultsFromCloud();
         };
 
         function startLesson(lessonKey) {
-            const name = document.getElementById('student-name').value.trim();
-            const className = document.getElementById('student-class').value.trim();
+            const nameInput = document.getElementById('student-name');
+            const classInput = document.getElementById('student-class');
+            const name = nameInput ? nameInput.value.trim() : '';
+            const className = classInput ? classInput.value.trim() : '';
             
             if(!name || !className) {
                 alert('Thầy/Cô vui lòng nhập đầy đủ Họ tên và Lớp của học sinh trước khi bắt đầu làm bài!');
                 return;
             }
 
-            // Hiển thị tên ở góc trái giao diện làm bài
             document.getElementById('display-student-info').innerText = `👤 ${name} - Lớp ${className}`;
 
             currentLessonKey = lessonKey;
             currentQuestionIdx = 0;
             selectedAnswers = {};
 
-            const lesson = LESSON_DATABASE[lessonKey];
-            if(!lesson) {
-                alert('Nội dung bài học đang được cập nhật!');
-                return;
-            }
-
-            document.getElementById('quiz-lesson-title').innerText = lesson.title;
+            const lessonTitle = `Bài ${lessonKey.replace('bai','')}: Nội dung ôn tập Tin học 9`;
+            document.getElementById('quiz-lesson-title').innerText = lessonTitle;
             document.getElementById('hub-container').style.display = 'none';
             document.getElementById('quiz-container').style.display = 'block';
 
@@ -582,11 +568,10 @@
         }
 
         function renderPalette() {
-            const lesson = LESSON_DATABASE[currentLessonKey];
             const paletteDiv = document.getElementById('question-palette');
             paletteDiv.innerHTML = '';
 
-            lesson.questions.forEach((_, idx) => {
+            BASE_QUESTIONS.forEach((_, idx) => {
                 const btn = document.createElement('div');
                 btn.className = 'q-item';
                 btn.innerText = idx + 1;
@@ -608,13 +593,11 @@
         }
 
         function renderQuestion() {
-            const lesson = LESSON_DATABASE[currentLessonKey];
-            const qData = lesson.questions[currentQuestionIdx];
-
+            const qData = BASE_QUESTIONS[currentQuestionIdx];
             renderPalette();
 
             document.getElementById('current-round-tag').innerText = qData.round;
-            document.getElementById('question-index').innerText = `Câu hỏi ${currentQuestionIdx + 1} / ${lesson.questions.length}`;
+            document.getElementById('question-index').innerText = `Câu hỏi ${currentQuestionIdx + 1} / ${BASE_QUESTIONS.length}`;
             document.getElementById('question-title').innerText = qData.q;
 
             const optsContainer = document.getElementById('options-container');
@@ -632,7 +615,7 @@
             });
 
             const nextBtn = document.getElementById('next-btn');
-            if(currentQuestionIdx === lesson.questions.length - 1) {
+            if(currentQuestionIdx === BASE_QUESTIONS.length - 1) {
                 nextBtn.innerText = "Nộp bài";
             } else {
                 nextBtn.innerText = "Câu tiếp theo";
@@ -645,13 +628,12 @@
         }
 
         function nextQuestion() {
-            const lesson = LESSON_DATABASE[currentLessonKey];
-            if(currentQuestionIdx < lesson.questions.length - 1) {
+            if(currentQuestionIdx < BASE_QUESTIONS.length - 1) {
                 currentQuestionIdx++;
                 renderQuestion();
             } else {
                 let score = 0;
-                lesson.questions.forEach((q, idx) => {
+                BASE_QUESTIONS.forEach((q, idx) => {
                     if(selectedAnswers[idx] === q.answer) score++;
                 });
 
@@ -663,17 +645,17 @@
                 const newRecord = {
                     name: name,
                     className: className,
-                    lesson: lesson.title,
-                    score: `${score} / ${lesson.questions.length}`,
+                    lesson: `Bài ${currentLessonKey.replace('bai','')}`,
+                    score: `${score} / ${BASE_QUESTIONS.length}`,
                     time: timeString
                 };
 
                 let localRecords = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
                 localRecords.unshift(newRecord);
                 localStorage.setItem('tinhoc9_results', JSON.stringify(localRecords));
+                
                 sendResultToCloud(newRecord);
-
-                showResultModal(name, className, score, lesson.questions.length);
+                showResultModal(name, className, score, BASE_QUESTIONS.length);
             }
         }
 
@@ -709,17 +691,63 @@
         }
 
         function sendResultToCloud(data) {
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).then(() => {
-                setTimeout(fetchResultsFromCloud, 1000);
-            }).catch(() => {
-                renderLocalResults();
-            });
+            try {
+                fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                }).then(() => {
+                    setTimeout(fetchResultsFromCloud, 1000);
+                });
+            } catch(e) {}
         }
 
         function fetchResultsFromCloud() {
+            try {
+                fetch(SCRIPT_URL)
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data && data.length > 0) {
+                            displayResultsTable(data);
+                        }
+                    }).catch(() => {});
+            } catch(e) {}
+        }
+
+        function renderLocalResults() {
+            let localRecords = JSON.parse(localStorage.getItem('tinhoc9_results') || '[]');
+            displayResultsTable(localRecords);
+        }
+
+        function displayResultsTable(records) {
             const tbody = document.getElementById('results-body');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            if(!records || records.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #6b7280;">Chưa có dữ liệu học sinh nào.</td></tr>`;
+                return;
+            }
+            records.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>#${index + 1}</strong></td>
+                    <td><strong>${item.name}</strong></td>
+                    <td>${item.className}</td>
+                    <td>${item.lesson}</td>
+                    <td><span style="color: var(--primary-color); font-weight: bold;">${item.score}</span></td>
+                    <td>${item.time}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function returnToHub() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('hub-container').style.display = 'block';
+            renderLocalResults();
+            fetchResultsFromCloud();
+        }
+    </script>
+</body>
+</html>
