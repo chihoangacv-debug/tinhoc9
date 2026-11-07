@@ -446,7 +446,7 @@
         <div id="lessonDashboard">
             <h2 class="section-title">📚 Danh mục 17 Bài học Tin học 9 (Bộ Kết nối tri thức)</h2>
             <div class="grid-lessons" id="lessonsGrid">
-                <!-- Render bằng Javascript -->
+                <!-- Javascript sẽ render danh sách 17 bài tại đây -->
             </div>
         </div>
 
@@ -490,12 +490,13 @@
                     🎉 CHÚC MỪNG! Bạn đã đạt >= 70% (>= 14/20 câu), ĐÃ MỞ KHÓA BÀI HỌC TIẾP THEO!
                 </div>
 
-                <button class="btn-primary" onclick="closeResult()">TIẾP TỤC HỌC TẬP ➔</button>
+                <button class="btn-primary" onclick="closeResult()">TIẾP TỤC HỌC tập ➔</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Danh sách 17 bài học Tin học 9
         const lessonsData = [
             { id: 1, title: "Bài 1: Thế giới kĩ thuật số", topic: "Chủ đề 1" },
             { id: 2, title: "Bài 2: Thông tin trong môi trường số", topic: "Chủ đề 1" },
@@ -516,6 +517,7 @@
             { id: 17, title: "Bài 17: Dự án thiết kế sản phẩm số", topic: "Dự án" }
         ];
 
+        // Ngân hàng câu hỏi mẫu Bài 1 (20 câu phân 4 cấp độ)
         const sampleQuestions = [
             // Cấp độ 1: Tân binh (1-5)
             { q: "1. Thiết bị nào sau đây là thiết bị số thông minh phổ biến hiện nay?", opts: ["A. Máy tính bỏ túi đơn giản", "B. Điện thoại thông minh (Smartphone)", "C. Gọt bút chì", "D. Thước kẻ"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
@@ -546,19 +548,22 @@
             { q: "20. Hành trang quan trọng nhất của một Công dân số (Digital Citizen) chuẩn mực?", opts: ["A. Chơi game giỏi", "B. Thiết bị công nghệ đắt tiền", "C. Tri thức Tin học vững chắc, kỹ năng an toàn và đạo đức số", "D. Hàng vạn Follower"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" }
         ];
 
+        // Trạng thái ứng dụng
         let currentUser = null;
-        let unlockedLessons = [1];
+        let unlockedLessons = [1]; // Bài 1 mở mặc định
         let lessonScores = {};
 
         let currentLessonId = 1;
         let currentQuestionIdx = 0;
         let userAnswers = new Array(20).fill(null);
 
+        // Khởi tạo app
         window.onload = function() {
             loadUserData();
             renderLessons();
         };
 
+        // 1. Quản lý thông tin học viên (LocalStorage)
         function loadUserData() {
             const savedUser = localStorage.getItem("tin9_user");
             const savedUnlocked = localStorage.getItem("tin9_unlocked");
@@ -589,6 +594,7 @@
             currentUser = { name, className };
             localStorage.setItem("tin9_user", JSON.stringify(currentUser));
             
+            // Nếu chưa có khóa thì khởi tạo
             if (!localStorage.getItem("tin9_unlocked")) {
                 localStorage.setItem("tin9_unlocked", JSON.stringify([1]));
             }
@@ -604,6 +610,7 @@
             }
         }
 
+        // 2. Quản lý danh sách bài học & Khóa bài học
         function renderLessons() {
             const grid = document.getElementById("lessonsGrid");
             grid.innerHTML = "";
@@ -637,6 +644,7 @@
             });
         }
 
+        // 3. Quản lý Giao diện làm bài
         function startLesson(lessonId) {
             currentLessonId = lessonId;
             currentQuestionIdx = 0;
@@ -658,104 +666,3 @@
             for (let i = 0; i < 20; i++) {
                 const btn = document.createElement("button");
                 btn.className = `palette-btn ${userAnswers[i] !== null ? 'answered' : ''} ${i === currentQuestionIdx ? 'active' : ''}`;
-                btn.innerText = i + 1;
-                btn.onclick = () => loadQuestion(i);
-                palette.appendChild(btn);
-            }
-        }
-
-        function loadQuestion(idx) {
-            currentQuestionIdx = idx;
-            renderPalette();
-
-            const q = sampleQuestions[idx];
-            document.getElementById("levelTag").innerText = q.lvl;
-            document.getElementById("questionText").innerText = q.q;
-
-            const optsList = document.getElementById("optionsList");
-            optsList.innerHTML = "";
-
-            q.opts.forEach((opt, oIdx) => {
-                const btn = document.createElement("button");
-                btn.className = `option-btn ${userAnswers[idx] === oIdx ? 'selected' : ''}`;
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(oIdx);
-                optsList.appendChild(btn);
-            });
-        }
-
-        function selectOption(oIdx) {
-            userAnswers[currentQuestionIdx] = oIdx;
-            renderPalette();
-            loadQuestion(currentQuestionIdx);
-        }
-
-        function prevQuestion() {
-            if (currentQuestionIdx > 0) loadQuestion(currentQuestionIdx - 1);
-        }
-
-        function nextQuestion() {
-            if (currentQuestionIdx < 19) loadQuestion(currentQuestionIdx + 1);
-        }
-
-        function submitQuiz() {
-            const answeredCount = userAnswers.filter(x => x !== null).length;
-            if (answeredCount < 20) {
-                if (!confirm(`Bạn mới làm ${answeredCount}/20 câu. Bạn có chắc chắn muốn nộp bài sớm không?`)) {
-                    return;
-                }
-            }
-
-            let correct = 0;
-            userAnswers.forEach((ans, i) => {
-                if (ans === sampleQuestions[i].ans) correct++;
-            });
-
-            const percent = (correct / 20) * 100;
-            const isPassed = percent >= 70;
-
-            if (!lessonScores[currentLessonId] || correct > lessonScores[currentLessonId]) {
-                lessonScores[currentLessonId] = correct;
-                localStorage.setItem("tin9_scores", JSON.stringify(lessonScores));
-            }
-
-            if (isPassed && currentLessonId < 17) {
-                const nextId = currentLessonId + 1;
-                if (!unlockedLessons.includes(nextId)) {
-                    unlockedLessons.push(nextId);
-                    localStorage.setItem("tin9_unlocked", JSON.stringify(unlockedLessons));
-                }
-            }
-
-            document.getElementById("resScore").innerText = `${correct} / 20 ĐÚNG (${percent}%)`;
-            
-            let badge = "🌱";
-            let rank = "🌱 TÂN BINH CỐ GẮNG";
-            if (correct >= 18) { badge = "🏆"; rank = "👑 HUYỀN THOẠI TIN HỌC"; }
-            else if (correct >= 14) { badge = "🎖️"; rank = "🔥 CAO THỦ CÔNG NGHỆ"; }
-            else if (correct >= 10) { badge = "🌟"; rank = "⭐ THÀNH THẠO KỸ NĂNG"; }
-
-            document.getElementById("resBadge").innerText = badge;
-            document.getElementById("resRank").innerText = "Danh hiệu: " + rank;
-
-            const unlockBox = document.getElementById("unlockStatus");
-            if (isPassed) {
-                unlockBox.className = "unlock-msg success";
-                unlockBox.innerHTML = `🎉 CHÚC MỪNG! Bạn đạt ${percent}% (>=70%). ${currentLessonId < 17 ? 'ĐÃ MỞ KHÓA BÀI HỌC tiếp theo!' : 'Bạn đã hoàn thành xuất sắc toàn bộ bài học!'}`;
-            } else {
-                unlockBox.className = "unlock-msg failed";
-                unlockBox.innerHTML = `⚠️ CHƯA ĐẠT 70%! Bạn đạt ${percent}% (Cần ít nhất 14/20 câu đúng để mở khóa bài tiếp theo). Hãy luyện tập lại nhé!`;
-            }
-
-            document.getElementById("resultModal").style.display = "flex";
-        }
-
-        function closeResult() {
-            document.getElementById("resultModal").style.display = "none";
-            document.getElementById("quizContainer").style.display = "none";
-            document.getElementById("lessonDashboard").style.display = "block";
-            renderLessons();
-        }
-    </script>
-</body>
-</html>
