@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CÙNG HỌC TIN HỌC 9 - TRƯỜNG THCS PHÚ ĐÌNH</title>
-    <!-- Font Inter & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -14,14 +12,13 @@
             --primary-dark: #1E3A8A;
             --primary-light: #3B82F6;
             --accent: #F59E0B;
-            --bg-gradient: linear-gradient(135deg, #f0f4f9 0%, #e2eaf4 100%);
             --card-bg: #FFFFFF;
             --text-main: #1E293B;
             --text-muted: #64748B;
             --border-color: #E2E8F0;
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-            --shadow-md: 0 10px 25px -5px rgba(30, 64, 175, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 20px 25px -5px rgba(30, 64, 175, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 10px 25px -5px rgba(30, 64, 175, 0.08);
+            --shadow-hover: 0 20px 25px -5px rgba(30, 64, 175, 0.15);
         }
 
         * {
@@ -32,12 +29,10 @@
         }
 
         body {
-            /* Background chuyên nghiệp với họa tiết hạt mạng lưới công nghệ nhẹ */
             background-color: #f8fafc;
             background-image: 
                 radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(30, 64, 175, 0.08) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(245, 158, 11, 0.05) 0px, transparent 50%);
+                radial-gradient(at 100% 100%, rgba(30, 64, 175, 0.08) 0px, transparent 50%);
             background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.6;
@@ -45,7 +40,7 @@
             min-height: 100vh;
         }
 
-        /* Top Header Navigation */
+        /* Top Bar */
         .top-navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -81,7 +76,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
 
@@ -89,7 +84,6 @@
             font-size: 1.15rem;
             font-weight: 800;
             color: var(--primary-dark);
-            letter-spacing: -0.5px;
             line-height: 1.2;
         }
 
@@ -98,7 +92,6 @@
             color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .nav-badges {
@@ -128,14 +121,14 @@
             border: 1px solid #FDE68A;
         }
 
-        /* Container chính */
+        /* Container */
         .main-container {
             max-width: 1100px;
             margin: 25px auto;
             padding: 0 20px;
         }
 
-        /* Form Nhập thông tin Học sinh */
+        /* User Card */
         .user-info-card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -165,7 +158,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .user-status-title {
@@ -194,14 +187,12 @@
             border: 1.5px solid var(--border-color);
             outline: none;
             font-size: 0.9rem;
-            transition: all 0.2s;
             background: #F8FAFC;
         }
 
         .input-style:focus {
             border-color: var(--primary-light);
             background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
         .input-name { width: 220px; }
@@ -217,15 +208,9 @@
             font-size: 0.9rem;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-            transition: all 0.2s;
         }
 
-        .btn-save-user:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
-        }
-
-        /* Hero Banner Tím hiện đại */
+        /* Banner */
         .hero-banner {
             background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
             border-radius: 20px;
@@ -248,7 +233,6 @@
             align-items: center;
             gap: 6px;
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
             padding: 5px 14px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -261,26 +245,23 @@
             font-weight: 800;
             margin-bottom: 10px;
             line-height: 1.25;
-            letter-spacing: -0.5px;
         }
 
         .hero-desc {
             font-size: 0.95rem;
             opacity: 0.9;
-            line-height: 1.5;
         }
 
-        .hero-controller-icon {
+        .hero-bg-icon {
             position: absolute;
-            right: 30px;
-            bottom: -15px;
-            font-size: 11rem;
-            opacity: 0.22;
-            transform: rotate(-12deg);
+            right: 20px;
+            bottom: -20px;
+            font-size: 10rem;
+            opacity: 0.2;
             pointer-events: none;
         }
 
-        /* Danh mục Chủ đề & Thẻ bài học */
+        /* Lessons */
         .topic-group {
             margin-bottom: 32px;
         }
@@ -314,7 +295,7 @@
             padding: 20px;
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow-sm);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -342,11 +323,6 @@
             border-radius: 20px;
         }
 
-        .lesson-gear-icon {
-            color: #94A3B8;
-            font-size: 1.1rem;
-        }
-
         .card-title {
             font-size: 1.05rem;
             font-weight: 700;
@@ -358,10 +334,6 @@
             font-size: 0.82rem;
             color: var(--text-muted);
             margin-bottom: 18px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         .card-bottom {
@@ -376,9 +348,6 @@
             font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .btn-start-quiz {
@@ -386,15 +355,10 @@
             font-weight: 700;
             font-size: 0.88rem;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
             cursor: pointer;
-            transition: gap 0.2s;
         }
 
         .btn-start-quiz:hover {
-            gap: 10px;
             color: var(--primary);
         }
     </style>
@@ -405,15 +369,15 @@
     <nav class="top-navbar">
         <div class="nav-container">
             <a href="#" class="brand-logo">
-                <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="brand-icon">🎓</div>
                 <div class="brand-text">
                     <h1>CÙNG HỌC TIN HỌC 9</h1>
                     <p>Trường THCS Phú Đình - Thái Nguyên</p>
                 </div>
             </a>
             <div class="nav-badges">
-                <div class="badge-item badge-kt"><i class="fa-solid fa-book-open"></i> Kết Nối Tri Thức</div>
-                <div class="badge-item badge-rank"><i class="fa-solid fa-trophy"></i> Thành tích</div>
+                <div class="badge-item badge-kt">📖 Kết Nối Tri Thức</div>
+                <div class="badge-item badge-rank">🏆 Thành tích</div>
             </div>
         </div>
     </nav>
@@ -422,11 +386,148 @@
         <!-- Khung Thông tin Học Sinh -->
         <div class="user-info-card">
             <div class="user-profile-display">
-                <div class="user-avatar-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                <div class="user-avatar-icon">👨‍🎓</div>
                 <div>
                     <div class="user-status-title">Thông tin học sinh thực hành</div>
                     <div class="user-status-name" id="displayStudentName">Chưa nhập thông tin</div>
                 </div>
             </div>
-            <form class="user-input-form" onsubmit="handleSaveInfo(event)">
-                <input type="text" class="input-style input-name" id="
+            <form class="user-input-form" id="userForm">
+                <input type="text" class="input-style input-name" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." required>
+                <input type="text" class="input-style input-class" id="studentClassInput" value="9A1" placeholder="Lớp" required>
+                <button type="submit" class="btn-save-user">Lưu thông tin</button>
+            </form>
+        </div>
+
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+            <div class="hero-content">
+                <div class="hero-tag">⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài</div>
+                <h2 class="hero-title">Hệ Thống Webgame Học Tập Tin Học 9</h2>
+                <p class="hero-desc">Khám phá trọn bộ 6 chủ đề SGK/SBT Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.</p>
+            </div>
+            <div class="hero-bg-icon">🎮</div>
+        </div>
+
+        <!-- Danh mục 17 bài học không khóa -->
+        <div id="lessonsContainer"></div>
+    </div>
+
+    <script>
+        const curriculumData = [
+            {
+                topicTitle: "CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG",
+                lessons: [
+                    { id: 1, name: "Thế giới kĩ thuật số", sub: "Thành phố Số cần bạn xác minh các thiết bị gắn bộ xử lý thông tin và sức mạnh máy tính!" },
+                    { id: 2, name: "Thông tin trong môi trường số", sub: "Nhận biết và đánh giá chất lượng thông tin trong môi trường số hiện đại." }
+                ]
+            },
+            {
+                topicTitle: "CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔĨ TRƯỜNG SỐ",
+                lessons: [
+                    { id: 3, name: "Thực hành an toàn trên mạng xã hội", sub: "Rèn luyện kỹ năng bảo vệ thông tin cá nhân và phòng tránh các nguy cơ mất an toàn." },
+                    { id: 4, name: "Ứng xử có văn hóa trên mạng xã hội", sub: "Xây dựng nếp sống văn minh và tuân thủ đạo đức số khi tham gia không gian mạng." }
+                ]
+            },
+            {
+                topicTitle: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC",
+                lessons: [
+                    { id: 5, name: "Sử dụng bảng tính giải quyết bài toán thực tế", sub: "Áp dụng phần mềm bảng tính Excel/Google Sheets để xử lý dữ liệu thực tiễn." },
+                    { id: 6, name: "Hàm đếm và tính tổng theo điều kiện", sub: "Thành thạo sử dụng các hàm COUNTIF, SUMIF trong tính toán quản lý." },
+                    { id: 7, name: "Vẽ biểu đồ biểu diễn dữ liệu", sub: "Trực quan hóa số liệu bảng tính bằng biểu đồ cột, đường và tròn chuyên nghiệp." },
+                    { id: 8, name: "Định dạng trang web", sub: "Sử dụng các thẻ HTML và thuộc tính định dạng trang web cá nhân." },
+                    { id: 9, name: "Tạo phần tử web tương tác", sub: "Thiết kế nút bấm, form nhập liệu và thành phần tương tác trên trang web." }
+                ]
+            },
+            {
+                topicTitle: "CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH",
+                lessons: [
+                    { id: 10, name: "Sắp xếp danh sách", sub: "Tìm hiểu thuật toán sắp xếp nổi bọt (Bubble Sort) và sắp xếp chọn (Selection Sort)." },
+                    { id: 11, name: "Thuật toán tìm kiếm nhị phân", sub: "Vận dụng tư duy thuật toán tìm kiếm nhị phân trên dãy số đã sắp xếp." },
+                    { id: 12, name: "Thực hành giải quyết bài toán thuật toán", sub: "Lập trình và mô phỏng các bài toán thuật toán trên phần mềm." },
+                    { id: 13, name: "Mô phỏng thuật toán", sub: "Trực quan hóa từng bước thực thi thuật toán tìm kiếm và sắp xếp." }
+                ]
+            },
+            {
+                topicTitle: "CHỦ ĐỀ 6: TIN HỌC VÀ ĐỊNH HƯỚNG NGHỀ NGHIỆP",
+                lessons: [
+                    { id: 14, name: "Giới thiệu nghề nghiệp Tin học", sub: "Khám phá các ngành nghề phát triển phần mềm, quản trị mạng và dữ liệu." },
+                    { id: 15, name: "Năng lực số và định hướng nghề nghiệp", sub: "Tự đánh giá năng lực công nghệ và chuẩn bị hành trang công dân số." }
+                ]
+            },
+            {
+                topicTitle: "CÁC BÀI DỰ ÁN HỌC TẬP TỔNG HỢP",
+                lessons: [
+                    { id: 16, name: "Dự án truyền thông mạng xã hội", sub: "Xây dựng chiến dịch tuyên truyền và thiết kế sản phẩm truyền thông số." },
+                    { id: 17, name: "Dự án thiết kế sản phẩm số", sub: "Tổng hợp kiến thức để xây dựng sản phẩm website hoặc bài trình chiếu." }
+                ]
+            }
+        ];
+
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('studentNameInput').value.trim();
+            const className = document.getElementById('studentClassInput').value.trim();
+
+            if (name && className) {
+                const fullInfo = name + ' - Lớp ' + className;
+                localStorage.setItem('hocSinhInfo', fullInfo);
+                document.getElementById('displayStudentName').innerText = fullInfo;
+                alert('Đã lưu thông tin học sinh thành công!');
+            }
+        });
+
+        function renderAllLessons() {
+            const saved = localStorage.getItem('hocSinhInfo');
+            if (saved) {
+                document.getElementById('displayStudentName').innerText = saved;
+            }
+
+            const container = document.getElementById('lessonsContainer');
+            if (!container) return;
+
+            let htmlContent = '';
+
+            curriculumData.forEach(function(topic) {
+                let gridHtml = '';
+                topic.lessons.forEach(function(l) {
+                    gridHtml += `
+                        <div class="lesson-card">
+                            <div>
+                                <div class="card-top">
+                                    <span class="lesson-num-badge">Bài ${l.id}</span>
+                                    <span>⚙️</span>
+                                </div>
+                                <div class="card-title">${l.name}</div>
+                                <div class="card-subtitle">${l.sub}</div>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="question-count-tag">📋 20 câu phân hóa</span>
+                                <a href="javascript:void(0)" onclick="startQuiz(${l.id})" class="btn-start-quiz">Làm bài ➔</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                htmlContent += `
+                    <div class="topic-group">
+                        <div class="topic-header">
+                            <div class="topic-pill"></div>
+                            <span>${topic.topicTitle}</span>
+                        </div>
+                        <div class="lessons-grid">${gridHtml}</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = htmlContent;
+        }
+
+        function startQuiz(id) {
+            alert('Bắt đầu làm bài thi bài ' + id);
+        }
+
+        window.onload = renderAllLessons;
+    </script>
+</body>
+</html>
