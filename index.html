@@ -1,34 +1,182 @@
-<div class="form-group">
-            <label for="lesson-select">Chọn chủ đề / bài học ôn tập:</label>
-            <select id="lesson-select">
-                <optgroup label="Chủ đề 1: Máy tính và cộng đồng">
-                    <option value="bai1">Bài 1: Thế giới thiết bị số - Hệ điều hành</option>
-                    <option value="bai2">Bài 2: Mạng thông tin toàn cầu Internet</option>
-                    <option value="bai3">Bài 3: An toàn trên môi trường số</option>
-                </optgroup>
-                <optgroup label="Chủ đề 2: Tổ chức lưu trữ, tìm kiếm và trao đổi thông tin">
-                    <option value="bai4">Bài 4: Tìm kiếm thông tin trên Internet</option>
-                    <option value="bai5">Bài 5: Thực hành khai thác thông tin trên Internet</option>
-                </optgroup>
-                <optgroup label="Chủ đề 3: Đạo đức, pháp luật và văn hóa trong môi trường số">
-                    <option value="bai6">Bài 6: Bảo vệ thông tin và dữ liệu cá nhân</option>
-                </optgroup>
-                <optgroup label="Chủ đề 4: Tin học ứng dụng">
-                    <option value="bai7">Bài 7: Trình bày thông tin trên trang chiếu</option>
-                    <option value="bai8">Bài 8: Thực hành thiết kế trang chiếu</option>
-                    <option value="bai9">Bài 9: Tạo sản phẩm đa phương tiện</option>
-                </optgroup>
-                <optgroup label="Chủ đề 5: Giải quyết vấn đề với sự trợ giúp của máy tính">
-                    <option value="bai10">Bài 10: Từ thuật toán đến chương trình</option>
-                    <option value="bai11">Bài 11: Tổ chức dữ liệu trong chương trình</option>
-                    <option value="bai12">Bài 12: Cấu trúc rẽ nhánh trong chương trình</option>
-                    <option value="bai13">Bài 13: Cấu trúc lặp trong chương trình</option>
-                    <option value="bai14">Bài 14: Thực hành tổng hợp chương trình</option>
-                </optgroup>
-                <optgroup label="Chủ đề 6: Hướng nghiệp với Tin học">
-                    <option value="bai15">Bài 15: Tin học và nghề nghiệp</option>
-                    <option value="bai16">Bài 16: Dự án tìm hiểu nghề nghiệp ứng dụng tin học</option>
-                    <option value="bai17">Bài 17: Thực hành tổng kết định hướng nghề nghiệp</option>
-                </optgroup>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Web Game Ôn tập Tin học 9 - Trường THCS Phú Đình</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #f0f4f8; color: #333; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 20px; }
+        .container { width: 100%; max-width: 900px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; margin-top: 10px; }
+        
+        /* Header */
+        header { background: #0d47a1; color: #fff; padding: 20px; text-align: center; }
+        header h1 { font-size: 1.5rem; margin-bottom: 5px; }
+        header p { font-size: 0.95rem; opacity: 0.9; }
+
+        /* Screens */
+        .screen { padding: 30px; display: none; }
+        .screen.active { display: block; }
+
+        /* Login Screen */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: #1a237e; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; background: #fff; }
+        .btn { background: #2e7d32; color: white; border: none; padding: 12px 24px; font-size: 1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .btn:hover { background: #1b5e20; }
+
+        /* Quiz Screen */
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; background: #e3f2fd; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; }
+        .badge-level { background: #c62828; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; }
+        .timer { font-size: 1.1rem; font-weight: bold; color: #d84315; }
+        
+        .quiz-body { display: grid; grid-template-columns: 1fr 280px; gap: 20px; }
+        @media(max-width: 768px) { .quiz-body { grid-template-columns: 1fr; } }
+
+        .question-box h3 { font-size: 1.1rem; margin-bottom: 15px; color: #0d47a1; line-height: 1.5; }
+        .options-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        .option-btn { text-align: left; padding: 12px 15px; background: #fff; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: all 0.2s; }
+        .option-btn:hover { background: #f5f5f5; border-color: #0d47a1; }
+        .option-btn.selected { background: #e8f5e9; border-color: #2e7d32; color: #1b5e20; font-weight: bold; }
+
+        /* Question Palette */
+        .palette-card { background: #f8f9fa; border: 1px solid #90caf9; border-radius: 8px; padding: 15px; }
+        .palette-card h4 { font-size: 0.95rem; color: #0d47a1; margin-bottom: 10px; text-align: center; }
+        .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+        .palette-btn { aspect-ratio: 1; background: #fff; border: 1px solid #ccc; border-radius: 4px; font-weight: bold; font-size: 0.85rem; cursor: pointer; }
+        .palette-btn.answered { background: #1e88e5; color: white; border-color: #1565c0; }
+        .palette-btn.current { background: #ffc107; color: black; border-color: #ffa000; }
+
+        /* Centered Modal / Result Screen Popup */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 600px; border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto; }
+
+        .result-badge { background: #fff8e1; border: 2px solid #ffa000; border-radius: 10px; padding: 15px; margin: 15px 0; }
+        .result-score { font-size: 1.4rem; font-weight: bold; color: #2e7d32; margin-bottom: 5px; }
+        .result-title { font-size: 1.2rem; font-weight: bold; color: #c62828; }
+
+        /* Leaderboard table */
+        .leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.9rem; }
+        .leaderboard-table th, .leaderboard-table td { border: 1px solid #e0e0e0; padding: 8px; text-align: center; }
+        .leaderboard-table th { background: #e3f2fd; color: #0d47a1; }
+        .leaderboard-table tr:nth-child(even) { background: #fafafa; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>HỆ THỐNG WEB GAME ÔN TẬP TIN HỌC 9</h1>
+        <p>Trường THCS Phú Đình - Giáo viên: Mông Chí Hoàng</p>
+    </header>
+
+    <!-- Màn hình Đăng nhập -->
+    <div id="login-screen" class="screen active">
+        <div class="form-group">
+            <label for="student-name">Họ và tên học sinh:</label>
+            <input type="text" id="student-name" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="student-class">Lớp:</label>
+            <select id="student-class">
+                <option value="9A1">Lớp 9A1</option>
+                <option value="9A2">Lớp 9A2</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="lesson-select">Chọn chủ đề / bài học ôn tập:</label>
+            <select id="lesson-select">
+                <option value="bai1">Bài 1: Thế giới thiết bị số - Hệ điều hành</option>
+                <option value="bai2">Bài 2: Mạng thông tin toàn cầu Internet</option>
+                <option value="bai3">Bài 3: An toàn trên môi trường số</option>
+                <option value="bai4">Bài 4: Tìm kiếm thông tin trên Internet</option>
+                <option value="bai5">Bài 5: Thực hành khai thác thông tin trên Internet</option>
+                <option value="bai6">Bài 6: Bảo vệ thông tin và dữ liệu cá nhân</option>
+                <option value="bai7">Bài 7: Trình bày thông tin trên trang chiếu</option>
+                <option value="bai8">Bài 8: Thực hành thiết kế trang chiếu</option>
+                <option value="bai9">Bài 9: Tạo sản phẩm đa phương tiện</option>
+                <option value="bai10">Bài 10: Từ thuật toán đến chương trình</option>
+                <option value="bai11">Bài 11: Tổ chức dữ liệu trong chương trình</option>
+                <option value="bai12">Bài 12: Cấu trúc rẽ nhánh trong chương trình</option>
+                <option value="bai13">Bài 13: Cấu trúc lặp trong chương trình</option>
+                <option value="bai14">Bài 14: Thực hành tổng hợp chương trình</option>
+                <option value="bai15">Bài 15: Tin học và nghề nghiệp</option>
+                <option value="bai16">Bài 16: Dự án tìm hiểu nghề nghiệp ứng dụng tin học</option>
+                <option value="bai17">Bài 17: Thực hành tổng kết định hướng nghề nghiệp</option>
+            </select>
+        </div>
+        <button class="btn" onclick="startQuiz()">BẮT ĐẦU THỬ THÁCH 🚀</button>
+    </div>
+
+    <!-- Màn hình Làm bài Quiz -->
+    <div id="quiz-screen" class="screen">
+        <div class="quiz-header">
+            <div>
+                <span id="current-lesson-title" style="font-weight: bold; color: #0d47a1;">Bài học ôn tập</span>
+                <div style="margin-top: 5px;"><span class="badge-level" id="level-badge">CẤP ĐỘ 3: CAO THỦ</span></div>
+            </div>
+            <div class="timer" id="timer-display">⏱ 15:00</div>
+        </div>
+
+        <div class="quiz-body">
+            <div class="question-box">
+                <h3 id="question-text">Câu hỏi hiển thị ở đây...</h3>
+                <div class="options-list" id="options-container"></div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn" style="background: #78909C;" onclick="prevQuestion()">⬅ Câu trước</button>
+                    <button class="btn" onclick="nextQuestion()">Câu tiếp theo ➡</button>
+                </div>
+            </div>
+
+            <div class="palette-card">
+                <h4>QUESTION PALETTE</h4>
+                <div class="palette-grid" id="palette-grid"></div>
+                <button class="btn" style="margin-top: 15px; background: #d32f2f;" onclick="submitQuiz()">NỘP BÀI THI 🏁</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Kết quả / Bảng xếp hạng giữa màn hình -->
+<div id="result-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h2 style="color: #d84315; margin-bottom: 10px;">🏆 KẾT QUẢ THỬ THÁCH 🏆</h2>
+        <p id="student-info-result" style="font-weight: bold; color: #333; margin-bottom: 5px;"></p>
+        
+        <div class="result-badge">
+            <div class="result-score" id="result-score-text">19 / 20 câu đúng (9.5 điểm)</div>
+            <div class="result-title" id="result-title-text">👑 HUYỀN THOẠI TIN HỌC 9</div>
+        </div>
+
+        <h3 style="color: #0d47a1; margin-top: 15px; font-size: 1rem;">🥇 BẢNG XẾP HẠNG THÀNH TÍCH (LỚP <span id="lb-class-name">9A1</span>)</h3>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Top</th>
+                    <th>Họ và tên</th>
+                    <th>Đúng</th>
+                    <th>Điểm</th>
+                    <th>Danh hiệu</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard-tbody"></tbody>
+        </table>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button class="btn" style="background: #1976D2;" onclick="retryQuiz()">🔄 LÀM LẠI BÀI</button>
+            <button class="btn" style="background: #455A64;" onclick="backToLogin()">🏠 VỀ TRANG CHỦ</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const questionsData = [
+        { q: "Câu 1: Thiết bị nào sau đây dùng để kết nối mạng Internet?", opts: ["A. Chuột máy tính", "B. Bộ định tuyến (Router)", "C. Bàn phím", "D. Màn hình"], ans: 1 },
+        { q: "Câu 2: Đâu là hành vi vi phạm đạo đức và pháp luật khi sử dụng Internet?", opts: ["A. Tìm kiếm tài liệu học tập", "B. Phát tán mã độc, virus phá hoại", "C. Nhắn tin hỏi bài bạn", "D. Xem video hướng dẫn lập trình"], ans: 1 },
+        { q: "Câu 3: Mật khẩu nào sau đây được coi là an toàn nhất?", opts: ["A. 123456", "B. matkhau123", "C. P@ssw0rd#2026!Tr", "D. nguyenvanan"], ans: 2 },
+        { q: "Câu 4: Khi nhận được email từ một người lạ gửi tệp đính kèm lạ, em nên làm gì?", opts: ["A. Tải xuống và mở ngay lập tức", "B. Chuyển tiếp cho tất cả mọi người", "C. Xóa và không mở tệp đính kèm", "D. Nhắn tin hỏi mật khẩu"], ans: 2 },
+        { q: "Câu 5: Đâu là thông tin cá nhân tuyệt đối không nên chia sẻ lên mạng xã hội?", opts: ["A. Sở thích âm nhạc", "B. Số căn cước công dân và địa chỉ nhà riêng", "C. Tên bài hát yêu thích", "D. Đội bóng đá ưa thích"], ans: 1 },
+        { q: "Câu 6: Hiện tượng nhận được tin nhắn đe dọa hoặc quấy rối liên tục trên không gian mạng gọi là gì?", opts: ["A. Nghiện mạng xã hội", "B. Bắt nạt trên mạng (Cyberbullying)", "C. Lỗi kết nối mạng", "D. Chia sẻ tài nguyên"], ans: 1 },
+        { q: "Câu 7: Mã OTP (One-Time Password) được sử dụng để làm gì?", opts: ["A. Trang trí giao diện web", "B. Xác thực giao dịch bảo mật trực tuyến", "C. Tăng tốc độ đường truyền", "D. Tải tệp dung lượng lớn"], ans: 1 },
+        { q: "Câu 8: Khi phát hiện tài khoản mạng xã hội của mình bị kẻ gian chiếm đoạt, việc đầu tiên cần làm là gì?", opts: ["A. Xóa tài khoản ngay lập tức", "B. Đổi mật khẩu hoặc thông báo khẩn cấp cho quản trị viên", "C. Đăng status than phiền", "D. Tắt máy tính đi ngủ"], ans: 1 },
+        { q: "Câu 9: Hành vi tung tin sai sự thật lên mạng xã hội nhằm bôi nhọ người khác vi phạm điều gì?", opts: ["A. Quy định an
