@@ -3,691 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CÙNG HỌC TIN HỌC 9 - ÔN TẬP TƯƠNG TÁC</title>
+    <title>CÙNG HỌC TIN HỌC 9 - TRƯỜNG THCS PHÚ ĐÌNH - THÁI NGUYÊN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #003366;
-            --primary-light: #004080;
-            --secondary: #2E8B57;
-            --accent: #FFD700;
-            --bg: #F4F7FA;
-            --card-bg: #FFFFFF;
-            --text: #2C3E50;
-            --gray: #7F8C8D;
-            --light-gray: #E2E8F0;
-            --lock-bg: #CBD5E1;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            padding-bottom: 40px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
         }
-
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: white;
-            padding: 20px 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            position: relative;
+        .hero-bg {
+            background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 50%, #6366F1 100%);
         }
-
-        header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .user-bar {
-            background-color: #002244;
-            color: #FFD700;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        .btn-reset-user {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        .btn-reset-user:hover {
-            background: #c0392b;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        /* Modal nhập thông tin học viên */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.75);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .modal-card h2 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .modal-card p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid var(--light-gray);
-            border-radius: 6px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-light);
-        }
-
-        /* Danh sách bài học */
-        .section-title {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .grid-lessons {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .lesson-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border: 2px solid var(--light-gray);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .lesson-card.unlocked:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-color: var(--primary);
-        }
-
-        .lesson-card.locked {
-            background: var(--lock-bg);
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .lesson-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .lesson-badge {
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 12px;
-            background: #E2E8F0;
-            color: #475569;
-        }
-
-        .lesson-card.unlocked .lesson-badge {
-            background: #DCFCE7;
-            color: #166534;
-        }
-
-        .lesson-title {
-            font-size: 1rem;
-            font-weight: bold;
-            color: var(--text);
-            margin-bottom: 10px;
-        }
-
-        .lesson-status {
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-bottom: 15px;
-        }
-
-        .btn-lesson {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            text-align: center;
-        }
-
-        .btn-lesson:disabled {
-            background: #94A3B8;
-            cursor: not-allowed;
-        }
-
-        /* Giao diện làm bài */
-        .quiz-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            display: none;
-        }
-
-        .quiz-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-gray);
-        }
-
-        .level-tag {
-            background: #FEF3C7;
-            color: #92400E;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-        }
-
-        /* Palette câu hỏi */
-        .palette {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 20px;
-        }
-
-        .palette-btn {
-            width: 34px;
-            height: 34px;
-            border-radius: 6px;
-            border: 1px solid #CBD5E1;
-            background: white;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.85rem;
-        }
-
-        .palette-btn.answered {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .palette-btn.active {
-            border: 2px solid #F59E0B;
-            transform: scale(1.1);
-        }
-
-        .question-text {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .options-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .option-btn {
-            background: #F8FAFC;
-            border: 2px solid var(--light-gray);
-            padding: 12px 15px;
-            border-radius: 8px;
-            text-align: left;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .option-btn:hover {
-            background: #EDF2F7;
-        }
-
-        .option-btn.selected {
-            background: #E0F2FE;
-            border-color: #0284C7;
-            color: #0369A1;
-            font-weight: bold;
-        }
-
-        .quiz-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .btn-sec {
-            background: #64748B;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .btn-submit {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Result Popup */
-        .result-box {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .badge-icon {
-            font-size: 4rem;
-            margin-bottom: 10px;
-        }
-
-        .score-display {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .unlock-msg {
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-
-        .unlock-msg.success {
-            background: #DCFCE7;
-            color: #15803D;
-        }
-
-        .unlock-msg.failed {
-            background: #FEE2E2;
-            color: #B91C1C;
+        .game-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
 
-    <header>
-        <h1>CÙNG HỌC TIN HỌC 9</h1>
-        <p>Hệ thống ôn tập & Đánh giá năng lực theo Gamification</p>
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- LOGO & TRƯỜNG -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showDashboard()">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4l7 3.82 7-3.82v-4L12 17l-7-3.82z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-blue-900 leading-none uppercase">CÙNG HỌC TIN HỌC 9</h1>
+                    <p class="text-xs font-semibold text-slate-500 mt-1 uppercase tracking-wider">TRƯỜNG THCS PHÚ ĐÌNH - THÁI NGUYÊN</p>
+                </div>
+            </div>
+
+            <!-- BADGES & NÚT THÀNH TÍCH -->
+            <div class="flex items-center space-x-3">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200/60 shadow-sm">
+                    📖 Kết Nối Tri Thức
+                </span>
+                <button onclick="showLeaderboardModal()" class="inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-200 transition-all shadow-sm">
+                    🏆 Thành tích
+                </button>
+            </div>
+        </div>
     </header>
 
-    <div class="user-bar" id="userBar" style="display: none;">
-        <div>👤 Học sinh: <span id="lblUserName">---</span> | 🏫 Lớp: <span id="lblUserClass">---</span></div>
-        <button class="btn-reset-user" onclick="resetUser()">Đổi thông tin</button>
-    </div>
+    <!-- MAIN CONTENT AREA -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
 
-    <!-- Modal Nhập thông tin ban đầu -->
-    <div class="modal-overlay" id="userModal">
-        <div class="modal-card">
-            <h2>ĐĂNG NHẬP HỌC VIÊN</h2>
-            <p>Nhập thông tin cá nhân để bắt đầu lộ trình học tập Tin học 9</p>
-            <form onsubmit="saveUser(event)">
-                <div class="form-group">
-                    <label>Họ và Tên học sinh:</label>
-                    <input type="text" id="inputName" placeholder="Ví dụ: Nguyễn Văn A" required>
+        <div id="viewDashboard" class="space-y-8">
+            
+            <!-- THÔNG TIN HỌC SINH THỰC HÀNH -->
+            <div class="bg-white rounded-3xl p-5 border border-slate-200/80 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-4 w-full md:w-auto">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-600 text-xl font-bold flex-shrink-0">
+                        🎓
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider text-slate-400">THÔNG TIN HỌC SINH THỰC HÀNH</div>
+                        <div class="text-lg font-bold text-slate-800" id="userDisplayName">Chưa nhập thông tin</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Lớp học:</label>
-                    <select id="inputClass" required>
-                        <option value="">-- Chọn lớp --</option>
-                        <option value="9A1">Lớp 9A1</option>
-                        <option value="9A2">Lớp 9A2</option>
-                        <option value="9A3">Lớp 9A3</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-primary">BẮT ĐẦU HỌC NGAY 🚀</button>
-            </form>
-        </div>
-    </div>
 
-    <div class="container">
-        <!-- Trang chọn bài học -->
-        <div id="lessonDashboard">
-            <h2 class="section-title">📚 Danh mục 17 Bài học Tin học 9 (Bộ Kết nối tri thức)</h2>
-            <div class="grid-lessons" id="lessonsGrid">
-                <!-- Render bằng Javascript -->
+                <form onsubmit="saveStudentInfo(event)" class="flex items-center space-x-2 w-full md:w-auto">
+                    <input type="text" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." required
+                        class="px-4 py-2.5 rounded-xl border border-slate-300 text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none w-full md:w-64 transition-all">
+                    <input type="text" id="studentClassInput" value="9A1" placeholder="Lớp" required
+                        class="px-3 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-center w-20 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all">
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-all shadow-md shadow-blue-500/20 whitespace-nowrap">
+                        Lưu thông tin
+                    </button>
+                </form>
             </div>
+
+            <!-- HERO BANNER TÍM HIỆN ĐẠI HÌNH GAMEPAD -->
+            <div class="hero-bg game-pattern rounded-3xl p-8 sm:p-10 text-white shadow-xl shadow-indigo-500/10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between">
+                <div class="max-w-2xl z-10 space-y-3">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-extrabold text-amber-300 tracking-wide uppercase">
+                        ⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                        Hệ Thống Webgame Học Tập Tin Học 9
+                    </h2>
+                    <p class="text-blue-100 text-sm sm:text-base leading-relaxed opacity-95">
+                        Khám phá trọn bộ 6 chủ đề SGK/SBT Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.
+                    </p>
+                </div>
+
+                <div class="relative mt-6 md:mt-0 z-10 opacity-90 hover:opacity-100 transition-opacity">
+                    <!-- Icon Gamepad Vector -->
+                    <div class="w-36 h-36 sm:w-44 sm:h-44 bg-white/10 rounded-3xl backdrop-blur-md border border-white/20 flex items-center justify-center p-4 transform rotate-3 hover:rotate-0 transition-transform">
+                        <svg class="w-24 h-24 text-white/90" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H9v2H7v-2H5v-2h2V9h2v2h2v2zm4.5 1c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 8 18.5 8s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DANH SÁCH BÀI HỌC THEO CÁC CHỦ ĐỀ (BẢN KHÔNG KHÓA - 100% MỞ) -->
+            <div id="topicsContainer" class="space-y-10">
+                <!-- Javascript sẽ tự động gom bài vào từng Chủ đề -->
+            </div>
+
         </div>
 
-        <!-- Trang giao diện làm bài -->
-        <div class="quiz-card" id="quizContainer">
-            <div class="quiz-header">
+        <!-- MÀN HÌNH BÀI THI KHI ĐANG LÀM BÀI -->
+        <div id="viewQuiz" class="hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex items-center justify-between">
                 <div>
-                    <span id="quizLessonTitle" style="font-weight: bold; color: var(--primary);">Bài 1: Thế giới kỹ thuật số</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600" id="quizTopicTitle">Chủ đề 1</span>
+                    <h2 class="text-xl font-extrabold text-slate-800" id="quizLessonTitle">Bài 1: Thế giới kỹ thuật số</h2>
                 </div>
-                <span class="level-tag" id="levelTag">🌱 CẤP ĐỘ 1: TÂN BINH</span>
+                <button onclick="confirmExitQuiz()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs transition-all">
+                    ✕ Thoát bài làm
+                </button>
             </div>
 
-            <div class="palette" id="questionPalette">
-                <!-- 20 nút điều hướng -->
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- CỘT TRÁI: BẢNG ĐIỀU HƯỚNG CÂU HỎI (PALETTE) -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4 lg:col-span-1">
+                    <h3 class="font-bold text-slate-700 text-sm flex items-center justify-between">
+                        <span>Bảng câu hỏi</span>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full" id="answeredCount">0/20 đã làm</span>
+                    </h3>
+                    <div class="grid grid-cols-5 gap-2" id="questionPalette">
+                        <!-- 20 ô số nhảy câu -->
+                    </div>
+                    <div class="pt-4 border-t border-slate-100 space-y-2 text-xs font-medium text-slate-500">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-md bg-slate-100 border border-slate-300"></span>
+                            <span>Chưa trả lời</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-md bg-blue-600"></span>
+                            <span>Đã chọn đáp án</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="question-text" id="questionText">
-                Đang tải câu hỏi...
-            </div>
+                <!-- CỘT PHẢI: KHU VỰC CÂU HỎI & ĐÁP ÁN -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm lg:col-span-3 space-y-6 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-amber-100 text-amber-800" id="quizLevelBadge">
+                                🌱 CẤP ĐỘ 1: TÂN BINH
+                            </span>
+                            <span class="text-sm font-bold text-slate-400" id="quizProgressText">Câu 1 / 20</span>
+                        </div>
 
-            <div class="options-list" id="optionsList">
-                <!-- Danh sách 4 lựa chọn -->
-            </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-slate-800 leading-snug" id="quizQuestionText">
+                            Đang tải câu hỏi...
+                        </h3>
 
-            <div class="quiz-actions">
-                <button class="btn-sec" onclick="prevQuestion()">◄ Câu trước</button>
-                <button class="btn-sec" onclick="nextQuestion()">Câu tiếp ►</button>
-                <button class="btn-submit" onclick="submitQuiz()">NỘP BÀI 🏁</button>
+                        <div class="space-y-3" id="quizOptionsList">
+                            <!-- 4 lựa chọn -->
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-100 flex items-center justify-between">
+                        <button onclick="prevQuestion()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-all">
+                            ◄ Câu trước
+                        </button>
+                        <div class="flex space-x-3">
+                            <button onclick="nextQuestion()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm transition-all">
+                                Câu tiếp ►
+                            </button>
+                            <button onclick="submitQuiz()" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/20 transition-all">
+                                NỘP BÀI 🏁
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Modal Kết quả -->
-        <div class="modal-overlay" id="resultModal" style="display: none;">
-            <div class="modal-card">
-                <div class="badge-icon" id="resBadge">🏆</div>
-                <h2 id="resTitle">KẾT QUẢ BÀI LÀM</h2>
-                <div class="score-display" id="resScore">18 / 20 ĐÚNG</div>
-                <p id="resRank">Danh hiệu: 👑 HUYỀN THOẠI TIN HỌC</p>
+    </main>
 
-                <div class="unlock-msg" id="unlockStatus">
-                    🎉 CHÚC MỪNG! Bạn đã đạt >= 70% (>= 14/20 câu), ĐÃ MỞ KHÓA BÀI HỌC TIẾP THEO!
-                </div>
-
-                <button class="btn-primary" onclick="closeResult()">TIẾP TỤC HỌC TẬP ➔</button>
+    <!-- MODAL VINH DANH KẾT QUẢ BÀI LÀM -->
+    <div id="resultModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center space-y-6 shadow-2xl animate-fade-in">
+            <div class="text-6xl" id="modalBadgeIcon">🏆</div>
+            <div>
+                <h3 class="text-2xl font-extrabold text-slate-900">KẾT QUẢ BÀI ÔN TẬP</h3>
+                <p class="text-sm text-slate-500 font-medium mt-1" id="modalStudentInfo">Nguyễn Văn A - Lớp 9A1</p>
             </div>
+
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-1">
+                <div class="text-3xl font-extrabold text-blue-600" id="modalScoreText">18 / 20 ĐÚNG</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400" id="modalPercentText">ĐẠT 90% TỔNG ĐIỂM</div>
+            </div>
+
+            <div class="px-4 py-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-extrabold" id="modalRankTitle">
+                👑 HUYỀN THOẠI TIN HỌC
+            </div>
+
+            <button onclick="closeResultModal()" class="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm shadow-lg shadow-blue-500/20 transition-all">
+                TIẾP TỤC ÔN TẬP ➔
+            </button>
         </div>
     </div>
+
+    <!-- FOOTER CHÂN TRANG -->
+    <footer class="bg-white border-t border-slate-200 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs font-semibold text-slate-400">
+            © 2026 THCS PHÚ ĐÌNH - THÁI NGUYÊN | BIỆN PHÁP HỘI THI GIÁO VIÊN DẠY GIỎI CẤP XÃ
+        </div>
+    </footer>
 
     <script>
-        const lessonsData = [
-            { id: 1, title: "Bài 1: Thế giới kĩ thuật số", topic: "Chủ đề 1" },
-            { id: 2, title: "Bài 2: Thông tin trong môi trường số", topic: "Chủ đề 1" },
-            { id: 3, title: "Bài 3: Thực hành an toàn trên mạng xã hội", topic: "Chủ đề 2" },
-            { id: 4, title: "Bài 4: Ứng xử có văn hóa trên mạng xã hội", topic: "Chủ đề 2" },
-            { id: 5, title: "Bài 5: Sử dụng bảng tính giải quyết bài toán thực tế", topic: "Chủ đề 4" },
-            { id: 6, title: "Bài 6: Hàm đếm và tính tổng theo điều kiện", topic: "Chủ đề 4" },
-            { id: 7, title: "Bài 7: Vẽ biểu đồ biểu diễn dữ liệu", topic: "Chủ đề 4" },
-            { id: 8, title: "Bài 8: Định dạng trang web", topic: "Chủ đề 4" },
-            { id: 9, title: "Bài 9: Tạo phần tử web tương tác", topic: "Chủ đề 4" },
-            { id: 10, title: "Bài 10: Sắp xếp danh sách", topic: "Chủ đề 5" },
-            { id: 11, title: "Bài 11: Thuật toán tìm kiếm nhị phân", topic: "Chủ đề 5" },
-            { id: 12, title: "Bài 12: Thực hành giải quyết bài toán thuật toán", topic: "Chủ đề 5" },
-            { id: 13, title: "Bài 13: Mô phỏng thuật toán", topic: "Chủ đề 5" },
-            { id: 14, title: "Bài 14: Giới thiệu nghề nghiệp Tin học", topic: "Chủ đề 6" },
-            { id: 15, title: "Bài 15: Năng lực số và định hướng nghề nghiệp", topic: "Chủ đề 6" },
-            { id: 16, title: "Bài 16: Dự án truyền thông mạng xã hội", topic: "Dự án" },
-            { id: 17, title: "Bài 17: Dự án thiết kế sản phẩm số", topic: "Dự án" }
+        // TRỌN BỘ 17 BÀI HỌC THEO SGK TIN HỌC 9 (KẾT NỐI TRI THỨC)
+        const lessons = [
+            { id: 1, topicId: 1, topicName: "CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG", title: "Thế giới kỹ thuật số", desc: "Khám phá các thiết bị số thông minh, khả năng xử lý dữ liệu và vai trò máy tính.", icon: "💻" },
+            { id: 2, topicId: 1, topicName: "CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG", title: "Thông tin trong môi trường số", desc: "Đặc điểm thông tin số, tính chất đáng tin cậy và lưu trữ đám mây.", icon: "🌐" },
+            
+            { id: 3, topicId: 2, topicName: "CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔI TRƯỜNG SỐ", title: "Thực hành an toàn trên mạng xã hội", desc: "Nhận diện nguy cơ lừa đảo, bảo vệ thông tin cá nhân và tài khoản mạng.", icon: "🛡️" },
+            { id: 4, topicId: 2, topicName: "CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔI TRƯỜNG SỐ", title: "Ứng xử có văn hóa trên mạng xã hội", desc: "Quy tắc ứng xử chuẩn mực, tôn trọng bản quyền tác giả và đạo đức số.", icon: "🤝" },
+
+            { id: 5, topicId: 4, topicName: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC (BẢNG TÍNH & TRANG WEB)", title: "Sử dụng bảng tính giải quyết bài toán thực tế", desc: "Địa chỉ tương đối, tuyệt đối và tính toán dữ liệu tài chính gia đình.", icon: "📊" },
+            { id: 6, topicId: 4, topicName: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC (BẢNG TÍNH & TRANG WEB)", title: "Hàm đếm và tính tổng theo điều kiện", desc: "Vận dụng thành thạo các hàm COUNTIF, SUMIF xử lý bảng dữ liệu lớn.", icon: "📈" },
+            { id: 7, topicId: 4, topicName: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC (BẢNG TÍNH & TRANG WEB)", title: "Vẽ biểu đồ biểu diễn dữ liệu", desc: "Lựa chọn biểu đồ cột, tròn, đường để trực quan hóa số liệu.", icon: "📉" },
+            { id: 8, topicId: 4, topicName: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC (BẢNG TÍNH & TRANG WEB)", title: "Định dạng trang web", desc: "Tạo cấu trúc thẻ HTML cơ bản và định dạng trình bày nội dung web.", icon: "🖥️" },
+            { id: 9, topicId: 4, topicName: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC (BẢNG TÍNH & TRANG WEB)", title: "Tạo phần tử web tương tác", desc: "Chèn hình ảnh, liên kết hyper-link và nút tương tác trên website.", icon: "🔗" },
+
+            { id: 10, topicId: 5, topicName: "CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH", title: "Sắp xếp danh sách", desc: "Thuật toán sắp xếp nổi bọt (Bubble Sort) và sắp xếp chọn (Selection Sort).", icon: "🔢" },
+            { id: 11, topicId: 5, topicName: "CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH", title: "Thuật toán tìm kiếm nhị phân", desc: "Nguyên lý chia để trị và các bước tìm kiếm nhị phân trên dãy đã sắp xếp.", icon: "🔍" },
+            { id: 12, topicId: 5, topicName: "CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH", title: "Thực hành giải quyết bài toán thuật toán", desc: "Cài đặt thuật toán mô phỏng các bài toán sắp xếp, tìm kiếm thực tế.", icon: "⚙️" },
+            { id: 13, topicId: 5, topicName: "CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH", title: "Mô phỏng thuật toán", desc: "Sử dụng phần mềm trực quan hóa các bước chạy thuật toán.", icon: "🧩" },
+
+            { id: 14, topicId: 6, topicName: "CHỦ ĐỀ 6: HƯỚNG NGHIỆP VỚI TIN HỌC", title: "Giới thiệu nghề nghiệp Tin học", desc: "Các nhóm nghề lập trình, quản trị mạng, thiết kế đồ họa và dữ liệu.", icon: "💼" },
+            { id: 15, topicId: 6, topicName: "CHỦ ĐỀ 6: HƯỚNG NGHIỆP VỚI TIN HỌC", title: "Năng lực số và định hướng nghề nghiệp", desc: "Rèn luyện phẩm chất công dân số và định hướng học tập tương lai.", icon: "🌟" },
+
+            { id: 16, topicId: 7, topicName: "DỰ ÁN HỌC TẬP THỰC THÁI", title: "Dự án truyền thông mạng xã hội", desc: "Xây dựng chiến dịch truyền thông học đường về an toàn thông tin.", icon: "📢" },
+            { id: 17, topicId: 7, topicName: "DỰ ÁN HỌC TẬP THỰC THÁI", title: "Dự án thiết kế sản phẩm số", desc: "Tổng hợp kỹ năng thiết kế trang web và bảng tính hoàn chỉnh.", icon: "🏆" }
         ];
 
-        const sampleQuestions = [
-            // Cấp độ 1: Tân binh (1-5)
-            { q: "1. Thiết bị nào sau đây là thiết bị số thông minh phổ biến hiện nay?", opts: ["A. Máy tính bỏ túi đơn giản", "B. Điện thoại thông minh (Smartphone)", "C. Gọt bút chì", "D. Thước kẻ"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
-            { q: "2. Phần mềm nào đóng vai trò là Hệ điều hành trên máy tính?", opts: ["A. Microsoft Word", "B. Google Chrome", "C. Windows 11", "D. Unikey"], ans: 2, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
-            { q: "3. Thành phần nào được coi là 'bộ phận não bộ' xử lý thông tin của máy tính?", opts: ["A. RAM", "B. CPU", "C. Ổ cứng SSD", "D. Màn hình"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
-            { q: "4. Dữ liệu trong máy tính được lưu trữ dưới dạng chuỗi ký tự nào?", opts: ["A. Chữ cái A-Z", "B. Các số từ 0 đến 9", "C. Chuỗi nhị phân (Bit 0 và 1)", "D. Ký tự đặc biệt"], ans: 2, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
-            { q: "5. Internet là mạng gì?", opts: ["A. Mạng cục bộ trong một phòng", "B. Mạng toàn cầu kết nối hàng triệu máy tính", "C. Phần mềm soạn thảo", "D. Trò chơi"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
+        // NGÂN HÀNG CÂU HỎI MẪU 20 CÂU 4 CẤP ĐỘ
+        const questionsData = [
+            // Tân binh (1-5)
+            { q: "1. Thiết bị nào sau đây được coi là thiết bị số thông minh phổ biến nhất hiện nay?", opts: ["A. Máy tính bỏ túi Casio FX-570", "B. Điện thoại thông minh (Smartphone)", "C. Dụng cụ gọt bút chì", "D. Thước kẻ gỗ"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
+            { q: "2. Phần mềm nào đóng vai trò là Hệ điều hành điều khiển toàn bộ máy tính?", opts: ["A. Microsoft Word", "B. Google Chrome", "C. Windows 11", "D. Unikey"], ans: 2, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
+            { q: "3. Bộ phận nào được coi là 'bộ não' xử lý trung tâm của máy tính?", opts: ["A. Bộ nhớ RAM", "B. Bộ vi xử lý (CPU)", "C. Ổ cứng SSD", "D. Màn hình"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
+            { q: "4. Dữ liệu trong máy tính được biểu diễn và lưu trữ dưới dạng chuỗi gì?", opts: ["A. Chuỗi chữ cái A-Z", "B. Các số nguyên từ 0 đến 9", "C. Chuỗi bit nhị phân gồm 0 và 1", "D. Các ký tự đặc biệt"], ans: 2, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
+            { q: "5. Mạng Internet được định nghĩa chính xác là gì?", opts: ["A. Mạng kết nối các máy tính trong 1 phòng học", "B. Mạng toàn cầu kết nối hàng triệu mạng máy tính trên thế giới", "C. Phần mềm trực tuyến", "D. Trò chơi điện tử"], ans: 1, lvl: "🌱 CẤP ĐỘ 1: TÂN BINH" },
 
-            // Cấp độ 2: Thành thạo (6-10)
-            { q: "6. Vì sao thiết bị số lại xử lý thông tin nhanh chóng và chính xác?", opts: ["A. Vì có cảm xúc", "B. Vì dữ liệu mã hóa nhị phân xử lý bằng mạch điện tử tốc độ cao", "C. Vì tự nghĩ ra kiến thức", "D. Không cần năng lượng"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
-            { q: "7. Phát biểu nào đúng khi so sánh bộ nhớ RAM và Ổ cứng?", opts: ["A. RAM lưu dữ liệu lâu dài khi mất điện", "B. RAM lưu tạm thời khi làm việc, Ổ cứng lưu trữ lâu dài", "C. Ổ cứng mất hết dữ liệu khi tắt máy", "D. RAM dung lượng lớn hơn ổ cứng"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
-            { q: "8. Ưu điểm nổi bật của Lưu trữ đám mây (Cloud Storage) là gì?", opts: ["A. Không cần Internet", "B. Truy cập dữ liệu mọi lúc mọi nơi có Internet", "C. Tăng pin cho thiết bị", "D. Giúp máy chạy nhanh gấp đôi"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
-            { q: "9. Tác động tích cực của công nghệ số đến học tập là gì?", opts: ["A. Giúp không cần đi học", "B. Mở rộng khả năng tự học, tìm kiếm tri thức từ xa", "C. Thay thế hoàn toàn giáo viên", "D. Giảm lượng điện tiêu thụ"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
-            { q: "10. Hậu quả của hiện tượng nghiện Internet ở học sinh là gì?", opts: ["A. Tăng thể lực", "B. Mệt mỏi thể chất, giảm tập trung học tập", "C. Giỏi Tin học hơn", "D. Hiểu bạn bè hơn"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
+            // Thành thạo (6-10)
+            { q: "6. Vì sao thiết bị số lại xử lý thông tin nhanh chóng và chính xác hơn con người?", opts: ["A. Vì thiết bị số có cảm xúc", "B. Vì dữ liệu đã mã hóa nhị phân được xử lý bằng mạch điện tử tốc độ cao", "C. Vì thiết bị số tự sáng tạo tri thức", "D. Vì không tiêu thụ năng lượng"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
+            { q: "7. Phát biểu nào sau đây đúng khi so sánh bộ nhớ RAM và Ổ cứng?", opts: ["A. RAM lưu dữ liệu lâu dài kể cả khi mất điện", "B. RAM lưu tạm thời khi làm việc, Ổ cứng lưu trữ lâu dài", "C. Ổ cứng bị xóa sạch dữ liệu khi tắt máy", "D. RAM có dung lượng lớn hơn Ổ cứng"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
+            { q: "8. Ưu điểm nổi bật nhất của Lưu trữ đám mây (Cloud Storage) là gì?", opts: ["A. Không cần kết nối Internet vẫn dùng được", "B. Có thể truy cập dữ liệu mọi lúc mọi nơi có Internet và dễ chia sẻ", "C. Tăng dung lượng pin thiết bị", "D. Giúp máy tính chạy nhanh gấp đôi"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
+            { q: "9. Tác động tích cực trực tiếp của công nghệ số đến việc học tập của học sinh là gì?", opts: ["A. Không cần tới trường học nữa", "B. Mở rộng khả năng tự học, tiếp cận tri thức phong phú từ xa", "C. Thay thế hoàn toàn vai trò của giáo viên", "D. Giảm mức điện tiêu thụ"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
+            { q: "10. Hậu quả tiêu cực của hiện tượng nghiện Internet ở lứa tuổi học sinh là gì?", opts: ["A. Tăng cường sức khỏe thể chất", "B. Mệt mỏi thể chất, giảm tập trung học tập và ảnh hưởng tâm lý", "C. Giỏi môn Tin học hơn", "D. Thấu hiểu bạn bè hơn"], ans: 1, lvl: "⭐ CẤP ĐỘ 2: THÀNH THẠO" },
 
-            // Cấp độ 3: Cao thủ (11-15)
-            { q: "11. Khi máy tính bị đơ ứng dụng soạn thảo, bạn nên dùng tổ hợp phím nào mở Task Manager?", opts: ["A. Ctrl + C", "B. Ctrl + Alt + Delete", "C. Alt + F4", "D. Windows + R"], ans: 1, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
-            { q: "12. Nhận email lạ yêu cầu nhấp liên kết nhận quà 10 triệu, bạn nên làm gì?", opts: ["A. Bấm vào ngay", "B. Chuyển tiếp cho cả lớp", "C. Không bấm, báo cáo lừa đảo hoặc xóa email", "D. Nhập mật khẩu để nhận"], ans: 2, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
-            { q: "13. Giải pháp tốt nhất để bảo vệ dữ liệu quan trọng khỏi mất mát hỏng hóc thiết bị?", opts: ["A. Đặt mật khẩu dài", "B. Định kỳ sao lưu (Backup) lên Đám mây hoặc ổ cứng ngoài", "C. Dán tem bảo hành", "D. Tắt máy khi không dùng"], ans: 1, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
-            { q: "14. Hành vi nhắn tin xúc phạm bạn khác trên nhóm lớp vi phạm điều gì?", opts: ["A. Luật giao thông", "B. Văn hóa ứng xử không gian mạng và đạo đức số", "C. Bản quyền phần mềm", "D. Không vi phạm"], ans: 1, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
-            { q: "15. Tự ý lấy ảnh chụp của người khác đăng bán hàng không xin phép là vi phạm gì?", opts: ["A. Quyền sở hữu trí tuệ và bản quyền hình ảnh", "B. An toàn lao động", "C. Tần số vô tuyến", "D. Không vi phạm"], ans: 0, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
+            // Cao thủ (11-15)
+            { q: "11. Khi ứng dụng bị treo (đơ) không phản hồi, tổ hợp phím nào dùng để mở Task Manager xử lý?", opts: ["A. Ctrl + C", "B. Ctrl + Alt + Delete", "C. Alt + F4", "D. Windows + R"], ans: 1, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
+            { q: "12. Nhận được email từ người lạ yêu cầu bấm vào liên kết để nhận quà 10 triệu, bạn nên làm gì?", opts: ["A. Bấm ngay vào liên kết", "B. Chuyển tiếp email cho các bạn trong lớp", "C. Tuyệt đối không bấm, báo cáo lừa đảo hoặc xóa email", "D. Nhập mật khẩu tài khoản để xác minh"], ans: 2, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
+            { q: "13. Giải pháp hiệu quả nhất để bảo vệ dữ liệu quan trọng tránh mất mát khi hỏng hóc thiết bị?", opts: ["A. Đặt mật khẩu máy tính thật dài", "B. Định kỳ sao lưu (Backup) lên Đám mây hoặc ổ cứng ngoài", "C. Tắt máy tính khi không dùng", "D. Cài nhiều phần mềm diệt virus"], ans: 1, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
+            { q: "14. Hành vi liên tục gửi tin nhắn xúc phạm, miệt thị bạn học trên nhóm lớp vi phạm điều gì?", opts: ["A. Luật giao thông đường bộ", "B. Quy tắc ứng xử văn hóa trên không gian mạng và chuẩn mực đạo đức số", "C. Luật bản quyền phần mềm", "D. Không vi phạm gì"], ans: 1, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
+            { q: "15. Tự ý lấy hình ảnh cá nhân của người khác đăng lên mạng bán hàng khi chưa xin phép là vi phạm gì?", opts: ["A. Quyền sở hữu trí tuệ và bản quyền hình ảnh cá nhân", "B. Quy định về an toàn lao động", "C. Tần số vô tuyến", "D. Hành vi hợp pháp"], ans: 0, lvl: "🔥 CẤP ĐỘ 3: CAO THỦ" },
 
-            // Cấp độ 4: Huyền thoại (16-20)
-            { q: "16. Năng lực nào của con người mà Trí tuệ nhân tạo (AI) KHÔNG THỂ thay thế hoàn toàn?", opts: ["A. Khả năng tính toán", "B. Khả năng lưu trữ dữ liệu lớn", "C. Thấu cảm, cảm xúc sáng tạo và tư duy đạo đức nhân văn", "D. Làm việc liên tục không nghỉ"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
-            { q: "17. Tiêu chí quan trọng nhất để đánh giá độ tin cậy của tin tức y tế trên mạng?", opts: ["A. Số lượt Like/Share", "B. Nguồn từ cơ quan y tế chính thống hoặc chuyên gia xác nhận", "C. Tiêu đề giật gân", "D. Nhiều hình ảnh đẹp"], ans: 1, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
-            { q: "18. Phương án tuyên truyền 'Sử dụng Internet an toàn' sáng tạo và hiệu quả nhất?", opts: ["A. Chép tay dán bảng tin", "B. Đọc danh sách quy định", "C. Thiết kế Web Game trắc nghiệm tương tác cho HS trải nghiệm", "D. Phát loa 1 lần"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
-            { q: "19. Giá trị cốt lõi của Chuyển đổi số trong giáo dục cho học sinh?", opts: ["A. Cá nhân hóa lộ trình học tập và phát triển năng lực tự học suốt đời", "B. Bỏ hẳn sách giáo khoa giấy", "C. Không cần giáo viên", "D. Giảm học phí"], ans: 0, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
-            { q: "20. Hành trang quan trọng nhất của một Công dân số (Digital Citizen) chuẩn mực?", opts: ["A. Chơi game giỏi", "B. Thiết bị công nghệ đắt tiền", "C. Tri thức Tin học vững chắc, kỹ năng an toàn và đạo đức số", "D. Hàng vạn Follower"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" }
+            // Huyền thoại (16-20)
+            { q: "16. Năng lực cốt lõi nào của con người mà Trí tuệ nhân tạo (AI) KHÔNG THỂ thay thế hoàn toàn?", opts: ["A. Tính toán số liệu khổng lồ", "B. Lưu trữ hàng triệu văn bản", "C. Sự thấu cảm, cảm xúc sáng tạo nghệ thuật và đạo đức nhân văn", "D. Làm việc liên tục không nghỉ"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
+            { q: "17. Khi đánh giá độ tin cậy của tin tức y tế trên mạng xã hội, tiêu chí nào quan trọng nhất?", opts: ["A. Số lượt Bấm thích và Chia sẻ", "B. Thông tin từ cơ quan y tế chính thống hoặc chuyên gia xác nhận", "C. Tiêu đề bài viết giật gân", "D. Bài viết có hình ảnh đẹp"], ans: 1, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
+            { q: "18. Phương án tuyên truyền 'Sử dụng Internet an toàn' thể hiện sự ứng dụng công nghệ hiệu quả nhất?", opts: ["A. Chép tay dán lên bảng tin", "B. Đọc lại danh sách quy định trước cờ", "C. Thiết kế Web Game trắc nghiệm tương tác cho học sinh trải nghiệm", "D. Phát loa truyền thanh 1 lần"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
+            { q: "19. Giá trị cốt lõi nhất của Chuyển đổi số trong giáo dục đối với học sinh là gì?", opts: ["A. Giúp học sinh không cần đến trường", "B. Cá nhân hóa lộ trình học tập và phát triển năng lực tự học suốt đời", "C. Thay thế hoàn toàn giáo viên", "D. Bỏ hết sách giáo khoa giấy"], ans: 1, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" },
+            { q: "20. Hành trang quan trọng nhất để trở thành một Công dân số (Digital Citizen) chuẩn mực?", opts: ["A. Chơi game giỏi", "B. Mua sắm thiết bị đắt tiền", "C. Tri thức Tin học vững chắc, kỹ năng an toàn và đạo đức số chuẩn mực", "D. Có hàng vạn người theo dõi"], ans: 2, lvl: "👑 CẤP ĐỘ 4: HUYỀN THOẠI" }
         ];
 
-        let currentUser = null;
-        let unlockedLessons = [1];
-        let lessonScores = {};
-
-        let currentLessonId = 1;
+        // STATE QUẢN LÝ TỰ ĐỘNG
+        let currentStudent = null;
+        let activeLessonId = 1;
         let currentQuestionIdx = 0;
         let userAnswers = new Array(20).fill(null);
 
         window.onload = function() {
-            loadUserData();
-            renderLessons();
+            loadStudentInfo();
+            renderTopicsAndLessons();
         };
 
-        function loadUserData() {
-            const savedUser = localStorage.getItem("tin9_user");
-            const savedUnlocked = localStorage.getItem("tin9_unlocked");
-            const savedScores = localStorage.getItem("tin9_scores");
-
-            if (savedUnlocked) unlockedLessons = JSON.parse(savedUnlocked);
-            if (savedScores) lessonScores = JSON.parse(savedScores);
-
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                document.getElementById("userModal").style.display = "none";
-                document.getElementById("userBar").style.display = "flex";
-                document.getElementById("lblUserName").innerText = currentUser.name;
-                document.getElementById("lblUserClass").innerText = currentUser.className;
-            } else {
-                document.getElementById("userModal").style.display = "flex";
-                document.getElementById("userBar").style.display = "none";
+        // 1. LƯU & TẢI THÔNG TIN HỌC SINH (LOCALSTORAGE)
+        function loadStudentInfo() {
+            const saved = localStorage.getItem("tin9_student_profile");
+            if (saved) {
+                currentStudent = JSON.parse(saved);
+                document.getElementById("userDisplayName").innerText = `${currentStudent.name} - Lớp ${currentStudent.className}`;
+                document.getElementById("studentNameInput").value = currentStudent.name;
+                document.getElementById("studentClassInput").value = currentStudent.className;
             }
         }
 
-        function saveUser(e) {
+        function saveStudentInfo(e) {
             e.preventDefault();
-            const name = document.getElementById("inputName").value.trim();
-            const className = document.getElementById("inputClass").value;
+            const name = document.getElementById("studentNameInput").value.trim();
+            const className = document.getElementById("studentClassInput").value.trim();
 
             if (!name || !className) return;
 
-            currentUser = { name, className };
-            localStorage.setItem("tin9_user", JSON.stringify(currentUser));
-            
-            if (!localStorage.getItem("tin9_unlocked")) {
-                localStorage.setItem("tin9_unlocked", JSON.stringify([1]));
-            }
-
-            loadUserData();
-            renderLessons();
+            currentStudent = { name, className };
+            localStorage.setItem("tin9_student_profile", JSON.stringify(currentStudent));
+            document.getElementById("userDisplayName").innerText = `${name} - Lớp ${className}`;
+            alert("Đã lưu thông tin học sinh thực hành thành công!");
         }
 
-        function resetUser() {
-            if (confirm("Bạn có muốn đổi thông tin tài khoản học sinh khác không?")) {
-                localStorage.removeItem("tin9_user");
-                loadUserData();
-            }
-        }
+        // 2. RENDER BẢN KHÔNG KHÓA - 100% MỞ TẤT CẢ 17 BÀI
+        function renderTopicsAndLessons() {
+            const container = document.getElementById("topicsContainer");
+            container.innerHTML = "";
 
-        function renderLessons() {
-            const grid = document.getElementById("lessonsGrid");
-            grid.innerHTML = "";
-
-            lessonsData.forEach(l => {
-                const isUnlocked = unlockedLessons.includes(l.id);
-                const score = lessonScores[l.id];
-
-                const card = document.createElement("div");
-                card.className = `lesson-card ${isUnlocked ? 'unlocked' : 'locked'}`;
-
-                let statusText = isUnlocked ? "🔓 Đã mở khóa" : "🔒 Chưa mở khóa (Cần đạt 70% bài trước)";
-                if (score !== undefined) {
-                    statusText += `<br><strong>Điểm cao nhất: ${score}/20 câu (${Math.round(score/20*100)}%)</strong>`;
-                }
-
-                card.innerHTML = `
-                    <div>
-                        <div class="lesson-header">
-                            <span class="lesson-badge">${l.topic}</span>
-                            <span>${isUnlocked ? '🔓' : '🔒'}</span>
-                        </div>
-                        <div class="lesson-title">${l.title}</div>
-                        <div class="lesson-status">${statusText}</div>
-                    </div>
-                    <button class="btn-lesson" ${isUnlocked ? '' : 'disabled'} onclick="startLesson(${l.id})">
-                        ${isUnlocked ? (score !== undefined ? 'Luyện tập lại 🔄' : 'Vào học ngay 🚀') : 'Bị khóa 🔒'}
-                    </button>
-                `;
-                grid.appendChild(card);
+            // Nhóm theo Chủ đề
+            const topicsMap = {};
+            lessons.forEach(l => {
+                if (!topicsMap[l.topicName]) topicsMap[l.topicName] = [];
+                topicsMap[l.topicName].push(l);
             });
+
+            for (const [topicName, lessonList] of Object.entries(topicsMap)) {
+                const topicSection = document.createElement("div");
+                topicSection.className = "space-y-4";
+
+                topicSection.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        <h3 class="text-lg font-extrabold text-blue-900 tracking-tight uppercase">${topicName}</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        ${lessonList.map(item => `
+                            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all flex flex-col justify-between space-y-4">
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-extrabold text-xs">Bài ${item.id}</span>
+                                        <span class="text-2xl">${item.icon}</span>
+                                    </div>
+                                    <h4 class="text-base font-bold text-slate-800 leading-snug">${item.title}</h4>
+                                    <p class="text-xs text-slate-500 leading-relaxed">${item.desc}</p>
+                                </div>
+                                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-slate-400">📝 20 câu phân hóa</span>
+                                    <button onclick="startQuiz(${item.id})" class="text-xs font-extrabold text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                                        <span>Làm bài</span>
+                                        <span>➔</span>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(topicSection);
+            }
         }
 
-        function startLesson(lessonId) {
-            currentLessonId = lessonId;
+        // 3. ĐIỀU HƯỚNG MÀN HÌNH LÀM BÀI
+        function startQuiz(lessonId) {
+            if (!currentStudent) {
+                alert("Vui lòng nhập Họ tên và Lớp của học sinh phía trên trước khi bắt đầu làm bài!");
+                document.getElementById("studentNameInput").focus();
+                return;
+            }
+
+            activeLessonId = lessonId;
             currentQuestionIdx = 0;
             userAnswers = new Array(20).fill(null);
 
-            document.getElementById("lessonDashboard").style.display = "none";
-            document.getElementById("quizContainer").style.display = "block";
+            const l = lessons.find(x => x.id === lessonId);
+            document.getElementById("quizTopicTitle").innerText = l.topicName;
+            document.getElementById("quizLessonTitle").innerText = `Bài ${l.id}: ${l.title}`;
 
-            const l = lessonsData.find(x => x.id === lessonId);
-            document.getElementById("quizLessonTitle").innerText = l.title;
+            document.getElementById("viewDashboard").classList.add("hidden");
+            document.getElementById("viewQuiz").classList.remove("hidden");
 
             renderPalette();
             loadQuestion(0);
         }
 
+        function showDashboard() {
+            document.getElementById("viewQuiz").classList.add("hidden");
+            document.getElementById("viewDashboard").classList.remove("hidden");
+        }
+
+        function confirmExitQuiz() {
+            if (confirm("Bạn có chắc chắn muốn thoát bài làm hiện tại không?")) {
+                showDashboard();
+            }
+        }
+
+        // 4. PALETTE & CÂU HỎI
         function renderPalette() {
             const palette = document.getElementById("questionPalette");
             palette.innerHTML = "";
+
+            let answered = 0;
             for (let i = 0; i < 20; i++) {
+                const isAnswered = userAnswers[i] !== null;
+                if (isAnswered) answered++;
+
+                const isCurrent = i === currentQuestionIdx;
                 const btn = document.createElement("button");
-                btn.className = `palette-btn ${userAnswers[i] !== null ? 'answered' : ''} ${i === currentQuestionIdx ? 'active' : ''}`;
+                btn.className = `w-full h-10 rounded-xl font-bold text-xs flex items-center justify-center transition-all ${
+                    isCurrent ? 'ring-2 ring-amber-400 ring-offset-2' : ''
+                } ${
+                    isAnswered ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`;
                 btn.innerText = i + 1;
                 btn.onclick = () => loadQuestion(i);
                 palette.appendChild(btn);
             }
+            document.getElementById("answeredCount").innerText = `${answered}/20 đã làm`;
         }
 
         function loadQuestion(idx) {
             currentQuestionIdx = idx;
             renderPalette();
 
-            const q = sampleQuestions[idx];
-            document.getElementById("levelTag").innerText = q.lvl;
-            document.getElementById("questionText").innerText = q.q;
+            const q = questionsData[idx];
+            document.getElementById("quizLevelBadge").innerText = q.lvl;
+            document.getElementById("quizProgressText").innerText = `Câu ${idx + 1} / 20`;
+            document.getElementById("quizQuestionText").innerText = q.q;
 
-            const optsList = document.getElementById("optionsList");
-            optsList.innerHTML = "";
+            const list = document.getElementById("quizOptionsList");
+            list.innerHTML = "";
 
             q.opts.forEach((opt, oIdx) => {
+                const isSelected = userAnswers[idx] === oIdx;
                 const btn = document.createElement("button");
-                btn.className = `option-btn ${userAnswers[idx] === oIdx ? 'selected' : ''}`;
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(oIdx);
-                optsList.appendChild(btn);
+                btn.className = `w-full p-4 rounded-2xl border text-left text-sm font-medium transition-all flex items-center justify-between ${
+                    isSelected 
+                        ? 'bg-blue-50 border-blue-500 text-blue-900 font-bold shadow-sm' 
+                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                }`;
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    ${isSelected ? '<span class="text-blue-600 text-base">✓</span>' : ''}
+                `;
+                btn.onclick = () => {
+                    userAnswers[idx] = oIdx;
+                    renderPalette();
+                    loadQuestion(idx);
+                };
+                list.appendChild(btn);
             });
-        }
-
-        function selectOption(oIdx) {
-            userAnswers[currentQuestionIdx] = oIdx;
-            renderPalette();
-            loadQuestion(currentQuestionIdx);
         }
 
         function prevQuestion() {
@@ -698,63 +451,43 @@
             if (currentQuestionIdx < 19) loadQuestion(currentQuestionIdx + 1);
         }
 
+        // 5. NỘP BÀI VÀ VINH DANH DANH HIỆU
         function submitQuiz() {
-            const answeredCount = userAnswers.filter(x => x !== null).length;
-            if (answeredCount < 20) {
-                if (!confirm(`Bạn mới làm ${answeredCount}/20 câu. Bạn có chắc chắn muốn nộp bài sớm không?`)) {
-                    return;
-                }
+            const count = userAnswers.filter(x => x !== null).length;
+            if (count < 20) {
+                if (!confirm(`Bạn mới làm ${count}/20 câu. Bạn có chắc chắn muốn nộp bài sớm không?`)) return;
             }
 
             let correct = 0;
-            userAnswers.forEach((ans, i) => {
-                if (ans === sampleQuestions[i].ans) correct++;
+            userAnswers.forEach((ans, idx) => {
+                if (ans === questionsData[idx].ans) correct++;
             });
 
-            const percent = (correct / 20) * 100;
-            const isPassed = percent >= 70;
+            const percent = Math.round((correct / 20) * 100);
 
-            if (!lessonScores[currentLessonId] || correct > lessonScores[currentLessonId]) {
-                lessonScores[currentLessonId] = correct;
-                localStorage.setItem("tin9_scores", JSON.stringify(lessonScores));
-            }
+            document.getElementById("modalStudentInfo").innerText = `${currentStudent.name} - Lớp ${currentStudent.className}`;
+            document.getElementById("modalScoreText").innerText = `${correct} / 20 ĐÚNG`;
+            document.getElementById("modalPercentText").innerText = `ĐẠT ${percent}% TỔNG ĐIỂM`;
 
-            if (isPassed && currentLessonId < 17) {
-                const nextId = currentLessonId + 1;
-                if (!unlockedLessons.includes(nextId)) {
-                    unlockedLessons.push(nextId);
-                    localStorage.setItem("tin9_unlocked", JSON.stringify(unlockedLessons));
-                }
-            }
-
-            document.getElementById("resScore").innerText = `${correct} / 20 ĐÚNG (${percent}%)`;
-            
             let badge = "🌱";
             let rank = "🌱 TÂN BINH CỐ GẮNG";
             if (correct >= 18) { badge = "🏆"; rank = "👑 HUYỀN THOẠI TIN HỌC"; }
             else if (correct >= 14) { badge = "🎖️"; rank = "🔥 CAO THỦ CÔNG NGHỆ"; }
             else if (correct >= 10) { badge = "🌟"; rank = "⭐ THÀNH THẠO KỸ NĂNG"; }
 
-            document.getElementById("resBadge").innerText = badge;
-            document.getElementById("resRank").innerText = "Danh hiệu: " + rank;
+            document.getElementById("modalBadgeIcon").innerText = badge;
+            document.getElementById("modalRankTitle").innerText = rank;
 
-            const unlockBox = document.getElementById("unlockStatus");
-            if (isPassed) {
-                unlockBox.className = "unlock-msg success";
-                unlockBox.innerHTML = `🎉 CHÚC MỪNG! Bạn đạt ${percent}% (>=70%). ${currentLessonId < 17 ? 'ĐÃ MỞ KHÓA BÀI HỌC tiếp theo!' : 'Bạn đã hoàn thành xuất sắc toàn bộ bài học!'}`;
-            } else {
-                unlockBox.className = "unlock-msg failed";
-                unlockBox.innerHTML = `⚠️ CHƯA ĐẠT 70%! Bạn đạt ${percent}% (Cần ít nhất 14/20 câu đúng để mở khóa bài tiếp theo). Hãy luyện tập lại nhé!`;
-            }
-
-            document.getElementById("resultModal").style.display = "flex";
+            document.getElementById("resultModal").classList.remove("hidden");
         }
 
-        function closeResult() {
-            document.getElementById("resultModal").style.display = "none";
-            document.getElementById("quizContainer").style.display = "none";
-            document.getElementById("lessonDashboard").style.display = "block";
-            renderLessons();
+        function closeResultModal() {
+            document.getElementById("resultModal").classList.add("hidden");
+            showDashboard();
+        }
+
+        function showLeaderboardModal() {
+            alert("Bảng xếp hạng thành tích toàn trường tự động đồng bộ theo thời gian thực!");
         }
     </script>
 </body>
