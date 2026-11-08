@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CÙNG HỌC TIN HỌC 9 - TRƯỜNG THCS PHÚ ĐÌNH</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>CÙNG HỌC TIN HỌC 9 - NỀN TẢNG HỌC TẬP THÔNG MINH</title>
+    <!-- Font Be Vietnam Pro chuẩn Tiếng Việt -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #1E40AF;
-            --primary-dark: #1E3A8A;
-            --primary-light: #3B82F6;
-            --accent: #F59E0B;
-            --card-bg: #FFFFFF;
-            --text-main: #1E293B;
+            --primary: #2563EB;
+            --primary-dark: #1E40AF;
+            --accent-purple: #6366F1;
+            --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #F1F5F9 50%, #E0F2FE 100%);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --text-main: #0F172A;
             --text-muted: #64748B;
-            --border-color: #E2E8F0;
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
-            --shadow-md: 0 10px 25px -5px rgba(30, 64, 175, 0.08);
-            --shadow-hover: 0 20px 25px -5px rgba(30, 64, 175, 0.15);
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            --shadow-hover: 0 14px 40px 0 rgba(37, 99, 235, 0.18);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
         }
 
         body {
-            background-color: #f8fafc;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(30, 64, 175, 0.08) 0px, transparent 50%);
+            background: var(--bg-gradient);
             background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.6;
@@ -40,20 +37,21 @@
             min-height: 100vh;
         }
 
-        /* Top Bar */
+        /* Top Navigation Bar dạng Glassmorphism */
         .top-navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 12px 24px;
-            box-shadow: var(--shadow-sm);
+            padding: 14px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -68,23 +66,23 @@
         }
 
         .brand-icon {
-            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            background: linear-gradient(135deg, var(--primary), var(--accent-purple));
             color: white;
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
         }
 
         .brand-text h1 {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            color: var(--primary-dark);
-            line-height: 1.2;
+            color: #1E3A8A;
+            letter-spacing: -0.3px;
         }
 
         .brand-text p {
@@ -96,69 +94,73 @@
 
         .nav-badges {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .badge-item {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            backdrop-filter: blur(8px);
         }
 
         .badge-kt {
-            background: #EFF6FF;
-            color: #1D4ED8;
-            border: 1px solid #BFDBFE;
+            background: rgba(224, 231, 255, 0.8);
+            color: #3730A3;
+            border: 1px solid #C7D2FE;
         }
 
         .badge-rank {
-            background: #FEF3C7;
-            color: #D97706;
+            background: rgba(254, 243, 199, 0.8);
+            color: #B45309;
             border: 1px solid #FDE68A;
         }
 
-        /* Container */
+        /* Container Chính */
         .main-container {
-            max-width: 1100px;
-            margin: 25px auto;
+            max-width: 1150px;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
-        /* User Card */
+        /* Khung Thông tin Học Sinh (Glassmorphism) */
         .user-info-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 18px 24px;
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            margin-bottom: 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 20px 28px;
+            box-shadow: var(--shadow-glass);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 18px;
         }
 
         .user-profile-display {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
 
         .user-avatar-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            background: #FEF3C7;
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
             color: #D97706;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
         }
 
         .user-status-title {
@@ -166,10 +168,11 @@
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .user-status-name {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: var(--text-main);
         }
@@ -177,357 +180,189 @@
         .user-input-form {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .input-style {
-            padding: 10px 16px;
-            border-radius: 25px;
-            border: 1.5px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1.5px solid rgba(203, 213, 225, 0.8);
             outline: none;
-            font-size: 0.9rem;
-            background: #F8FAFC;
+            font-size: 0.92rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.25s;
         }
 
         .input-style:focus {
-            border-color: var(--primary-light);
-            background: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+            background: #FFFFFF;
         }
 
-        .input-name { width: 220px; }
-        .input-class { width: 90px; text-align: center; }
+        .input-name { width: 240px; }
+        .input-class { width: 95px; text-align: center; }
 
         .btn-save-user {
-            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            background: linear-gradient(135deg, #2563EB, #4F46E5);
             color: white;
             border: none;
-            padding: 10px 22px;
-            border-radius: 25px;
+            padding: 12px 26px;
+            border-radius: 30px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+            transition: all 0.25s;
         }
 
-        /* Banner */
+        .btn-save-user:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Hero Banner Hiện Đại */
         .hero-banner {
-            background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
-            border-radius: 20px;
-            padding: 35px 40px;
+            background: linear-gradient(135deg, #4338CA 0%, #2563EB 50%, #0284C7 100%);
+            border-radius: 24px;
+            padding: 40px 48px;
             color: white;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 15px 30px -10px rgba(79, 70, 229, 0.4);
-            margin-bottom: 30px;
+            box-shadow: 0 20px 40px -15px rgba(67, 56, 202, 0.45);
+            margin-bottom: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 600px;
+            max-width: 640px;
         }
 
         .hero-tag {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            backdrop-filter: blur(8px);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.82rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .hero-title {
-            font-size: 1.85rem;
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.25;
+            letter-spacing: -0.5px;
         }
 
         .hero-desc {
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-size: 0.98rem;
+            opacity: 0.92;
+            line-height: 1.6;
         }
 
         .hero-bg-icon {
             position: absolute;
-            right: 20px;
+            right: 30px;
             bottom: -20px;
-            font-size: 10rem;
-            opacity: 0.2;
+            font-size: 11rem;
+            opacity: 0.18;
             pointer-events: none;
+            transform: rotate(-10deg);
         }
 
-        /* Lessons */
+        /* Danh mục Chủ đề & Thẻ Bài Học */
         .topic-group {
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
 
         .topic-header {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 800;
-            color: var(--primary-dark);
-            margin-bottom: 16px;
+            color: #1E3A8A;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .topic-pill {
-            width: 8px;
-            height: 24px;
-            background: var(--primary-light);
-            border-radius: 4px;
+            width: 10px;
+            height: 26px;
+            background: linear-gradient(180deg, var(--primary), var(--accent-purple));
+            border-radius: 6px;
         }
 
         .lessons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
 
         .lesson-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.25s ease;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-glass);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .lesson-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
-            border-color: #93C5FD;
+            border-color: rgba(37, 99, 235, 0.4);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .card-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .lesson-num-badge {
-            background: #EFF6FF;
-            color: #1D4ED8;
-            font-size: 0.78rem;
+            background: rgba(224, 231, 255, 0.9);
+            color: #3730A3;
+            font-size: 0.8rem;
             font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 20px;
+            padding: 5px 14px;
+            border-radius: 30px;
+            border: 1px solid #C7D2FE;
+        }
+
+        .card-icon {
+            font-size: 1.3rem;
+            opacity: 0.7;
         }
 
         .card-title {
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--text-main);
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .card-subtitle {
-            font-size: 0.82rem;
+            font-size: 0.86rem;
             color: var(--text-muted);
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .card-bottom {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 14px;
-            border-top: 1px dashed var(--border-color);
-        }
-
-        .question-count-tag {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .btn-start-quiz {
-            color: var(--primary-light);
-            font-weight: 700;
-            font-size: 0.88rem;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .btn-start-quiz:hover {
-            color: var(--primary);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Top Navigation Bar -->
-    <nav class="top-navbar">
-        <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <div class="brand-icon">🎓</div>
-                <div class="brand-text">
-                    <h1>CÙNG HỌC TIN HỌC 9</h1>
-                    <p>Trường THCS Phú Đình - Thái Nguyên</p>
-                </div>
-            </a>
-            <div class="nav-badges">
-                <div class="badge-item badge-kt">📖 Kết Nối Tri Thức</div>
-                <div class="badge-item badge-rank">🏆 Thành tích</div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="main-container">
-        <!-- Khung Thông tin Học Sinh -->
-        <div class="user-info-card">
-            <div class="user-profile-display">
-                <div class="user-avatar-icon">👨‍🎓</div>
-                <div>
-                    <div class="user-status-title">Thông tin học sinh thực hành</div>
-                    <div class="user-status-name" id="displayStudentName">Chưa nhập thông tin</div>
-                </div>
-            </div>
-            <form class="user-input-form" id="userForm">
-                <input type="text" class="input-style input-name" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." required>
-                <input type="text" class="input-style input-class" id="studentClassInput" value="9A1" placeholder="Lớp" required>
-                <button type="submit" class="btn-save-user">Lưu thông tin</button>
-            </form>
-        </div>
-
-        <!-- Hero Banner -->
-        <div class="hero-banner">
-            <div class="hero-content">
-                <div class="hero-tag">⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài</div>
-                <h2 class="hero-title">Hệ Thống Webgame Học Tập Tin Học 9</h2>
-                <p class="hero-desc">Khám phá trọn bộ 6 chủ đề SGK/SBT Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.</p>
-            </div>
-            <div class="hero-bg-icon">🎮</div>
-        </div>
-
-        <!-- Danh mục 17 bài học không khóa -->
-        <div id="lessonsContainer"></div>
-    </div>
-
-    <script>
-        const curriculumData = [
-            {
-                topicTitle: "CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG",
-                lessons: [
-                    { id: 1, name: "Thế giới kĩ thuật số", sub: "Thành phố Số cần bạn xác minh các thiết bị gắn bộ xử lý thông tin và sức mạnh máy tính!" },
-                    { id: 2, name: "Thông tin trong môi trường số", sub: "Nhận biết và đánh giá chất lượng thông tin trong môi trường số hiện đại." }
-                ]
-            },
-            {
-                topicTitle: "CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔĨ TRƯỜNG SỐ",
-                lessons: [
-                    { id: 3, name: "Thực hành an toàn trên mạng xã hội", sub: "Rèn luyện kỹ năng bảo vệ thông tin cá nhân và phòng tránh các nguy cơ mất an toàn." },
-                    { id: 4, name: "Ứng xử có văn hóa trên mạng xã hội", sub: "Xây dựng nếp sống văn minh và tuân thủ đạo đức số khi tham gia không gian mạng." }
-                ]
-            },
-            {
-                topicTitle: "CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC",
-                lessons: [
-                    { id: 5, name: "Sử dụng bảng tính giải quyết bài toán thực tế", sub: "Áp dụng phần mềm bảng tính Excel/Google Sheets để xử lý dữ liệu thực tiễn." },
-                    { id: 6, name: "Hàm đếm và tính tổng theo điều kiện", sub: "Thành thạo sử dụng các hàm COUNTIF, SUMIF trong tính toán quản lý." },
-                    { id: 7, name: "Vẽ biểu đồ biểu diễn dữ liệu", sub: "Trực quan hóa số liệu bảng tính bằng biểu đồ cột, đường và tròn chuyên nghiệp." },
-                    { id: 8, name: "Định dạng trang web", sub: "Sử dụng các thẻ HTML và thuộc tính định dạng trang web cá nhân." },
-                    { id: 9, name: "Tạo phần tử web tương tác", sub: "Thiết kế nút bấm, form nhập liệu và thành phần tương tác trên trang web." }
-                ]
-            },
-            {
-                topicTitle: "CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH",
-                lessons: [
-                    { id: 10, name: "Sắp xếp danh sách", sub: "Tìm hiểu thuật toán sắp xếp nổi bọt (Bubble Sort) và sắp xếp chọn (Selection Sort)." },
-                    { id: 11, name: "Thuật toán tìm kiếm nhị phân", sub: "Vận dụng tư duy thuật toán tìm kiếm nhị phân trên dãy số đã sắp xếp." },
-                    { id: 12, name: "Thực hành giải quyết bài toán thuật toán", sub: "Lập trình và mô phỏng các bài toán thuật toán trên phần mềm." },
-                    { id: 13, name: "Mô phỏng thuật toán", sub: "Trực quan hóa từng bước thực thi thuật toán tìm kiếm và sắp xếp." }
-                ]
-            },
-            {
-                topicTitle: "CHỦ ĐỀ 6: TIN HỌC VÀ ĐỊNH HƯỚNG NGHỀ NGHIỆP",
-                lessons: [
-                    { id: 14, name: "Giới thiệu nghề nghiệp Tin học", sub: "Khám phá các ngành nghề phát triển phần mềm, quản trị mạng và dữ liệu." },
-                    { id: 15, name: "Năng lực số và định hướng nghề nghiệp", sub: "Tự đánh giá năng lực công nghệ và chuẩn bị hành trang công dân số." }
-                ]
-            },
-            {
-                topicTitle: "CÁC BÀI DỰ ÁN HỌC TẬP TỔNG HỢP",
-                lessons: [
-                    { id: 16, name: "Dự án truyền thông mạng xã hội", sub: "Xây dựng chiến dịch tuyên truyền và thiết kế sản phẩm truyền thông số." },
-                    { id: 17, name: "Dự án thiết kế sản phẩm số", sub: "Tổng hợp kiến thức để xây dựng sản phẩm website hoặc bài trình chiếu." }
-                ]
-            }
-        ];
-
-        document.getElementById('userForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('studentNameInput').value.trim();
-            const className = document.getElementById('studentClassInput').value.trim();
-
-            if (name && className) {
-                const fullInfo = name + ' - Lớp ' + className;
-                localStorage.setItem('hocSinhInfo', fullInfo);
-                document.getElementById('displayStudentName').innerText = fullInfo;
-                alert('Đã lưu thông tin học sinh thành công!');
-            }
-        });
-
-        function renderAllLessons() {
-            const saved = localStorage.getItem('hocSinhInfo');
-            if (saved) {
-                document.getElementById('displayStudentName').innerText = saved;
-            }
-
-            const container = document.getElementById('lessonsContainer');
-            if (!container) return;
-
-            let htmlContent = '';
-
-            curriculumData.forEach(function(topic) {
-                let gridHtml = '';
-                topic.lessons.forEach(function(l) {
-                    gridHtml += `
-                        <div class="lesson-card">
-                            <div>
-                                <div class="card-top">
-                                    <span class="lesson-num-badge">Bài ${l.id}</span>
-                                    <span>⚙️</span>
-                                </div>
-                                <div class="card-title">${l.name}</div>
-                                <div class="card-subtitle">${l.sub}</div>
-                            </div>
-                            <div class="card-bottom">
-                                <span class="question-count-tag">📋 20 câu phân hóa</span>
-                                <a href="javascript:void(0)" onclick="startQuiz(${l.id})" class="btn-start-quiz">Làm bài ➔</a>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                htmlContent += `
-                    <div class="topic-group">
-                        <div class="topic-header">
-                            <div class="topic-pill"></div>
-                            <span>${topic.topicTitle}</span>
-                        </div>
-                        <div class="lessons-grid">${gridHtml}</div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = htmlContent;
-        }
-
-        function startQuiz(id) {
-            alert('Bắt đầu làm bài thi bài ' + id);
-        }
-
-        window.onload = renderAllLessons;
-    </script>
-</body>
-</html>
+            justify-
