@@ -11,40 +11,36 @@
             --primary: #2563EB;
             --primary-dark: #1E40AF;
             --accent-purple: #6366F1;
-            --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #F1F5F9 50%, #E0F2FE 100%);
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.9);
+            --bg-main: #EEF2F6;
+            --card-bg: #FFFFFF;
             --text-main: #0F172A;
             --text-muted: #64748B;
-            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
-            --shadow-hover: 0 14px 40px 0 rgba(37, 99, 235, 0.18);
+            --border-color: #CBD5E1;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+            font-family: 'Be Vietnam Pro', sans-serif;
         }
 
         body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            background-color: var(--bg-main);
             color: var(--text-main);
             line-height: 1.6;
             padding-bottom: 60px;
-            min-height: 100vh;
         }
 
+        /* Header Bar */
         .top-navbar {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
+            background: #FFFFFF;
+            border-bottom: 2px solid #E2E8F0;
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 14px 28px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 12px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .nav-container {
@@ -65,18 +61,17 @@
         .brand-icon {
             background: linear-gradient(135deg, var(--primary), var(--accent-purple));
             color: white;
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.3rem;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
         }
 
         .brand-text h1 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: #1E3A8A;
         }
@@ -85,56 +80,56 @@
             font-size: 0.75rem;
             color: var(--text-muted);
             font-weight: 600;
-            text-transform: uppercase;
         }
 
         .nav-badges {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .badge-item {
-            padding: 8px 16px;
-            border-radius: 30px;
+            padding: 6px 14px;
+            border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
         }
 
-        .badge-kt { background: rgba(224, 231, 255, 0.9); color: #3730A3; border: 1px solid #C7D2FE; }
-        .badge-rank { background: rgba(254, 243, 199, 0.9); color: #B45309; border: 1px solid #FDE68A; }
+        .badge-kt { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
+        .badge-rank { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
 
+        /* Main Container */
         .main-container {
             max-width: 1150px;
-            margin: 30px auto;
+            margin: 25px auto;
             padding: 0 20px;
         }
 
+        /* Form Học Sinh */
         .user-info-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 20px 28px;
-            box-shadow: var(--shadow-glass);
-            border: 1px solid var(--glass-border);
-            margin-bottom: 28px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 18px;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .user-profile-display {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
         }
 
         .user-avatar-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: #FEF3C7;
             color: #D97706;
             display: flex;
             align-items: center;
@@ -150,7 +145,7 @@
         }
 
         .user-status-name {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--text-main);
         }
@@ -158,168 +153,166 @@
         .user-input-form {
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .input-style {
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: 1.5px solid rgba(203, 213, 225, 0.8);
+            padding: 10px 16px;
+            border-radius: 25px;
+            border: 1.5px solid var(--border-color);
             outline: none;
-            font-size: 0.92rem;
-            background: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
         }
 
-        .input-name { width: 240px; }
-        .input-class { width: 95px; text-align: center; }
+        .input-name { width: 220px; }
+        .input-class { width: 80px; text-align: center; }
 
         .btn-save-user {
-            background: linear-gradient(135deg, #2563EB, #4F46E5);
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
             color: white;
             border: none;
-            padding: 12px 26px;
-            border-radius: 30px;
+            padding: 10px 22px;
+            border-radius: 25px;
             font-weight: 700;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             cursor: pointer;
-            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
         }
 
+        /* Banner */
         .hero-banner {
-            background: linear-gradient(135deg, #4338CA 0%, #2563EB 50%, #0284C7 100%);
-            border-radius: 24px;
-            padding: 40px 48px;
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+            border-radius: 20px;
+            padding: 35px 40px;
             color: white;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 40px -15px rgba(67, 56, 202, 0.45);
-            margin-bottom: 36px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
         }
 
         .hero-tag {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 6px 16px;
-            border-radius: 30px;
-            font-size: 0.82rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .hero-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .hero-desc {
-            font-size: 0.98rem;
-            opacity: 0.92;
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
 
         .hero-bg-icon {
             position: absolute;
-            right: 30px;
+            right: 20px;
             bottom: -20px;
-            font-size: 11rem;
-            opacity: 0.18;
+            font-size: 9rem;
+            opacity: 0.15;
             pointer-events: none;
         }
 
+        /* Grid Bài Học */
         .topic-group {
-            margin-bottom: 36px;
+            margin-bottom: 30px;
         }
 
         .topic-header {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: #1E3A8A;
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .topic-pill {
-            width: 10px;
-            height: 26px;
-            background: linear-gradient(180deg, var(--primary), var(--accent-purple));
-            border-radius: 6px;
+            width: 8px;
+            height: 22px;
+            background: var(--primary);
+            border-radius: 4px;
         }
 
         .lessons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 18px;
         }
 
         .lesson-card {
-            background: var(--glass-bg);
-            border-radius: 20px;
-            padding: 24px;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-glass);
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s;
         }
 
         .lesson-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--primary);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
         }
 
         .card-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .lesson-num-badge {
-            background: rgba(224, 231, 255, 0.9);
-            color: #3730A3;
-            font-size: 0.8rem;
+            background: #EFF6FF;
+            color: #1D4ED8;
+            font-size: 0.78rem;
             font-weight: 800;
-            padding: 5px 14px;
-            border-radius: 30px;
+            padding: 4px 12px;
+            border-radius: 20px;
         }
 
         .card-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: var(--text-main);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .card-subtitle {
-            font-size: 0.86rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .card-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 16px;
-            border-top: 1px dashed rgba(203, 213, 225, 0.8);
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
         }
 
         .question-count-tag {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             font-weight: 600;
         }
 
         .btn-start-quiz {
-            background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-            color: var(--primary-dark);
+            background: #EFF6FF;
+            color: #1D4ED8;
             font-weight: 700;
-            font-size: 0.88rem;
-            padding: 8px 18px;
+            font-size: 0.85rem;
+            padding: 6px 16px;
             border-radius: 20px;
             text-decoration: none;
             cursor: pointer;
@@ -334,13 +327,14 @@
 </head>
 <body>
 
+    <!-- Header Navigation -->
     <nav class="top-navbar">
         <div class="nav-container">
             <a href="#" class="brand-logo">
                 <div class="brand-icon">🎓</div>
                 <div class="brand-text">
                     <h1>CÙNG HỌC TIN HỌC 9</h1>
-                    <p>Nền Tảng Học Tập Thông Minh - THCS Phú Đình</p>
+                    <p>Trường THCS Phú Đình - Thái Nguyên</p>
                 </div>
             </a>
             <div class="nav-badges">
@@ -350,4 +344,168 @@
         </div>
     </nav>
 
-    <div
+    <!-- Main Container Nội Dung -->
+    <div class="main-container">
+        
+        <!-- Form Nhập Thông Tin -->
+        <div class="user-info-card">
+            <div class="user-profile-display">
+                <div class="user-avatar-icon">👨‍🎓</div>
+                <div>
+                    <div class="user-status-title">Thông tin học sinh thực hành</div>
+                    <div class="user-status-name" id="displayStudentName">Chưa nhập thông tin</div>
+                </div>
+            </div>
+            <form class="user-input-form" onsubmit="saveUserInfo(event)">
+                <input type="text" class="input-style input-name" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." required>
+                <input type="text" class="input-style input-class" id="studentClassInput" value="9A1" placeholder="Lớp" required>
+                <button type="submit" class="btn-save-user">Lưu thông tin</button>
+            </form>
+        </div>
+
+        <!-- Banner Tím/Xanh -->
+        <div class="hero-banner">
+            <div class="hero-tag">⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài</div>
+            <h2 class="hero-title">Hệ Thống Webgame Học Tập Tin Học 9</h2>
+            <p class="hero-desc">Học tập – Khám phá – Sáng tạo – Phát triển. Trọn bộ 6 chủ đề SGK Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.</p>
+            <div class="hero-bg-icon">🎮</div>
+        </div>
+
+        <!-- Danh Sách Các Chủ Đề & 17 Bài Học -->
+        <div class="topic-group">
+            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</span></div>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div>
+                        <div class="card-top"><span class="lesson-num-badge">Bài 1</span><span>💻</span></div>
+                        <div class="card-title">Thế giới kĩ thuật số</div>
+                        <div class="card-subtitle">Xác minh các thiết bị gắn bộ xử lý thông tin và khám phá sức mạnh máy tính hiện đại.</div>
+                    </div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 1')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div>
+                        <div class="card-top"><span class="lesson-num-badge">Bài 2</span><span>💻</span></div>
+                        <div class="card-title">Thông tin trong môi trường số</div>
+                        <div class="card-subtitle">Nhận biết, khai thác và đánh giá chất lượng thông tin trên không gian mạng.</div>
+                    </div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 2')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔĨ TRƯỜNG SỐ</span></div>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div>
+                        <div class="card-top"><span class="lesson-num-badge">Bài 3</span><span>🛡️</span></div>
+                        <div class="card-title">Thực hành an toàn trên mạng xã hội</div>
+                        <div class="card-subtitle">Rèn luyện kỹ năng bảo vệ dữ liệu cá nhân và phòng tránh rủi ro mất an toàn thông tin.</div>
+                    </div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 3')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div>
+                        <div class="card-top"><span class="lesson-num-badge">Bài 4</span><span>🛡️</span></div>
+                        <div class="card-title">Ứng xử có văn hóa trên mạng xã hội</div>
+                        <div class="card-subtitle">Xây dựng văn hóa ứng xử chuẩn mực và tuân thủ các quy tắc đạo đức số.</div>
+                    </div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 4')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC</span></div>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 5</span><span>📊</span></div><div class="card-title">Sử dụng bảng tính giải quyết bài toán thực tế</div><div class="card-subtitle">Vận dụng phần mềm bảng tính Excel/Google Sheets xử lý số liệu bài toán thực tiễn.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 5')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 6</span><span>📊</span></div><div class="card-title">Hàm đếm và tính tổng theo điều kiện</div><div class="card-subtitle">Thành thạo công cụ tính toán tự động với các hàm COUNTIF và SUMIF.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 6')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 7</span><span>📈</span></div><div class="card-title">Vẽ biểu đồ biểu diễn dữ liệu</div><div class="card-subtitle">Trực quan hóa dữ liệu bảng tính thành biểu đồ cột, đường và tròn sinh động.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 7')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 8</span><span>🌐</span></div><div class="card-title">Định dạng trang web</div><div class="card-subtitle">Thiết lập cấu trúc HTML và áp dụng mã thuộc tính định dạng giao diện web.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 8')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 9</span><span>🌐</span></div><div class="card-title">Tạo phần tử web tương tác</div><div class="card-subtitle">Xây dựng các biểu mẫu nhập liệu (Form), nút bấm và phần tử tương tác web.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 9')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH</span></div>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 10</span><span>🧩</span></div><div class="card-title">Sắp xếp danh sách</div><div class="card-subtitle">Khám phá nguyên lý hoạt động của thuật toán sắp xếp nổi bọt và sắp xếp chọn.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 10')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 11</span><span>🔍</span></div><div class="card-title">Thuật toán tìm kiếm nhị phân</div><div class="card-subtitle">Rèn luyện tư duy tối ưu hóa thuật toán tìm kiếm nhị phân trên dãy số.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 11')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 12</span><span>💻</span></div><div class="card-title">Thực hành giải quyết bài toán thuật toán</div><div class="card-subtitle">Lập trình mô phỏng các bài toán thuật toán thực tế trên máy tính.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 12')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 13</span><span>⚡</span></div><div class="card-title">Mô phỏng thuật toán</div><div class="card-subtitle">Trực quan hóa từng bước thực thi và kiểm thử tính đúng đắn của thuật toán.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 13')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-group">
+            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 6 & BÀI DỰ ÁN TỔNG HỢP</span></div>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 14</span><span>🚀</span></div><div class="card-title">Giới thiệu nghề nghiệp Tin học</div><div class="card-subtitle">Khám phá bức tranh tổng quan về các ngành nghề công nghệ thông tin tương lai.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 14')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 15</span><span>🎯</span></div><div class="card-title">Năng lực số và định hướng nghề nghiệp</div><div class="card-subtitle">Đánh giá năng lực số cá nhân và định hướng nghề nghiệp thời đại 4.0.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 15')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 16</span><span>📣</span></div><div class="card-title">Dự án truyền thông mạng xã hội</div><div class="card-subtitle">Xây dựng ý tưởng và sáng tạo sản phẩm truyền thông số tương tác tích cực.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 16')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+                <div class="lesson-card">
+                    <div><div class="card-top"><span class="lesson-num-badge">Bài 17</span><span>🎨</span></div><div class="card-title">Dự án thiết kế sản phẩm số</div><div class="card-subtitle">Tổng hợp toàn bộ kiến thức thiết kế website và đóng gói sản phẩm hoàn chỉnh.</div></div>
+                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 17')" class="btn-start-quiz">Làm bài ➔</a></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function saveUserInfo(e) {
+            e.preventDefault();
+            var name = document.getElementById('studentNameInput').value;
+            var className = document.getElementById('studentClassInput').value;
+            if (name && className) {
+                var full = name + ' - Lớp ' + className;
+                localStorage.setItem('hocSinhInfo', full);
+                document.getElementById('displayStudentName').innerText = full;
+                alert('Đã lưu thông tin thành công!');
+            }
+        }
+        window.onload = function() {
+            var saved = localStorage.getItem('hocSinhInfo');
+            if (saved) {
+                document.getElementById('displayStudentName').innerText = saved;
+            }
+        };
+    </script>
+</body>
+</html>
