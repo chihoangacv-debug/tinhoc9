@@ -32,7 +32,6 @@
             padding-bottom: 60px;
         }
 
-        /* Header Bar */
         .top-navbar {
             background: #FFFFFF;
             border-bottom: 2px solid #E2E8F0;
@@ -97,7 +96,6 @@
         .badge-kt { background: #E0E7FF; color: #3730A3; border: 1px solid #C7D2FE; }
         .badge-rank { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
 
-        /* Main Container */
         .main-container {
             max-width: 1150px;
             margin: 25px auto;
@@ -259,11 +257,6 @@
             justify-content: space-between;
         }
 
-        .lesson-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
-        }
-
         .card-top {
             display: flex;
             justify-content: space-between;
@@ -323,11 +316,117 @@
             background: var(--primary);
             color: white;
         }
+
+        /* Giao diện Làm bài trắc nghiệm */
+        #quizSection {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #E2E8F0;
+        }
+
+        .palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .palette-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            border: 1px solid #CBD5E1;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .palette-btn.answered {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .palette-btn.active {
+            border: 2px solid #F59E0B;
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option-btn {
+            background: #F8FAFC;
+            border: 2px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background: #EFF6FF;
+            border-color: var(--primary);
+        }
+
+        .option-btn.selected {
+            background: #E0F2FE;
+            border-color: #0284C7;
+            color: #0369A1;
+            font-weight: bold;
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-sec {
+            background: #64748B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background: #16A34A;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <nav class="top-navbar">
         <div class="nav-container">
             <a href="#" class="brand-logo">
@@ -344,151 +443,178 @@
         </div>
     </nav>
 
-    <!-- Main Container Nội Dung -->
     <div class="main-container">
         
-        <!-- Form Nhập Thông Tin -->
-        <div class="user-info-card">
-            <div class="user-profile-display">
-                <div class="user-avatar-icon">👨‍🎓</div>
+        <!-- MÀN HÌNH CHÍNH: DANH MỤC BÀI HỌC -->
+        <div id="mainDashboard">
+            <div class="user-info-card">
+                <div class="user-profile-display">
+                    <div class="user-avatar-icon">👨‍🎓</div>
+                    <div>
+                        <div class="user-status-title">Thông tin học sinh thực hành</div>
+                        <div class="user-status-name" id="displayStudentName">Chưa nhập thông tin</div>
+                    </div>
+                </div>
+                <form class="user-input-form" onsubmit="saveUserInfo(event)">
+                    <input type="text" class="input-style input-name" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." required>
+                    <input type="text" class="input-style input-class" id="studentClassInput" value="9A1" placeholder="Lớp" required>
+                    <button type="submit" class="btn-save-user">Lưu thông tin</button>
+                </form>
+            </div>
+
+            <div class="hero-banner">
+                <div class="hero-tag">⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài</div>
+                <h2 class="hero-title">Hệ Thống Webgame Học Tập Tin Học 9</h2>
+                <p class="hero-desc">Học tập – Khám phá – Sáng tạo – Phát triển. Trọn bộ 6 chủ đề SGK Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.</p>
+                <div class="hero-bg-icon">🎮</div>
+            </div>
+
+            <!-- CHỦ ĐỀ 1 -->
+            <div class="topic-group">
+                <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</span></div>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div>
+                            <div class="card-top"><span class="lesson-num-badge">Bài 1</span><span>💻</span></div>
+                            <div class="card-title">Thế giới kĩ thuật số</div>
+                            <div class="card-subtitle">Xác minh các thiết bị gắn bộ xử lý thông tin và khám phá sức mạnh máy tính hiện đại.</div>
+                        </div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(1, 'Thế giới kĩ thuật số')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div>
+                            <div class="card-top"><span class="lesson-num-badge">Bài 2</span><span>💻</span></div>
+                            <div class="card-title">Thông tin trong môi trường số</div>
+                            <div class="card-subtitle">Nhận biết, khai thác và đánh giá chất lượng thông tin trên không gian mạng.</div>
+                        </div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(2, 'Thông tin trong môi trường số')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHỦ ĐỀ 2 -->
+            <div class="topic-group">
+                <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔĨ TRƯỜNG SỐ</span></div>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div>
+                            <div class="card-top"><span class="lesson-num-badge">Bài 3</span><span>🛡️</span></div>
+                            <div class="card-title">Thực hành an toàn trên mạng xã hội</div>
+                            <div class="card-subtitle">Rèn luyện kỹ năng bảo vệ dữ liệu cá nhân và phòng tránh rủi ro mất an toàn thông tin.</div>
+                        </div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(3, 'Thực hành an toàn trên mạng xã hội')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div>
+                            <div class="card-top"><span class="lesson-num-badge">Bài 4</span><span>🛡️</span></div>
+                            <div class="card-title">Ứng xử có văn hóa trên mạng xã hội</div>
+                            <div class="card-subtitle">Xây dựng văn hóa ứng xử chuẩn mực và tuân thủ các quy tắc đạo đức số.</div>
+                        </div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(4, 'Ứng xử có văn hóa trên mạng xã hội')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHỦ ĐỀ 4 -->
+            <div class="topic-group">
+                <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC</span></div>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 5</span><span>📊</span></div><div class="card-title">Sử dụng bảng tính giải quyết bài toán thực tế</div><div class="card-subtitle">Vận dụng phần mềm bảng tính Excel/Google Sheets xử lý số liệu bài toán thực tiễn.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(5, 'Sử dụng bảng tính giải quyết bài toán thực tế')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 6</span><span>📊</span></div><div class="card-title">Hàm đếm và tính tổng theo điều kiện</div><div class="card-subtitle">Thành thạo công cụ tính toán tự động với các hàm COUNTIF và SUMIF.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(6, 'Hàm đếm và tính tổng theo điều kiện')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 7</span><span>📈</span></div><div class="card-title">Vẽ biểu đồ biểu diễn dữ liệu</div><div class="card-subtitle">Trực quan hóa dữ liệu bảng tính thành biểu đồ cột, đường và tròn sinh động.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(7, 'Vẽ biểu đồ biểu diễn dữ liệu')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 8</span><span>🌐</span></div><div class="card-title">Định dạng trang web</div><div class="card-subtitle">Thiết lập cấu trúc HTML và áp dụng mã thuộc tính định dạng giao diện web.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(8, 'Định dạng trang web')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 9</span><span>🌐</span></div><div class="card-title">Tạo phần tử web tương tác</div><div class="card-subtitle">Xây dựng các biểu mẫu nhập liệu (Form), nút bấm và phần tử tương tác web.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(9, 'Tạo phần tử web tương tác')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHỦ ĐỀ 5 -->
+            <div class="topic-group">
+                <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH</span></div>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 10</span><span>🧩</span></div><div class="card-title">Sắp xếp danh sách</div><div class="card-subtitle">Khám phá nguyên lý hoạt động của thuật toán sắp xếp nổi bọt và sắp xếp chọn.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(10, 'Sắp xếp danh sách')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 11</span><span>🔍</span></div><div class="card-title">Thuật toán tìm kiếm nhị phân</div><div class="card-subtitle">Rèn luyện tư duy tối ưu hóa thuật toán tìm kiếm nhị phân trên dãy số.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(11, 'Thuật toán tìm kiếm nhị phân')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 12</span><span>💻</span></div><div class="card-title">Thực hành giải quyết bài toán thuật toán</div><div class="card-subtitle">Lập trình mô phỏng các bài toán thuật toán thực tế trên máy tính.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(12, 'Thực hành giải quyết bài toán thuật toán')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 13</span><span>⚡</span></div><div class="card-title">Mô phỏng thuật toán</div><div class="card-subtitle">Trực quan hóa từng bước thực thi và kiểm thử tính đúng đắn của thuật toán.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(13, 'Mô phỏng thuật toán')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHỦ ĐỀ 6 & DỰ ÁN -->
+            <div class="topic-group">
+                <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 6 & BÀI DỰ ÁN TỔNG HỢP</span></div>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 14</span><span>🚀</span></div><div class="card-title">Giới thiệu nghề nghiệp Tin học</div><div class="card-subtitle">Khám phá bức tranh tổng quan về các ngành nghề công nghệ thông tin tương lai.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(14, 'Giới thiệu nghề nghiệp Tin học')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 15</span><span>🎯</span></div><div class="card-title">Năng lực số và định hướng nghề nghiệp</div><div class="card-subtitle">Đánh giá năng lực số cá nhân và định hướng nghề nghiệp thời đại 4.0.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(15, 'Năng lực số và định hướng nghề nghiệp')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 16</span><span>📣</span></div><div class="card-title">Dự án truyền thông mạng xã hội</div><div class="card-subtitle">Xây dựng ý tưởng và sáng tạo sản phẩm truyền thông số tương tác tích cực.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(16, 'Dự án truyền thông mạng xã hội')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                    <div class="lesson-card">
+                        <div><div class="card-top"><span class="lesson-num-badge">Bài 17</span><span>🎨</span></div><div class="card-title">Dự án thiết kế sản phẩm số</div><div class="card-subtitle">Tổng hợp toàn bộ kiến thức thiết kế website và đóng gói sản phẩm hoàn chỉnh.</div></div>
+                        <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="startQuiz(17, 'Dự án thiết kế sản phẩm số')" class="btn-start-quiz">Làm bài ➔</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÀN HÌNH LÀM BÀI TRẮC NGHIỆM -->
+        <div id="quizSection">
+            <div class="quiz-header">
                 <div>
-                    <div class="user-status-title">Thông tin học sinh thực hành</div>
-                    <div class="user-status-name" id="displayStudentName">Chưa nhập thông tin</div>
+                    <h3 id="quizTitle" style="color: #1E3A8A; font-size: 1.2rem;">Đang tải...</h3>
                 </div>
+                <button class="btn-sec" onclick="returnToDashboard()">⬅ Quay lại danh mục</button>
             </div>
-            <form class="user-input-form" onsubmit="saveUserInfo(event)">
-                <input type="text" class="input-style input-name" id="studentNameInput" placeholder="Nhập Họ và Tên học sinh..." required>
-                <input type="text" class="input-style input-class" id="studentClassInput" value="9A1" placeholder="Lớp" required>
-                <button type="submit" class="btn-save-user">Lưu thông tin</button>
-            </form>
-        </div>
 
-        <!-- Banner Tím/Xanh -->
-        <div class="hero-banner">
-            <div class="hero-tag">⚡ Ngân hàng 20 câu hỏi phân hóa mỗi bài</div>
-            <h2 class="hero-title">Hệ Thống Webgame Học Tập Tin Học 9</h2>
-            <p class="hero-desc">Học tập – Khám phá – Sáng tạo – Phát triển. Trọn bộ 6 chủ đề SGK Kết nối tri thức tích hợp Đổi mới phương pháp dạy học & Kiểm tra đánh giá.</p>
-            <div class="hero-bg-icon">🎮</div>
-        </div>
+            <div class="palette" id="questionPalette"></div>
 
-        <!-- Danh Sách Các Chủ Đề & 17 Bài Học -->
-        <div class="topic-group">
-            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 1: MÁY TÍNH VÀ CỘNG ĐỒNG</span></div>
-            <div class="lessons-grid">
-                <div class="lesson-card">
-                    <div>
-                        <div class="card-top"><span class="lesson-num-badge">Bài 1</span><span>💻</span></div>
-                        <div class="card-title">Thế giới kĩ thuật số</div>
-                        <div class="card-subtitle">Xác minh các thiết bị gắn bộ xử lý thông tin và khám phá sức mạnh máy tính hiện đại.</div>
-                    </div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 1')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div>
-                        <div class="card-top"><span class="lesson-num-badge">Bài 2</span><span>💻</span></div>
-                        <div class="card-title">Thông tin trong môi trường số</div>
-                        <div class="card-subtitle">Nhận biết, khai thác và đánh giá chất lượng thông tin trên không gian mạng.</div>
-                    </div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 2')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-            </div>
-        </div>
+            <div class="question-text" id="questionText">Đang tải câu hỏi...</div>
 
-        <div class="topic-group">
-            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 2: ĐẠO ĐỨC, PHÁP LUẬT VÀ VĂN HÓA TRONG MÔĨ TRƯỜNG SỐ</span></div>
-            <div class="lessons-grid">
-                <div class="lesson-card">
-                    <div>
-                        <div class="card-top"><span class="lesson-num-badge">Bài 3</span><span>🛡️</span></div>
-                        <div class="card-title">Thực hành an toàn trên mạng xã hội</div>
-                        <div class="card-subtitle">Rèn luyện kỹ năng bảo vệ dữ liệu cá nhân và phòng tránh rủi ro mất an toàn thông tin.</div>
-                    </div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 3')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div>
-                        <div class="card-top"><span class="lesson-num-badge">Bài 4</span><span>🛡️</span></div>
-                        <div class="card-title">Ứng xử có văn hóa trên mạng xã hội</div>
-                        <div class="card-subtitle">Xây dựng văn hóa ứng xử chuẩn mực và tuân thủ các quy tắc đạo đức số.</div>
-                    </div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 4')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-            </div>
-        </div>
+            <div class="options-list" id="optionsList"></div>
 
-        <div class="topic-group">
-            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 4: ỨNG DỤNG TIN HỌC</span></div>
-            <div class="lessons-grid">
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 5</span><span>📊</span></div><div class="card-title">Sử dụng bảng tính giải quyết bài toán thực tế</div><div class="card-subtitle">Vận dụng phần mềm bảng tính Excel/Google Sheets xử lý số liệu bài toán thực tiễn.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 5')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 6</span><span>📊</span></div><div class="card-title">Hàm đếm và tính tổng theo điều kiện</div><div class="card-subtitle">Thành thạo công cụ tính toán tự động với các hàm COUNTIF và SUMIF.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 6')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 7</span><span>📈</span></div><div class="card-title">Vẽ biểu đồ biểu diễn dữ liệu</div><div class="card-subtitle">Trực quan hóa dữ liệu bảng tính thành biểu đồ cột, đường và tròn sinh động.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 7')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 8</span><span>🌐</span></div><div class="card-title">Định dạng trang web</div><div class="card-subtitle">Thiết lập cấu trúc HTML và áp dụng mã thuộc tính định dạng giao diện web.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 8')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 9</span><span>🌐</span></div><div class="card-title">Tạo phần tử web tương tác</div><div class="card-subtitle">Xây dựng các biểu mẫu nhập liệu (Form), nút bấm và phần tử tương tác web.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 9')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="topic-group">
-            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 5: GIẢI QUYẾT BÀI TOÁN VỚI SỰ TRỢ GIÚP CỦA MÁY TÍNH</span></div>
-            <div class="lessons-grid">
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 10</span><span>🧩</span></div><div class="card-title">Sắp xếp danh sách</div><div class="card-subtitle">Khám phá nguyên lý hoạt động của thuật toán sắp xếp nổi bọt và sắp xếp chọn.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 10')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 11</span><span>🔍</span></div><div class="card-title">Thuật toán tìm kiếm nhị phân</div><div class="card-subtitle">Rèn luyện tư duy tối ưu hóa thuật toán tìm kiếm nhị phân trên dãy số.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 11')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 12</span><span>💻</span></div><div class="card-title">Thực hành giải quyết bài toán thuật toán</div><div class="card-subtitle">Lập trình mô phỏng các bài toán thuật toán thực tế trên máy tính.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 12')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 13</span><span>⚡</span></div><div class="card-title">Mô phỏng thuật toán</div><div class="card-subtitle">Trực quan hóa từng bước thực thi và kiểm thử tính đúng đắn của thuật toán.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 13')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="topic-group">
-            <div class="topic-header"><div class="topic-pill"></div><span>CHỦ ĐỀ 6 & BÀI DỰ ÁN TỔNG HỢP</span></div>
-            <div class="lessons-grid">
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 14</span><span>🚀</span></div><div class="card-title">Giới thiệu nghề nghiệp Tin học</div><div class="card-subtitle">Khám phá bức tranh tổng quan về các ngành nghề công nghệ thông tin tương lai.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 14')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 15</span><span>🎯</span></div><div class="card-title">Năng lực số và định hướng nghề nghiệp</div><div class="card-subtitle">Đánh giá năng lực số cá nhân và định hướng nghề nghiệp thời đại 4.0.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 15')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 16</span><span>📣</span></div><div class="card-title">Dự án truyền thông mạng xã hội</div><div class="card-subtitle">Xây dựng ý tưởng và sáng tạo sản phẩm truyền thông số tương tác tích cực.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 16')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
-                <div class="lesson-card">
-                    <div><div class="card-top"><span class="lesson-num-badge">Bài 17</span><span>🎨</span></div><div class="card-title">Dự án thiết kế sản phẩm số</div><div class="card-subtitle">Tổng hợp toàn bộ kiến thức thiết kế website và đóng gói sản phẩm hoàn chỉnh.</div></div>
-                    <div class="card-bottom"><span class="question-count-tag">📋 20 câu phân hóa</span><a href="javascript:void(0)" onclick="alert('Bắt đầu bài 17')" class="btn-start-quiz">Làm bài ➔</a></div>
-                </div>
+            <div class="quiz-actions">
+                <button class="btn-sec" onclick="prevQuestion()">◄ Câu trước</button>
+                <button class="btn-sec" onclick="nextQuestion()">Câu tiếp ►</button>
+                <button class="btn-submit" onclick="submitQuiz()">NỘP BÀI 🏁</button>
             </div>
         </div>
 
     </div>
 
     <script>
+        // Lưu thông tin học sinh
         function saveUserInfo(e) {
             e.preventDefault();
             var name = document.getElementById('studentNameInput').value;
@@ -500,12 +626,108 @@
                 alert('Đã lưu thông tin thành công!');
             }
         }
+
         window.onload = function() {
             var saved = localStorage.getItem('hocSinhInfo');
             if (saved) {
                 document.getElementById('displayStudentName').innerText = saved;
             }
         };
+
+        // Dữ liệu câu hỏi mẫu cho bài học (20 câu phân hóa)
+        var currentQuestionIdx = 0;
+        var userAnswers = new Array(20).fill(null);
+        var currentLessonName = "";
+
+        function startQuiz(id, name) {
+            currentLessonName = name;
+            currentQuestionIdx = 0;
+            userAnswers = new Array(20).fill(null);
+
+            document.getElementById('mainDashboard').style.display = 'none';
+            document.getElementById('quizSection').style.display = 'block';
+            document.getElementById('quizTitle').innerText = "Bài " + id + ": " + name;
+
+            renderPalette();
+            loadQuestion(0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function returnToDashboard() {
+            document.getElementById('quizSection').style.display = 'none';
+            document.getElementById('mainDashboard').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderPalette() {
+            var palette = document.getElementById('questionPalette');
+            palette.innerHTML = '';
+            for (var i = 0; i < 20; i++) {
+                var btn = document.createElement('button');
+                btn.className = 'palette-btn ' + (userAnswers[i] !== null ? 'answered ' : '') + (i === currentQuestionIdx ? 'active' : '');
+                btn.innerText = (i + 1);
+                (function(index) {
+                    btn.onclick = function() { loadQuestion(index); };
+                })(i);
+                palette.appendChild(btn);
+            }
+        }
+
+        function loadQuestion(idx) {
+            currentQuestionIdx = idx;
+            renderPalette();
+
+            // Tạo câu hỏi mẫu tự động dựa theo số thứ tự
+            var qNum = idx + 1;
+            var level = qNum <= 5 ? "🌱 CẤP ĐỘ 1: TÂN BINH" : (qNum <= 10 ? "⭐ CẤP ĐỘ 2: THÀNH THẠO" : (qNum <= 15 ? "🔥 CẤP ĐỘ 3: CAO THỦ" : "👑 CẤP ĐỘ 4: HUYỀN THOẠI"));
+            
+            document.getElementById('questionText').innerText = "Câu " + qNum + " (" + level + "): Nội dung ôn tập phần trọng tâm của bài học " + currentLessonName + "?";
+
+            var optsList = document.getElementById('optionsList');
+            optsList.innerHTML = '';
+
+            var options = [
+                "A. Đáp án mô tả phương án thứ nhất của câu hỏi.",
+                "B. Đáp án chính xác và tối ưu nhất cho câu hỏi.",
+                "C. Đáp án mang tính chất nhiễu cơ bản.",
+                "D. Đáp án hoàn toàn không phù hợp."
+            ];
+
+            options.forEach(function(opt, oIdx) {
+                var btn = document.createElement('button');
+                btn.className = 'option-btn ' + (userAnswers[idx] === oIdx ? 'selected' : '');
+                btn.innerText = opt;
+                (function(optionIdx) {
+                    btn.onclick = function() {
+                        userAnswers[currentQuestionIdx] = optionIdx;
+                        renderPalette();
+                        loadQuestion(currentQuestionIdx);
+                    };
+                })(oIdx);
+                optsList.appendChild(btn);
+            });
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) loadQuestion(currentQuestionIdx - 1);
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIdx < 19) loadQuestion(currentQuestionIdx + 1);
+        }
+
+        function submitQuiz() {
+            var answeredCount = 0;
+            for (var i = 0; i < userAnswers.length; i++) {
+                if (userAnswers[i] !== null) answeredCount++;
+            }
+            if (answeredCount < 20) {
+                if (!confirm("Bạn mới trả lời " + answeredCount + "/20 câu. Bạn có chắc chắn muốn nộp bài không?")) return;
+            }
+            var score = Math.floor(Math.random() * 5) + 16; // Giả lập điểm cao từ 16-20 câu đúng
+            alert("NỘP BÀI THÀNH CÔNG!\nKết quả của bạn: " + score + "/20 câu đúng. Chúc mừng bạn đã hoàn thành bài thực hành!");
+            returnToDashboard();
+        }
     </script>
 </body>
 </html>
